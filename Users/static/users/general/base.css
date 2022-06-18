@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400;1,700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+.number {
+    font-family: 'Nunito', sans-serif;
+}
+
+.title {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.text {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: #f5f7f9 !important;
+    scroll-behavior: smooth;
+}
+
+.btn-whatsapp {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 9999;
+    border: 1px solid #4dc247 !important;
+    background-color: #FFFFFF !important;
+    animation-name: salt-button;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+@keyframes salt-button {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.img_product_cart_menu {
+    width: 2rem;
+    height: 2rem;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.remove_product_cart {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.8rem;
+    margin: 0 !important;
+    border: 1px solid #006b1b;
+    border-radius: 50%;
+    height: fit-content;
+}
+
+footer {
+    background-color: #FFFFFF;
+    padding: 3rem 3rem;
+}
+
+footer .content-footer {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+}
+
+footer .content-footer .menu {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+footer .content-footer .menu .section-navigation ul li,
+footer .content-footer .menu .section-categories ul li,
+footer .content-footer .menu .section-contact ul li {
+    list-style: none;
+    margin-right: 1rem;
+}
+
+footer .content-footer .copytight {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #e5e5e5;
+    padding-top: 1rem;
+}

@@ -1,0 +1,37 @@
+.content {
+    display: grid !important;
+    grid-template-columns: auto 1fr !important;
+    gap: 3rem;
+}
+
+.content .sidebar .categories form .field label {
+    color: #808080;
+    border-bottom: none;
+    margin-bottom: 0.5rem;
+
+}
+
+.content .sidebar .categories form .field label:hover {
+    color: #1b1b1b;
+    border-bottom: 1px solid #1b1b1b;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 250px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    transition: all ease-in-out 0.3s;
+    margin: 0;
+}
+
+.card {
+    box-shadow: none;
+    transition: all ease-in-out 0.3s;
+}
+
+.card:hover {
+    box-shadow: 3px 3px 10px 5px rgba(0, 0, 0, 0.1);
+}

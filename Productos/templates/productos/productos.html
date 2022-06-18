@@ -1,0 +1,87 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+    <title>Productos</title>
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'productos/css/productos.css' %}">
+{% endblock %}
+
+{% block container %}
+    <div class="container" style="min-height: 100vh">
+        <div class="content pt-5">
+            <sidebar class="sidebar">
+                <h2 class="title">Categorias</h2>
+                <section class="categories mt-3">
+
+                    <form action="" method="get">
+                        {% for category in categories %}
+                            <div class="field mb-3 ps-3">
+                                <input type="checkbox" value="{{ category.id }}" id="{{ category.id }}" name="category">
+                                <label for="{{ category.id }}">{{ category.nombre | capfirst }}</label> <br>
+                            </div>
+                        {% endfor %}
+                        <div class="action mt-3">
+                            <button class="btn btn-outline-danger btn-sm" type="reset">Desmarcar</button>
+                            <button class="btn btn-outline-primary btn-sm" type="submit">Ver categoría</button>
+                            {% if result_category %}
+                                <br>
+                                <a class="btn btn-outline-dark btn-sm mt-5" href="{% url 'productos' %}"><span class="icon-arrow-left2"></span> Todos los productos</a>
+                            {% endif %}
+                        </div>
+                    </form>
+                </section>
+            </sidebar>
+
+            <section class="products p-5 bg-white">
+                {% if result_category %}
+                    <h3 class="title my-3">Productos con categoria <span class="text-primary">{{ category | capfirst }}</span></h3>
+                {% endif %}
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+
+                    {% if result_category %}
+                        {% for producto in result_category %}
+                            <div class="col">
+                                <a href="{% url 'detail_producto' producto.id %}" class="text-decoration-none text-reset">
+                                    <div class="card h-100 border-0">
+                                        <figure class="card-img-top" style="background-image: url({{ producto.imagen.url }})">
+                                        </figure>
+                                        <div class="card-body">
+                                            <h5 class="card-title title fw-bold fs-3">{{ producto.nombre }}</h5>
+                                            <small class="text-muted">{{ producto.categoria.nombre | capfirst }}</small>
+                                            <p class="card-text text">{{ producto.descripcion }}</p>
+                                            <p class="number fw-bold">$ {{ producto.precio | intcomma }}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        {% for producto in entity %}
+                            <div class="col">
+                                <a href="{% url 'detail_producto' producto.id %}" class="text-decoration-none text-reset">
+                                    <div class="card h-100 border-0">
+                                        <figure class="card-img-top" style="background-image: url({{ producto.imagen.url }})">
+                                        </figure>
+                                        <div class="card-body">
+                                            <h5 class="card-title title fw-bold fs-3">{{ producto.nombre }}</h5>
+                                            <small class="text-muted">{{ producto.categoria.nombre | capfirst }}</small>
+                                            <p class="card-text text">{{ producto.get_short_desc }}</p>
+                                            <p class="number fw-bold">$ {{ producto.precio | intcomma }}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="paginator py-3">
+                    {% include 'productos/paginator.html' %}
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+    <title>Carrito de Compras</title>
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'productos/css/cart.css' %}">
+{% endblock %}
+
+{% block container %}
+    <div class="container" style="min-height: 100vh">
+        <h1 class="title text-center my-5 fw-bold">Carrito de Compras</h1>
+        <div class="content">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in cart_prd %}
+                        <tr>
+                            <th scope="row">
+                                <figure class="m-0 img_product_cart" style="background-image: url({{ product.imagen }})"></figure>
+                            </th>
+                            <td class="center-y">{{ product.nombre }}</td>
+                            <td class="center-y number">{{ product.cantidad }}</td>
+                            <td class="center-y number">$ {{ product.precio }}</td>
+                            <td class="center-y number">$ {{ product.monto_total }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="total_cart bg-white p-5" style="margin-left: 50%">
+                <h3 class="title fw-bold">Total</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <th scope="row">Subtotal</th>
+                            <td class="center-y number">{{ cart.get_subtotal }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Total</th>
+                            <td class="center-y number">{{ cart.get_total_iva }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="#" class="btn btn-primary w-100 rounded-0 py-3 fw-bold fs-4">CONTINUAR</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

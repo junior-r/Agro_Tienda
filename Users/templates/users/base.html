@@ -1,0 +1,182 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+        <title>Title</title>
+    {% endblock %}
+    {% block styles %}
+
+    {% endblock %}
+    <link rel="stylesheet" href="{% static 'users/general/base.css' %}">
+    <link rel="stylesheet" href="{% static 'users/Iconos/style.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"></head>
+<body>
+
+    <div class="header" id="up">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <p class="text-center text w-100 m-0 text-white">Envíos Gratis a partir de 100$ a todo el país.  ¿Dudas?
+                <a href="https://api.whatsapp.com/send?phone=584122656008&text=hola" class="text-reset text-decoration-none">WhatsApp <span class="icon-whatsapp"></span></a></p>
+        </nav>
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Agro_Tienda</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}">INICIO</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">NOSOTROS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'productos' %}">PRODUCTOS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">CONTÁCTANOS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">FAQ´S</a>
+                        </li>
+                    </ul>
+                    <span class="navbar-text">
+                        <div class="btn-group me-3">
+                            <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
+                                    {% if 'cart' in request.session.keys %}
+                                        {{ number_prd_cart }}
+                                    {% else %}
+                                        0
+                                    {% endif %}
+                                    <span class="visually-hidden">unread messages</span></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                {% if cart_prd %}
+                                    {% for product in cart_prd %}
+                                        <li class="d-flex align-items-center pe-3">
+                                            <a class="dropdown-item d-flex gap-2 align-items-center" href="{% url 'detail_producto' product.producto_id %}">
+                                                <figure class="img_product_cart_menu m-0" style="background-image: url({{ product.imagen }})"></figure>
+                                                <div class="info_product_cart">
+                                                    <p class="m-0 nombre text">{{ product.nombre | capfirst }}</p>
+                                                    <p class="m-0 cantida_precio number text-muted">{{ product.cantidad }} x $ {{ product.precio }} = <span class="text-primary">{{ product.monto_total }}</span></p>
+                                                </div>
+                                            </a>
+                                            <a href="{% url 'remove_from_cart' product.producto_id %}" class="remove_product_cart text-decoration-none">
+                                                <span class="icon-x"></span>
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text text-center" href="#">Subtotal: <span class="number text-primary">{{ cart.get_subtotal }}</span></a></li>
+                                {% endif %}
+                                <li><hr class="dropdown-divider"></li>
+                                <li class="text-center">
+                                    <a class="dropdown-item" href="{% url 'cart' %}">
+                                        <button class="btn btn-outline-success">Ver carrito</button>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </span>
+                </div>
+            </div>
+        </nav>
+    </div>
+    
+    <div>
+        {% block container %}
+
+        {% endblock %}
+
+        <a href="https://api.whatsapp.com/send?phone=584122656008" target="_blank" class="btn btn-whatsapp btn-sm text-start">WhatsApp <span class="icon-whatsapp"></span>
+            <br><span class="number">+58 412-2656008</span>
+        </a>
+    </div>
+
+    <footer class="footer mt-5">
+        <div class="content-footer container">
+            <div class="menu">
+                <section class="section-navigation">
+                    <h3 class="title">Navegación</h3>
+                    <ul class="navigation">
+                        <li class="navigation-item text"><a href="{% url 'home' %}" class="text-decoration-none text-dark">Inicio</a></li>
+                        <li class="navigation-item text"><a href="#" class="text-decoration-none text-dark">Nosotros</a></li>
+                        <li class="navigation-item text"><a href="{% url 'productos' %}" class="text-decoration-none text-dark">Productos</a></li>
+                        <li class="navigation-item text"><a href="#" class="text-decoration-none text-dark">Contacto</a></li>
+                    </ul>
+                </section>
+
+                <section class="section-categories">
+                    <h3 class="title">Categorías</h3>
+                    <ul class="categories">
+                        {% for category in categories %}
+                            <li class="categories-item text"><a href="/productos/?category={{ category.id }}" class="text-decoration-none text-dark">{{ category.nombre | capfirst }}</a></li>
+                        {% endfor %}
+                        <li class="categories-item text"><a href="{% url 'productos' %}" class="text-decoration-none text-dark">Todo</a></li>
+                    </ul>
+                </section>
+
+                <section class="section-contact">
+                    <h3 class="title">Información de contacto</h3>
+                    <ul class="contact-info-list">
+                        <li class="cantact-item text">
+                            <a href="https://api.whatsapp.com/send?phone=584122656008" target="_blank" class="btn whatsapp">WhatsApp <span class="icon-whatsapp ms-1"></span></a>
+                        </li>
+                        <li class="contact-item text">
+                            <a href="https://www.instagram.com/carnetoday/" target="_blank" class="btn instagram">Instagram <span class="icon-instagram ms-1"></span></a>
+                        </li>
+                        <li class="contact-item text">
+                            <a href="https://t.me/+584122647923" target="_blank" class="btn telegram">Telegram <span class="icon-telegram" style="color: #0088cc; margin-left: 0.7rem"></span></a>
+                        </li>
+                        <li class="contact-item text">
+                            <a href="mailto:junior31064049@gmail.com" target="_blank" class="btn mail">Mail <span class="icon-gmail ms-5"></span></a>
+                        </li>
+                    </ul>
+                </section>
+
+            </div>
+            <div class="copytight">
+                <p class="copytight-content text m-0">
+                    <span class="icon-copyright"></span> 2022 Agro_Tienda. Todos los derechos reservados.
+                </p>
+                <p class="poweredby text m-0">Powered by Junior.R
+                    <a href="#up"><span class="icon-arrow-up2 btn btn-secondary btn-sm ms-3"></span></a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {% if messages %}
+        {% for m in messages %}
+            {% if m.tags == 'error' %}
+                <script>
+                    Swal.fire({
+                        'title': 'Error',
+                        'text': '{{ m }}',
+                        'icon': '{{ m.tags }}'
+                    })
+                </script>
+            {% else %}
+                <script>
+                    Swal.fire({
+                        'title': 'Éxito',
+                        'text': '{{ m }}',
+                        'icon': '{{ m.tags }}'
+
+                    })
+                </script>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
