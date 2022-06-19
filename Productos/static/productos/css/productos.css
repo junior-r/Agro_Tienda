@@ -4,14 +4,16 @@
     gap: 3rem;
 }
 
-.content .sidebar .categories form .field label {
+.content .sidebar .categories form .content,
+.content .sidebar .categories form .content {
     color: #808080;
     border-bottom: none;
     margin-bottom: 0.5rem;
 
 }
 
-.content .sidebar .categories form .field label:hover {
+.content .sidebar .categories form .content:hover,
+.content .sidebar .categories form .content:hover {
     color: #1b1b1b;
     border-bottom: 1px solid #1b1b1b;
 }

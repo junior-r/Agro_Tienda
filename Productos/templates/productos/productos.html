@@ -19,17 +19,24 @@
 
                     <form action="" method="get">
                         {% for category in categories %}
-                            <div class="field mb-3 ps-3">
-                                {% if category_request %}
-                                    {% if category_request == category.id %}
-                                        <input type="radio" class="form-check-input" id="{{ category.id }}" name="category" value="{{ category.id }}" checked>
+                            <div class="content mb-3 ps-3 d-flex justify-content-between">
+                                <div class="field">
+                                    {% if category_request %}
+                                        {% if category_request == category.id %}
+                                            <input type="radio" class="form-check-input" id="{{ category.id }}" name="category" value="{{ category.id }}" checked>
+                                        {% else %}
+                                            <input type="radio" class="form-check-input" id="{{ category.id }}" name="category" value="{{ category.id }}">
+                                        {% endif %}
                                     {% else %}
-                                        <input type="radio" class="form-check-input" id="{{ category.id }}" name="category" value="{{ category.id }}">
+                                        <input type="radio" class="form-check-input" value="{{ category.id }}" id="{{ category.id }}" name="category">
                                     {% endif %}
-                                {% else %}
-                                    <input type="radio" class="form-check-input" value="{{ category.id }}" id="{{ category.id }}" name="category">
-                                {% endif %}
-                                <label for="{{ category.id }}">{{ category.nombre | capfirst }}</label> <br>
+                                    <label for="{{ category.id }}">
+                                        <span class="name">{{ category.nombre | capfirst }}</span>
+                                    </label> <br>
+                                </div>
+                                <div class="number_of_prd_by_category">
+                                    (<span class="number">{{ category.get_number_prd }}</span>)
+                                </div>
                             </div>
                         {% endfor %}
                         <hr>
