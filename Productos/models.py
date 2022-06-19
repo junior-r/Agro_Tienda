@@ -19,6 +19,7 @@ class Producto(models.Model):
     cantidad = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, blank=True)
+    recomendar = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-created_at']

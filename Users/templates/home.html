@@ -64,39 +64,21 @@
         <section class="recommended-products my-5">
             <h3 class="text-center title fs-2 my-5 fw-bold">PRODUCTOS RECOMENDADOS PARA TI</h3>
             <div class="row row-cols-1 row-cols-md-3 g-4">
-                <div class="col">
-                    <div class="card h-100">
-                        <figure class="card-img-top" style="background-image: url('https://pbs.twimg.com/ext_tw_video_thumb/1535056704244686852/pu/img/WvQtWKrQmaGmCHCE?format=jpg&name=large')">
-                        </figure>
-                        <div class="card-body">
-                            <h5 class="card-title title fw-bold fs-2">Card title</h5>
-                            <p class="card-text text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <a href="#" class="btn btn-outline-info">Ver producto</a>
+                {% if recommended_products %}
+                    {% for recommended_product in recommended_products %}
+                        <div class="col">
+                            <div class="card h-100">
+                                <figure class="card-img-top" style="background-image: url({{ recommended_product.imagen.url }})">
+                                </figure>
+                                <div class="card-body">
+                                    <h5 class="card-title title fw-bold fs-2">{{ recommended_product.nombre }}</h5>
+                                    <p class="card-text text">{{ recommended_product.descripcion }}</p>
+                                    <a href="{% url 'detail_producto' recommended_product.id %}" class="btn btn-outline-info">Ver producto</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <figure class="card-img-top" style="background-image: url('https://play-lh.googleusercontent.com/XP3gJmZRtEottKu8KD9mm3MqUehsvtGFmK5NAyH7F3Nek4LI0P8jy7rFVJPBUfwAeh8')">
-                        </figure>
-                        <div class="card-body">
-                            <h5 class="card-title title fw-bold fs-2">Card title</h5>
-                            <p class="card-text text">This card has supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-outline-info">Ver producto</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <figure class="card-img-top" style="background-image: url('https://pbs.twimg.com/ext_tw_video_thumb/1535056704244686852/pu/img/WvQtWKrQmaGmCHCE?format=jpg&name=large')">
-                        </figure>
-                        <div class="card-body">
-                            <h5 class="card-title title fw-bold fs-2">Card title</h5>
-                            <p class="card-text text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                            <a href="#" class="btn btn-outline-info">Ver producto</a>
-                        </div>
-                    </div>
-                </div>
+                    {% endfor %}
+                {% endif %}
             </div>
         </section>
 

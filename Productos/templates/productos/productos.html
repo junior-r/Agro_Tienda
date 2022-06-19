@@ -20,17 +20,25 @@
                     <form action="" method="get">
                         {% for category in categories %}
                             <div class="field mb-3 ps-3">
-                                <input type="checkbox" value="{{ category.id }}" id="{{ category.id }}" name="category">
+                                {% if category_request %}
+                                    {% if category_request == category.id %}
+                                        <input type="radio" class="form-check-input" id="{{ category.id }}" name="category" value="{{ category.id }}" checked>
+                                    {% else %}
+                                        <input type="radio" class="form-check-input" id="{{ category.id }}" name="category" value="{{ category.id }}">
+                                    {% endif %}
+                                {% else %}
+                                    <input type="radio" class="form-check-input" value="{{ category.id }}" id="{{ category.id }}" name="category">
+                                {% endif %}
                                 <label for="{{ category.id }}">{{ category.nombre | capfirst }}</label> <br>
                             </div>
                         {% endfor %}
-                        <div class="action mt-3">
-                            <button class="btn btn-outline-danger btn-sm" type="reset">Desmarcar</button>
-                            <button class="btn btn-outline-primary btn-sm" type="submit">Ver categoría</button>
-                            {% if result_category %}
-                                <br>
-                                <a class="btn btn-outline-dark btn-sm mt-5" href="{% url 'productos' %}"><span class="icon-arrow-left2"></span> Todos los productos</a>
-                            {% endif %}
+                        <hr>
+                        {% if result_category %}
+                            <a class="btn btn-outline-dark btn-sm my-2" href="{% url 'productos' %}"><span class="icon-arrow-left2"></span> Todos los productos</a>
+                            <hr>
+                        {% endif %}
+                        <div class="action mt-3 d-flex justify-content-between gap-2 align-items-center">
+                            <button class="btn btn-outline-primary btn-sm" type="submit"><span class="icon-checkmark"></span> Ver categoría</button>
                         </div>
                     </form>
                 </section>
@@ -38,13 +46,13 @@
 
             <section class="products p-5 bg-white">
                 {% if result_category %}
-                    <h3 class="title my-3">Productos con categoria <span class="text-primary">{{ category | capfirst }}</span></h3>
+                    <h3 class="title my-3">({{ result_category.count }}) Productos con categoria <span class="text-primary">{{ category | capfirst }}</span></h3>
                 {% endif %}
-                <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="content-products d-grid gap-4">
 
                     {% if result_category %}
                         {% for producto in result_category %}
-                            <div class="col">
+                            <div class="product-{{ producto.id }}">
                                 <a href="{% url 'detail_producto' producto.id %}" class="text-decoration-none text-reset">
                                     <div class="card h-100 border-0">
                                         <figure class="card-img-top" style="background-image: url({{ producto.imagen.url }})">
@@ -61,7 +69,7 @@
                         {% endfor %}
                     {% else %}
                         {% for producto in entity %}
-                            <div class="col">
+                            <div class="product-{{ producto.id }}">
                                 <a href="{% url 'detail_producto' producto.id %}" class="text-decoration-none text-reset">
                                     <div class="card h-100 border-0">
                                         <figure class="card-img-top" style="background-image: url({{ producto.imagen.url }})">

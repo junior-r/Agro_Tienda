@@ -46,7 +46,7 @@
                     </ul>
                     <span class="navbar-text">
                         <div class="btn-group me-3">
-                            <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button type="button" class="btn btn-outline-primary dropdown-toggle cart-button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-shopping-cart"></i>
                                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
                                     {% if 'cart' in request.session.keys %}
@@ -56,7 +56,7 @@
                                     {% endif %}
                                     <span class="visually-hidden">unread messages</span></span>
                             </button>
-                            <ul class="dropdown-menu dropdown-menu-end">
+                            <ul class="dropdown-menu dropdown-menu-end menu-cart">
                                 {% if cart_prd %}
                                     {% for product in cart_prd %}
                                         <li class="d-flex align-items-center pe-3">
@@ -78,7 +78,7 @@
                                 <li><hr class="dropdown-divider"></li>
                                 <li class="text-center">
                                     <a class="dropdown-item" href="{% url 'cart' %}">
-                                        <button class="btn btn-outline-success">Ver carrito</button>
+                                        <button class="btn btn-outline-success btn-sm">Ver carrito</button>
                                     </a>
                                 </li>
                             </ul>
@@ -90,7 +90,7 @@
         </nav>
     </div>
     
-    <div>
+    <div class="super-container">
         {% block container %}
 
         {% endblock %}

@@ -57,6 +57,7 @@ def productos(request):
             data['categories'] = categories
             data['result_category'] = categoria_productos
             data['category'] = categoria
+            data['category_request'] = int(category)
         else:
             pass
 

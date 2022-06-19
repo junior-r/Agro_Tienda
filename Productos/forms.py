@@ -19,7 +19,8 @@ class ProductoForm(forms.ModelForm):
     imagen = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control'}), label='Imagen')
     cantidad = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}), label='Cantidad')
     categoria = forms.ModelChoiceField(queryset=Categoria.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}), label='Categoría')
+    recomendar = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class': 'form-control'}), label='¿Recomendar?')
 
     class Meta:
         model = Producto
-        fields = ['nombre', 'descripcion', 'precio', 'imagen', 'cantidad', 'categoria']
+        fields = ['nombre', 'descripcion', 'precio', 'imagen', 'cantidad', 'categoria', 'recomendar']

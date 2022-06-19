@@ -11,7 +11,7 @@ class CategoriaAdmin(admin.ModelAdmin):
 
 
 class ProductoAdmin(admin.ModelAdmin):
-    list_display = ('nombre', 'descripcion', 'precio', 'cantidad', 'categoria', 'created_at')
+    list_display = ('nombre', 'imagen', 'precio', 'cantidad', 'categoria', 'created_at', 'recomendar')
     search_fields = ('nombre',)
     list_filter = ('created_at', 'cantidad', 'categoria')
     list_per_page = 10
