@@ -27,7 +27,7 @@ def home(request):
     data['cart'] = cart
     data['cart_prd'] = cart_prd
 
-    return render(request, 'home.html', data)
+    return render(request, 'general/home.html', data)
 
 
 def signup(request):
@@ -49,3 +49,18 @@ def signup(request):
             messages.error(request, 'Error al crear el usuario')
 
     return render(request, 'registration/signup.html', data)
+
+
+def about_us(request):
+    categories = Categoria.objects.all()
+
+    data = {
+        'categories': categories,
+    }
+
+    number_prd_cart, cart, cart_prd = get_total_items_cart(request)
+    data['number_prd_cart'] = number_prd_cart
+    data['cart'] = cart
+    data['cart_prd'] = cart_prd
+
+    return render(request, 'general/nosotros.html', data)

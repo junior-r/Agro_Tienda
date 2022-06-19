@@ -1,0 +1,177 @@
+.content {
+    min-height: 100vh;
+}
+
+.content .header .banner {
+    width: 100%;
+    height: 70vh;
+    background-image: url('https://carnetoday.com/wp-content/uploads/2021/05/banner-04.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.content .header .banner .banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    letter-spacing: 0.1rem;
+    line-height: 1.5;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+}
+
+.content .who_we_are {
+    margin: 5rem 0;
+    padding-inline: 5rem;
+}
+
+.content .header .banner .banner-text h1,
+.content .who_we_are .us .us_description h3 {
+    font-size: 3.5rem;
+}
+
+.content .who_we_are .us {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+}
+
+.content .who_we_are .us .us_description {
+    padding: 10rem 5rem;
+}
+
+.content .who_we_are .us .us_description p {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.content .who_we_are .us .us_imagen {
+    background-image: url("https://carnetoday.com/wp-content/uploads/2021/05/banner-04.jpg");
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.content .follow_us {
+    background-image: url('https://www.financialstand.com/wp-content/uploads/2022/03/top-5-reasons-why-you-need-a-social-media-manager-616015983b3ba-sej-1520x800-1.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 40vh;
+    width: 100%;
+}
+
+.content .follow_us .content-follow-us {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding-inline: 5rem;
+    height: 101%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content .follow_us .content-follow-us h3 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+.content .follow_us .content-follow-us .socials {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+
+.content .follow_us .content-follow-us .socials a span::before {
+    color: #1b1b1b;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.content .follow_us .content-follow-us .socials a:hover .icon-whatsapp::before {
+    color: #37d673;
+}
+
+.content .follow_us .content-follow-us .socials a:hover .icon-instagram::before {
+    color: #e4405f;
+}
+
+.content .follow_us .content-follow-us .socials a:hover .icon-telegram::before {
+    color: #0088cc;
+}
+
+.content .follow_us .content-follow-us .socials a:hover .icon-gmail::before {
+    color: #d14836;
+}
+
+@media screen and (max-width: 991px) {
+    .content .who_we_are .us {
+        grid-template-columns: 1fr;
+    }
+
+    .content .who_we_are .us .us_imagen {
+        width: 100%;
+        height: 30rem;
+    }
+}
+
+@media screen and (max-width: 801px) {
+    .content .header .banner .banner-text h1,
+    .content .who_we_are .us .us_description h3 {
+        font-size: 2.5rem;
+    }
+
+    .content .who_we_are .us .us_description {
+        padding: 6rem 3rem;
+    }
+
+    .content .who_we_are .us .us_description p {
+        font-size: 1rem;
+        line-height: 1.2;
+    }
+}
+
+@media screen and (max-width: 610px) {
+    .content .who_we_are .us .us_imagen {
+        display: none;
+    }
+
+    .content .header .banner .banner-text h1,
+    .content .who_we_are .us .us_description h3 {
+        font-size: 1.8rem;
+    }
+
+    .content .who_we_are .us .us_description {
+        padding: 4rem 2rem;
+    }
+
+    .content .who_we_are {
+        padding-inline: 2rem;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .content .header .banner .banner-text h1,
+    .content .who_we_are .us .us_description h3 {
+        font-size: 2.5rem;
+    }
+}
