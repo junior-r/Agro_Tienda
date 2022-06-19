@@ -4,19 +4,22 @@ from django.shortcuts import render, redirect
 from Users.forms import SignUpForm
 from Productos.views import get_total_items_cart
 from Productos.models import Categoria, Producto
+from Eventos.models import Evento
 
 
 def home(request):
     categories = Categoria.objects.all()
     recommended_products = Producto.objects.filter(recomendar=True)
-    list_products = []
+    evento = Evento.objects.filter(active=True).first()
 
+    list_products = []
     for i in range(len(recommended_products)):
         list_products.append(recommended_products[i])
 
     data = {
         'categories': categories,
         'recommended_products': list_products,
+        'evento': evento
     }
 
     number_prd_cart, cart, cart_prd = get_total_items_cart(request)

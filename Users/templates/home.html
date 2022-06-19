@@ -83,12 +83,21 @@
         </section>
 
         <section class="info-img my-5">
-            <figure class="img" style="background-image: url('https://dva.com.co/wp-content/uploads/2020/06/19-Junio-DVA-2_1-1024x537.jpg')"></figure>
-            <div class="description-img">
-                <h3 class="title fs-1 fw-bold">Lorem Ipsum</h3>
-                <p class="text fs-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo</p>
-                <a href="#" class="btn btn-light fw-bold text mt-5 rounded-0">SHOP NOW</a>
-            </div>
+            {% if evento %}
+                <figure class="img" style="background-image: url({{ evento.imagen.url }})"></figure>
+                <div class="description-img">
+                    <h3 class="title fs-1 fw-bold">{{ evento.nombre }}</h3>
+                    <p class="text fs-6">{{ evento.descripcion }}</p>
+                    <a href="#" class="btn btn-light fw-bold text mt-5 rounded-0">SHOP NOW</a>
+                </div>
+            {% else %}
+                <figure class="img" style="background-image: url('https://carnetoday.com/wp-content/uploads/2019/12/banner-03.jpg')"></figure>
+                <div class="description-img">
+                    <h3 class="title fs-1 fw-bold">Special Edition</h3>
+                    <p class="text fs-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+                    <a href="#" class="btn btn-light fw-bold text mt-5 rounded-0">SHOP NOW</a>
+                </div>
+            {% endif %}
         </section>
 
     </div>
