@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block container %}
-    <div class="carrousel-container" style="height: 100vh; max-height: 100vh; overflow: hidden;">
+    <div class="carrousel-container">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -52,7 +52,7 @@
         </section>
 
         <section class="partners my-5">
-            <div class="content d-flex justify-content-evenly bg-white">
+            <div class="content bg-white">
                 <a href="#" class="text-decoration-none m-0 p-0 text-reset"><img class="logo_partner" src="https://1000marcas.net/wp-content/uploads/2020/01/Pepsi-logo.png"></a>
                 <a href="#" class="text-decoration-none m-0 p-0 text-reset"><img class="logo_partner" src="http://www.logo-designer.co/wp-content/uploads/2015/07/Logitech-logo-design.png"></a>
                 <a href="#" class="text-decoration-none m-0 p-0 text-reset"><img class="logo_partner" src="https://tentulogo.com/wp-content/uploads/2017/07/mcdonalds-logo.jpg"></a>
@@ -63,18 +63,16 @@
 
         <section class="recommended-products my-5">
             <h3 class="text-center title fs-2 my-5 fw-bold">PRODUCTOS RECOMENDADOS PARA TI</h3>
-            <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="content-recommended-products">
                 {% if recommended_products %}
                     {% for recommended_product in recommended_products %}
-                        <div class="col">
-                            <div class="card h-100">
-                                <figure class="card-img-top" style="background-image: url({{ recommended_product.imagen.url }})">
-                                </figure>
-                                <div class="card-body">
-                                    <h5 class="card-title title fw-bold fs-2">{{ recommended_product.nombre }}</h5>
-                                    <p class="card-text text">{{ recommended_product.descripcion }}</p>
-                                    <a href="{% url 'detail_producto' recommended_product.id %}" class="btn btn-outline-info">Ver producto</a>
-                                </div>
+                        <div class="card h-100">
+                            <figure class="card-img-top" style="background-image: url({{ recommended_product.imagen.url }})">
+                            </figure>
+                            <div class="card-body">
+                                <h5 class="card-title title fw-bold fs-2">{{ recommended_product.nombre }}</h5>
+                                <p class="card-text text">{{ recommended_product.descripcion }}</p>
+                                <a href="{% url 'detail_producto' recommended_product.id %}" class="btn btn-outline-info">Ver producto</a>
                             </div>
                         </div>
                     {% endfor %}

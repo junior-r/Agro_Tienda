@@ -1,3 +1,14 @@
+.carrousel-container {
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+}
+
+.partners .content {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .partners .content .logo_partner {
     margin: 0;
     padding: 0;
@@ -14,6 +25,12 @@
 .partners .content .logo_partner:hover {
     transform: scale(1.1);
     box-shadow: 3px 3px 10px 5px rgba(0, 0, 0, 0.5);
+}
+
+.content-recommended-products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 1rem;
 }
 
 .card {
@@ -73,4 +90,47 @@
     background-color: rgba(0, 0, 150, 0.2);
     padding: 8rem 3rem;
     color: #FFFFFF;
+}
+
+
+@media screen and (max-width: 991px) {
+    .carrousel-container {
+        height: 70vh;
+        max-height: 70vh;
+    }
+
+    .partners .content .logo_partner {
+        width: 100px;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .carrousel-container {
+        height: 50vh;
+        max-height: 50vh;
+    }
+
+    .partners .content {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 0;
+        gap: 3rem;
+    }
+
+    .partners .content .logo_partner {
+        width: 90%;
+        margin-bottom: 1rem;
+        border: 1px solid #e5e5e5;
+        margin-inline: auto;
+    }
+
+    .partners .content a {
+        display: flex;
+    }
+
+    .partners .content .logo_partner:hover {
+        transform: scale(1.1);
+        box-shadow: none;
+    }
 }

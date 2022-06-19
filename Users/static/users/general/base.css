@@ -91,8 +91,10 @@ footer .content-footer {
 }
 
 footer .content-footer .menu {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 footer .content-footer .menu .section-navigation ul li,
@@ -107,6 +109,7 @@ footer .content-footer .copytight {
     justify-content: space-between;
     border-top: 1px solid #e5e5e5;
     padding-top: 1rem;
+    flex-wrap: wrap;
 }
 
 @media screen and (max-width: 991px) {
@@ -129,4 +132,9 @@ footer .content-footer .copytight {
     .super-container {
         font-size: 0.8rem !important;
     }
+}
+
+
+@media screen and (max-width: 768px) {
+
 }
