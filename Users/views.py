@@ -126,3 +126,18 @@ def send_email_contact(request):
         messages.success(request, 'Mensaje enviado correctamente.')
 
     return redirect('contact')
+
+
+def answers_questions(request):
+    categories = Categoria.objects.all()
+
+    data = {
+        'categories': categories,
+    }
+
+    number_prd_cart, cart, cart_prd = get_total_items_cart(request)
+    data['number_prd_cart'] = number_prd_cart
+    data['cart'] = cart
+    data['cart_prd'] = cart_prd
+
+    return render(request, 'general/answers_questions.html', data)

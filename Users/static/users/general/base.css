@@ -135,6 +135,11 @@ footer .content-footer .copytight {
 }
 
 
-@media screen and (max-width: 768px) {
-
+@media screen and (max-width: 300px) {
+    footer .content-footer .menu .section-navigation ul,
+    footer .content-footer .menu .section-categories ul,
+    footer .content-footer .menu .section-contact ul {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
 }
