@@ -1,0 +1,107 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+    <title>CheckOut - Chequea Y Pide</title>
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'productos/css/checkout.css' %}">
+{% endblock %}
+
+{% block container %}
+    <div class="container">
+        {% block form_data %}
+            <div class="data">
+                <p>
+                    <a class="text-decoration-none text-dark fs-1 w-100 d-inline-block" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <span class="number">1</span> Datos de Envío
+                    </a>
+                </p>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                        <form action="{% url 'checkout' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="formGroupExampleInput" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="John" name="name">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="formGroupExampleInput" class="form-label">Apellido</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Doe", name="last_name">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="formGroupExampleInput" class="form-label">Correo electrónico</label>
+                                <input type="email" class="form-control" id="formGroupExampleInput" placeholder="JohnDoe123@gmail.com" name="email">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="formGroupExampleInput" class="form-label">Teléfono</label>
+                                <input type="number" class="form-control" id="formGroupExampleInput" placeholder="0000 0000000" name="phone">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="formGroupExampleInput" class="form-label">Dirección</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Urbanización ** Calle 00 con Avenida 00" name="address">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="formGroupExampleInput" class="form-label">Ciudad</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Lara" name="city">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="formGroupExampleInput" class="form-label">País</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Venezuela" name="country">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="formGroupExampleInput" class="form-label">Documento de Identidad</label>
+                                <input type="number" class="form-control" id="formGroupExampleInput" placeholder="" name="dni">
+                            </div>
+
+                            <div class="actions d-flex justify-content-between gap-3">
+                                <button class="btn btn-outline-danger rounded-0" type="reset">Limpiar</button>
+                                <button class="btn btn-primary rounded-0" type="submit">Siguiente</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+
+        <div class="total_cart bg-white p-5" style="position: sticky; top: 0">
+            <h3 class="title fw-bold text-center">Tu Orden</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for producto in cart_prd %}
+                        <tr>
+                            <th scope="row" class="title">{{ producto.nombre }} </th>
+                            <td class="text-muted number">{{ producto.cantidad }} x $ {{ producto.precio }} = $ {{ producto.monto_total }}</td>
+                        </tr>
+                    {% endfor %}
+
+                    <tr>
+                        <th scope="row" class="title">Subtotal</th>
+                        <td class="center-y number">{{ cart.get_subtotal }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="title">Total</th>
+                        <td class="center-y number">{{ cart.get_total_iva }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

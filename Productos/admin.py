@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Categoria, Producto
+from .models import Categoria, Producto, Compra
 from .forms import CategoriaForm, ProductoForm
 
 
@@ -18,5 +18,13 @@ class ProductoAdmin(admin.ModelAdmin):
     form = ProductoForm
 
 
+class CompraAdmin(admin.ModelAdmin):
+    list_display = ('producto', 'precio', 'cantidad', 'monto_total', 'subtotal', 'created_at', 'estado')
+    search_fields = ('producto',)
+    list_filter = ('created_at', 'codigo_compra')
+    list_per_page = 10
+
+
 admin.site.register(Categoria, CategoriaAdmin)
 admin.site.register(Producto, ProductoAdmin)
+admin.site.register(Compra, CompraAdmin)

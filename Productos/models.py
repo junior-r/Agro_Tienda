@@ -51,3 +51,18 @@ class Producto(models.Model):
     def get_absolute_url(self):
         host = 'http://localhost:8000'
         return host + '/productos/producto/' + str(self.id)
+
+
+class Compra(models.Model):
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE, null=True)
+    precio = models.DecimalField(max_digits=10, decimal_places=2)
+    cantidad = models.IntegerField(default=0)
+    monto_total = models.DecimalField(max_digits=10, decimal_places=2)
+    subtotal = models.DecimalField(max_digits=10, decimal_places=2)
+    total = models.DecimalField(max_digits=10, decimal_places=2)
+    created_at = models.DateTimeField(auto_now_add=True)
+    codigo_compra = models.CharField(max_length=50)
+    estado = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.producto.nombre

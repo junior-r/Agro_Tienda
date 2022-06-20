@@ -1,0 +1,149 @@
+{% extends 'productos/checkout.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+    <title>Método de Pago</title>
+{% endblock %}
+
+{% block container %}
+    <div class="container">
+        <div class="datos_envio">
+            <div class="card bg-transparent border-0">
+                <h1 class="title card-title"><span class="text-success icon-checkmark"></span> Datos de Envío</h1>
+                <div class="card-body">
+                    <p class="text-muted name text m-0">Nombre: {{ datos_envio.name }} {{ datos_envio.last_name }}</p>
+                    <p class="text-muted email text m-0">Email: {{ datos_envio.email }}</p>
+                    <p class="text-muted phone number m-0">Teléfono: {{ datos_envio.phone }}</p>
+                    <p class="text-muted direccion text m-0">Dirección: {{ datos_envio.address }}</p>
+                    <p class="text-muted city text m-0">Ciudad: {{ datos_envio.city }}</p>
+                    <p class="text-muted country text m-0">País: {{ datos_envio.country }}</p>
+                    <p class="text-muted dni number m-0">Documentos de Identificación: {{ datos_envio.dni }}</p>
+                </div>
+            </div>
+
+            <div class="card bg-transparent border-0">
+                <h1 class="title card-title"><span class="text-success icon-checkmark"></span> Método de Envío</h1>
+                <div class="card-body">
+                    <p class="text-muted name text m-0">Método: {{ method }}</p>
+                </div>
+            </div>
+
+            {% block form_data %}
+                <div class="card py-5 px-3">
+                    <h1 class="card-title title"><span class="number">3</span> Métodos de Pago</h1>
+                    <div class="card-body">
+
+                        <p>
+                            <a class="text-decoration-none text-reset fs-2" data-bs-toggle="collapse" href="#method-1" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                Pago móvil
+                            </a>
+                        </p>
+                        <div class="collapse" id="method-1">
+                            <div class="method mb-3">
+                                <div class="description_method ps-3">
+                                    <p class="number m-0"><span class="text">Cédula:</span> 00.000.000</p>
+                                    <p class="number m-0"><span class="text">Teléfono:</span> 0412 903-2865</p>
+                                    <p class="text m-0"><span class="text">Banco:</span> Provincial (0102)</p>
+                                    <p class="text m-0"><span class="text">Beneficiario:</span> Michael Abraham Ruíz Azuaje</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p>
+                            <a class="text-decoration-none text-reset fs-2" data-bs-toggle="collapse" href="#method-2" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                Tranferencia
+                            </a>
+                        </p>
+                        <div class="collapse" id="method-2">
+                            <div class="method mb-3">
+                                <div class="description_method ps-3">
+                                    <p class="number m-0"><span class="text">Cédula:</span> 00.000.000</p>
+                                    <p class="number m-0"><span class="text">Teléfono:</span> 0412 903-2865</p>
+                                    <p class="text m-0"><span class="text">Banco:</span> Provincial (0102)</p>
+                                    <p class="text m-0"><span class="text">Beneficiario:</span> Michael Abraham Ruíz Azuaje</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p>
+                            <a class="text-decoration-none text-reset fs-2" data-bs-toggle="collapse" href="#method-3" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                Zelle
+                            </a>
+                        </p>
+                        <div class="collapse" id="method-3">
+                            <div class="method mb-3">
+                                <div class="description_method ps-3">
+                                    <p class="number m-0"><span class="text">Cédula:</span> 00.000.000</p>
+                                    <p class="number m-0"><span class="text">Teléfono:</span> 0412 903-2865</p>
+                                    <p class="text m-0"><span class="text">Banco:</span> Provincial (0102)</p>
+                                    <p class="text m-0"><span class="text">Beneficiario:</span> Michael Abraham Ruíz Azuaje</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p>
+                            <a class="text-decoration-none text-reset fs-2" data-bs-toggle="collapse" href="#method-4" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                PayPal
+                            </a>
+                        </p>
+                        <div class="collapse" id="method-4">
+                            <div class="method mb-3">
+                                <div class="description_method ps-3">
+                                    <p class="number m-0"><span class="text">Cédula:</span> 00.000.000</p>
+                                    <p class="number m-0"><span class="text">Teléfono:</span> 0412 903-2865</p>
+                                    <p class="text m-0"><span class="text">Banco:</span> Provincial (0102)</p>
+                                    <p class="text m-0"><span class="text">Beneficiario:</span> Michael Abraham Ruíz Azuaje</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-warning" role="alert">
+                            <strong>Advertencia: </strong>Para obtener tus productos debes: <br>
+                            <ul>
+                                <li>Enviar captura de tu pago a nuestro
+                                <a href="https://api.whatsapp.com/send?phone=584122656008"> WhatsApp: +58 412-265 6008</a></li>
+                                <li>Proporcionar el Código de compra por <a href="https://api.whatsapp.com/send?phone=584122656008"> WhatsApp: +58 412-265 6008</a></li>
+                            </ul>
+                            El incumplimiento de estos pasos puede causar la <strong>cancelación</strong> de tu pedido.
+                        </div>
+
+
+                    </div>
+                </div>
+            {% endblock %}
+        </div>
+
+        <div class="total_cart bg-white p-5" style="position: sticky; top: 0">
+            <h3 class="title fw-bold text-center">Tu Orden</h3>
+            <p class="text">Código de compra: <span class="number">{{ codigo_transaccion }}</span></p>
+            <p class="text">Fecha: <span class="number">{{ fecha }}</span></p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for producto in cart_prd %}
+                        <tr>
+                            <th scope="row" class="title">{{ producto.nombre }} </th>
+                            <td class="text-muted number">{{ producto.cantidad }} x $ {{ producto.precio }} = $ {{ producto.monto_total }}</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <th scope="row" class="title">Subtotal</th>
+                        <td class="center-y number">{{ cart.get_subtotal }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="title">Total</th>
+                        <td class="center-y number">{{ cart.get_total_iva }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="{% url 'confirmar_pago' %}" class="btn btn-outline-success">Finalizar</a>
+        </div>
+    </div>
+{% endblock %}

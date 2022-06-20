@@ -1,0 +1,101 @@
+{% extends 'productos/checkout.html' %}
+
+{% block title %}
+    <title>Método de Envío</title>
+{% endblock %}
+
+{% block container %}
+    <div class="container">
+        <div class="datos_envio">
+            <div class="card bg-transparent border-0">
+                <h1 class="title card-title"><span class="text-success icon-checkmark"></span> Datos de Envío</h1>
+                <div class="card-body">
+                    <p class="text-muted name text m-0">Nombre: {{ datos_envio.name }} {{ datos_envio.last_name }}</p>
+                    <p class="text-muted email text m-0">Email: {{ datos_envio.email }}</p>
+                    <p class="text-muted phone number m-0">Teléfono: {{ datos_envio.phone }}</p>
+                    <p class="text-muted direccion text m-0">Dirección: {{ datos_envio.address }}</p>
+                    <p class="text-muted city text m-0">Ciudad: {{ datos_envio.city }}</p>
+                    <p class="text-muted country text m-0">País: {{ datos_envio.country }}</p>
+                    <p class="text-muted dni number m-0">Documentos de Identificación: {{ datos_envio.dni }}</p>
+                </div>
+            </div>
+            {% block form_data %}
+                <p>
+                    <a class="text-decoration-none text-dark fs-1 w-100 d-inline-block" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <span class="number">2</span> Método de Envío
+                    </a>
+                </p>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                        <form action="{% url 'send_method' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="mb-3 mrw d-flex gap-3">
+                                <div class="input">
+                                    <input type="checkbox" class="form-check-input" id="formGroupExampleInput" value="MRW" name="method">
+                                </div>
+                                <div class="description w-100">
+                                    <label for="formGroupExampleInput" class="form-label">MRW</label>
+                                    <p class="d-flex justify-content-between">
+                                        <span class="time text-muted text">3 - 7 días hábiles </span>
+                                        <span class="costo text">GRATIS</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="mb-3 mrw d-flex gap-3">
+                                <div class="input">
+                                    <input type="checkbox" class="form-check-input" id="formGroupExampleInput" value="Retirar en Tienda Física" name="method">
+                                </div>
+                                <div class="description w-100">
+                                    <label for="formGroupExampleInput" class="form-label">Retirar en Tienda Física</label>
+                                    <p class="d-flex justify-content-between">
+                                        <span class="time text-muted text">AV. Puente Hierro  N° 140, Santa Rosalía, <br> Caracas, 1010, Venezuela </span>
+                                        <span class="costo text">GRATIS</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="actions d-flex justify-content-between align-items-center mt-3">
+                                <a href="{% url 'checkout' %}" class="btn btn-outline-secondary">Anterior</a>
+                                <button type="submit" class="btn btn-primary">Siguiente</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            {% endblock %}
+        </div>
+
+        <div class="total_cart bg-white p-5" style="position: sticky; top: 0">
+            <h3 class="title fw-bold text-center">Tu Orden</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for producto in cart_prd %}
+                        <tr>
+                            <th scope="row" class="title">{{ producto.nombre }} </th>
+                            <td class="text-muted number">{{ producto.cantidad }} x $ {{ producto.precio }} = $ {{ producto.monto_total }}</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <th scope="row" class="title">Subtotal</th>
+                        <td class="center-y number">{{ cart.get_subtotal }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="title">Total</th>
+                        <td class="center-y number">{{ cart.get_total_iva }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+{% endblock %}
