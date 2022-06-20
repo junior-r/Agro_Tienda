@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400;1,700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <style>
+        .number {
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .title {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .text {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .fs-1 {
+            font-size: 1rem;
+        }
+
+        .fw-bold {
+            font-weight: bold;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="title"><span class="fw-bold">Correo de contacto por:</span>
+        {% if name %}
+            {{ name }}
+        {% else %}
+            Usuario anónimo
+        {% endif %}
+    </h1>
+
+    <p class="fs-1"><span class="title fw-bold">Mensaje:</span> <span class="text">{{ message }}</span></p>
+
+    <p><span class="title fw-bold">Responder:</span> <span class="italic">{{ email }}</span></p>
+
+</body>
+</html>

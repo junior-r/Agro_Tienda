@@ -1,0 +1,139 @@
+.content {
+    min-height: 100vh;
+}
+
+.content .header .banner {
+    width: 100%;
+    height: 70vh;
+    background-image: url('https://reportecripto.com/wp-content/uploads/2019/08/servicio-al-cliente-e1565299571335.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.content .header .banner .banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    letter-spacing: 0.1rem;
+    line-height: 1.5;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+}
+
+.content .box_contact {
+    margin: 5rem 0;
+    padding-inline: 5rem;
+}
+
+.content .header .banner .banner-text h1,
+.content .box_contact .content_contact .contact_description h3 {
+    font-size: 3.5rem;
+}
+
+.content .box_contact .content_contact {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+    padding-inline: 1rem;
+}
+
+.content .box_contact .content_contact .contact_description {
+    padding: 10rem 0;
+    justify-self: center;
+}
+
+.content .box_contact .content_contact .contact_description p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-top: 1rem;
+    margin-left: 2rem;
+}
+
+.content .box_contact .content_contact .contact_description .text-muted {
+    margin-left: 2rem !important;
+    display: block;
+}
+
+.content .box_contact .content_contact .contact_description p a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.content .box_contact .content_contact .form_contact {
+    justify-self: center;
+    height: 100%;
+    padding: 3rem 0;
+}
+
+.content .box_contact .content_contact .form_contact h3 {
+    font-size: 3rem;
+}
+
+.icon-telegram::before {
+    color: #0088cc;
+}
+
+@media screen and (max-width: 1253px) {
+    .content .box_contact .content_contact {
+        grid-template-columns: 1fr;
+        justify-content: center;
+    }
+
+    .content .box_contact .content_contact .contact_description {
+        padding: 3rem 0;
+    }
+
+    .content .box_contact .content_contact .form_contact {
+        border-top: 1px solid rgba(0, 0, 0, 0.2);
+    }
+}
+
+@media screen and (max-width: 936px) {
+    .content .header .banner .banner-text h1,
+    .content .box_contact .content_contact .contact_description h3,
+    .content .box_contact .content_contact .form_contact h3 {
+        font-size: 2.5rem;
+    }
+}
+
+@media screen and (max-width: 666px) {
+    .content .box_contact .content_contact .form_contact form .actions {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 591px) {
+    .content .box_contact {
+        padding-inline: 0;
+    }
+
+    .content .header .banner .banner-text h1,
+    .content .box_contact .content_contact .contact_description h3,
+    .content .box_contact .content_contact .form_contact h3 {
+        font-size: 1.5rem;
+    }
+
+    .content .box_contact .content_contact div.form_contact .text-muted,
+    .content .box_contact .content_contact div.form_contact form {
+        margin-left: 1rem !important;
+    }
+
+    .content .box_contact .content_contact .contact_description .text-muted,
+    .content .box_contact .content_contact .contact_description p,
+    .content .box_contact .content_contact .form_contact form div input,
+    .content .box_contact .content_contact .form_contact form div label,
+    .content .box_contact .content_contact .form_contact form .actions button {
+        font-size: 0.8rem !important;
+    }
+}

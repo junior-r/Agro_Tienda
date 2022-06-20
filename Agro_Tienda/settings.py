@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'crispy_forms',
 ]
 
+INSTALLED_APPS += ('naomi',)
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -134,3 +136,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AUTH_USER_MODEL = 'Users.User'
+
+# EMAIL_BACKEND = "naomi.mail.backends.naomi.NaomiBackend"
+# EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
+EMAIL_HOST = 'smtp.googlemail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'junior31064049@gmail.com'
+EMAIL_HOST_PASSWORD = 'ubzwfnzwxszyvhqn'
+EMAIL_USE_TLS = True
