@@ -141,3 +141,7 @@ def answers_questions(request):
     data['cart_prd'] = cart_prd
 
     return render(request, 'general/answers_questions.html', data)
+
+
+def page_not_found_404(request, exception):
+    return render(request, 'general/page_404.html')
