@@ -266,6 +266,9 @@ def confirmar_pago(request):
             )
             compra.save()
 
+        request.session['datos_envio'] = ''
+        method = ''
+
         messages.success(request, 'Compra realizada con exito')
         return redirect('cart')
 
