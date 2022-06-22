@@ -122,8 +122,6 @@
                                 </ul>
                                 El incumplimiento de estos pasos puede causar la <strong>cancelación</strong> de tu pedido.
                             </div>
-                            <a href="#" onclick="cancelBuy()" class="btn btn-outline-danger">Cancelar compra</a>
-
                         </div>
                     </div>
                 {% endblock %}
@@ -153,12 +151,24 @@
                         <td class="center-y number">$ {{ cart.get_subtotal }}</td>
                     </tr>
                     <tr>
+                        <th scope="row" class="title">I.V.A.</th>
+                        <td class="center-y number">$ {{ cart.get_iva }}</td>
+                    </tr>
+                    <tr>
                         <th scope="row" class="title">Total</th>
                         <td class="center-y number">$ {{ cart.get_total_iva }}</td>
                     </tr>
                 </tbody>
             </table>
-            <a href="#" onclick="warningPay()" class="btn btn-outline-success">Finalizar compra</a>
+            <p class="text text-muted mb-3">
+                Este comprobante será enviado al correo ingresado en la dirección de envío <strong>{{ datos_envio.email }}</strong>
+                <br>
+                Deberás presentarlo al momento de retirar tus productos.
+            </p>
+            <div class="actions d-flex justify-content-between gap-3">
+                <a href="#" onclick="cancelBuy()" class="btn btn-outline-danger">Cancelar compra</a>
+                <a href="#" onclick="warningPay()" class="btn btn-outline-primary">Finalizar compra</a>
+            </div>
         </div>
         {% else %}
             <p class="message">

@@ -20,7 +20,7 @@ class ProductoAdmin(admin.ModelAdmin):
 
 class CompraAdmin(admin.ModelAdmin):
     list_display = ('producto', 'precio', 'cantidad', 'monto_total', 'subtotal', 'created_at', 'estado')
-    search_fields = ('producto',)
+    search_fields = ('codigo_compra',)
     list_filter = ('created_at', 'codigo_compra')
     list_per_page = 10
 

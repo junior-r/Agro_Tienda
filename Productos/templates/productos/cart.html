@@ -13,55 +13,93 @@
 {% block container %}
     <div class="container" style="min-height: 100vh">
         <h1 class="title text-center my-5 fw-bold">Carrito de Compras</h1>
-        <div class="content">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col"></th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Cantidad</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Subtotal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for product in cart_prd %}
-                        <tr>
-                            <th scope="row">
-                                <figure class="m-0 img_product_cart" style="background-image: url({{ product.imagen }})"></figure>
-                            </th>
-                            <td class="center-y">{{ product.nombre }}</td>
-                            <td class="center-y number">{{ product.cantidad }}</td>
-                            <td class="center-y number">$ {{ product.precio }}</td>
-                            <td class="center-y number">$ {{ product.monto_total }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-
-            <div class="total_cart bg-white p-5" style="margin-left: 50%">
-                <h3 class="title fw-bold">Total</h3>
-                <table class="table">
+        {% if cart and cart_prd %}
+            <div class="content">
+                <table class="table table-hover">
                     <thead>
                         <tr>
                             <th scope="col"></th>
-                            <th scope="col"></th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Monto total</th>
+                            <th scope="col">Opciones</th>
                         </tr>
                     </thead>
-
                     <tbody>
-                        <tr>
-                            <th scope="row">Subtotal</th>
-                            <td class="center-y number">{{ cart.get_subtotal }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Total</th>
-                            <td class="center-y number">{{ cart.get_total_iva }}</td>
-                        </tr>
+                        {% for product in cart_prd %}
+                            <tr>
+                                <th scope="row">
+                                    <figure class="m-0 img_product_cart" style="background-image: url({{ product.imagen }})"></figure>
+                                </th>
+                                <td class="center-y text"><a href="{% url 'detail_producto' product.producto_id %}" class="text-reset text-decoration-none">{{ product.nombre }}</a></td>
+                                <td class="center-y number">{{ product.cantidad }}</td>
+                                <td class="center-y number">$ {{ product.precio }}</td>
+                                <td class="center-y number">$ {{ product.monto_total }}</td>
+                                <td class="center-y text">
+                                    <a href="{% url 'increment_prd_cart' product.producto_id %}" class="btn btn-outline-primary btn-sm m-0"><span class="icon-arrow-up2"></span></a>
+                                    <a href="{% url 'decrement_prd_cart' product.producto_id %}" class="btn btn-outline-primary btn-sm m-0"><span class="icon-arrow-down2"></span></a>
+                                    <a href="{% url 'remove_from_cart' product.producto_id %}" class="btn btn-outline-danger btn-sm m-0"><span class="icon-x"></span></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
-                <a href="{% url 'checkout' %}" class="btn btn-primary w-100 rounded-0 py-3 fw-bold fs-4">CONTINUAR</a>
+
+                <div class="total_cart bg-white p-5" style="margin-left: 50%">
+                    <h3 class="title fw-bold">Total</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <th scope="row">Subtotal</th>
+                                <td class="center-y number">$ {{ cart.get_subtotal }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">I.V.A.</th>
+                                <td class="center-y number">$ {{ cart.get_iva }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Total</th>
+                                <td class="center-y number">$ {{ cart.get_total_iva }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a href="{% url 'checkout' %}" class="btn btn-primary w-100 rounded-0 py-3 fw-bold fs-4 mb-3">CONTINUAR</a>
+                    <a href="#" onclick="cleanCart()" class="btn btn-outline-danger w-100 rounded-0 py-3 fw-bold fs-4">LIMPIAR</a>
+                </div>
             </div>
-        </div>
+        {% else %}
+            <p class="text text-center fs-3 mb-1">Tu carrito está vacío</p>
+            <a href="{% url 'productos' %}" class="text-reset d-inline-block w-100 text text-center">Ve a comprar</a>
+        {% endif %}
     </div>
+{% endblock %}
+
+{% block js %}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function cleanCart() {
+            Swal.fire({
+                title: '¿Estas Seguro?',
+                text: "Todos tus producto en el carrito se borraran!",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, borrar.',
+                cancelButtonText: 'No, los compraré después.'
+            }).then((result) => {
+                if (result.value) {
+                    window.location.href = '/productos/clean_cart/';
+                }
+            })
+        }
+    </script>
 {% endblock %}

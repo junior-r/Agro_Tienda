@@ -88,11 +88,15 @@
                     {% endfor %}
                     <tr>
                         <th scope="row" class="title">Subtotal</th>
-                        <td class="center-y number">{{ cart.get_subtotal }}</td>
+                        <td class="center-y number">$ {{ cart.get_subtotal }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="title">I.V.A.</th>
+                        <td class="center-y number">$ {{ cart.get_iva }}</td>
                     </tr>
                     <tr>
                         <th scope="row" class="title">Total</th>
-                        <td class="center-y number">{{ cart.get_total_iva }}</td>
+                        <td class="center-y number">$ {{ cart.get_total_iva }}</td>
                     </tr>
                 </tbody>
             </table>

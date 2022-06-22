@@ -65,6 +65,9 @@ class Cart:
             subtotal += item['monto_total']
         return subtotal
 
+    def get_iva(self):
+        return self.get_subtotal() * 0.16
+
     def get_total_iva(self):
         return self.get_subtotal() * 0.16 + self.get_subtotal()
 

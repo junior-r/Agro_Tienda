@@ -1,8 +1,11 @@
 import datetime
 
+from django.conf import settings
+from django.core.mail import EmailMultiAlternatives
 from django.core.paginator import Paginator
 from django.http import Http404
 from django.shortcuts import render, redirect
+from django.template.loader import get_template
 
 from Productos.Cart import Cart
 from Productos.models import Categoria, Producto, Compra
@@ -132,6 +135,40 @@ def remove_from_cart(request, id):
     return redirect('productos')
 
 
+def clean_cart(request):
+    cart = Cart(request)
+    try:
+        cart.clean()
+        messages.success(request, 'Carrito vaciado exitosamente!')
+    except Exception as e:
+        messages.error(request, 'Ocurrio un error al limpiar el carrito. Intente de nuevo o Contactenos!')
+    return redirect('productos')
+
+
+def increment_prd_cart(request, id):
+    producto = Producto.objects.get(id=id)
+    cart = Cart(request)
+
+    try:
+        cart.add(producto, 1)
+    except Exception as e:
+        messages.error(request, 'Ocurrió algún error')
+
+    return redirect('cart')
+
+
+def decrement_prd_cart(request, id):
+    producto = Producto.objects.get(id=id)
+    cart = Cart(request)
+
+    try:
+        cart.sub(producto)
+    except Exception as e:
+        messages.error(request, 'Ocurrió algún error')
+
+    return redirect('cart')
+
+
 def datos_envio(request):
     name = request.POST.get('name')
     last_name = request.POST.get('last_name')
@@ -235,6 +272,7 @@ def confirmar_pago(request):
 
     data = {
         'categories': categories,
+        'fecha': datetime.datetime.now(),
     }
 
     number_prd_cart, cart, cart_prd = get_total_items_cart(request)
@@ -255,6 +293,7 @@ def confirmar_pago(request):
 
 
         for i in productos_list:
+            # Se guarda la compra en la base de datos.
             compra = Compra(
                 producto_id=i['producto_id'],
                 cantidad=i['cantidad'],
@@ -266,10 +305,37 @@ def confirmar_pago(request):
             )
             compra.save()
 
+        # Enviar los productos compraddos al mail del usuario.
+        name = request.session['datos_envio']['name']
+        subject = 'Productos que compraste'
+        email_user = request.session['datos_envio']['email']
+        message = f'Hola {name}, este es tu comprobante de compra, con esto debes retirar tus productos.'
+
+        data['name'] = name
+        data['subject'] = subject
+        data['email_user'] = email_user
+        data['message'] = message
+        data['codigo_compra'] = codigo_transaccion
+
+        template = get_template('productos/send_cart_products.html')
+        content = template.render(data)
+
+        email = EmailMultiAlternatives(
+            subject,
+            message,
+            settings.EMAIL_HOST_USER,  # From email
+            [email_user]  # To email
+        )
+
+        email.attach_alternative(content, 'text/html')
+        email.send(fail_silently=False)
+
+        messages.success(request, f'Comprobante de compra enviado al correo {email_user}')
+
+        # Borrar los datos de envío del usuario.
         request.session['datos_envio'] = ''
         method = ''
 
-        messages.success(request, 'Compra realizada con exito')
         return redirect('cart')
 
     else:

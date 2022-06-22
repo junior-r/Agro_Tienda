@@ -17,7 +17,7 @@ def home(request):
     evento = Evento.objects.filter(active=True).first()
 
     list_products = []
-    for i in range(len(recommended_products)):
+    for i in range(3):
         list_products.append(recommended_products[i])
 
     data = {

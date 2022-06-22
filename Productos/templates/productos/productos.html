@@ -86,6 +86,9 @@
                                             <small class="text-muted">{{ producto.categoria.nombre | capfirst }}</small>
                                             <p class="card-text text">{{ producto.get_short_desc }}</p>
                                             <p class="number fw-bold">$ {{ producto.precio | intcomma }}</p>
+                                            {% if producto.recomendar %}
+                                                <small class="d-inline-block w-100 text-muted text-center">Recomendado</small>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </a>

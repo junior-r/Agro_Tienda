@@ -65,7 +65,7 @@
                                                 <figure class="img_product_cart_menu m-0" style="background-image: url({{ product.imagen }})"></figure>
                                                 <div class="info_product_cart">
                                                     <p class="m-0 nombre text">{{ product.nombre | capfirst }}</p>
-                                                    <p class="m-0 cantida_precio number text-muted">{{ product.cantidad }} x $ {{ product.precio }} = <span class="text-primary">{{ product.monto_total }}</span></p>
+                                                    <p class="m-0 cantida_precio number text-muted">{{ product.cantidad }} x $ {{ product.precio }} = <span class="text-primary">$ {{ product.monto_total }}</span></p>
                                                 </div>
                                             </a>
                                             <a href="{% url 'remove_from_cart' product.producto_id %}" class="remove_product_cart text-decoration-none">
@@ -74,14 +74,17 @@
                                         </li>
                                     {% endfor %}
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item text text-center" href="#">Subtotal: <span class="number text-primary">{{ cart.get_subtotal }}</span></a></li>
+                                    <li><a class="dropdown-item text text-center" href="#">Subtotal: <span class="number text-primary">$ {{ cart.get_subtotal }}</span></a></li>
+
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li class="text-center">
+                                        <a class="dropdown-item" href="{% url 'cart' %}">
+                                            <button class="btn btn-outline-success btn-sm">Ver carrito</button>
+                                        </a>
+                                    </li>
+                                {% else %}
+                                    <p class="text px-3 text-center">Tu carrito está vacío</p>
                                 {% endif %}
-                                <li><hr class="dropdown-divider"></li>
-                                <li class="text-center">
-                                    <a class="dropdown-item" href="{% url 'cart' %}">
-                                        <button class="btn btn-outline-success btn-sm">Ver carrito</button>
-                                    </a>
-                                </li>
                             </ul>
                         </div>
 
