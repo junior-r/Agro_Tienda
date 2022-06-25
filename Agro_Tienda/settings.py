@@ -86,11 +86,19 @@ WSGI_APPLICATION = 'Agro_Tienda.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+<<<<<<< HEAD
         'NAME': 'agrotienda',
 	'USER': 'postgres',
 	'PASSWORD': 'tiendaOnline2022agro',
 	'HOST': 'localhost',
 	'PORT': '5432',
+=======
+        'NAME': 'AgroTienda',
+        'USER': 'postgres',
+        'PASSWORD': '31064049',
+        'HOST': 'localhost',
+        'PORT': '5432'
+>>>>>>> e77178e0b8ed8ac82a23653cefad701103f43b73
     }
 }
 
