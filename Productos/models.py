@@ -49,7 +49,7 @@ class Producto(models.Model):
         return self.descripcion
 
     def get_absolute_url(self):
-        host = 'http://localhost:8000'
+        host = 'https://carnetoday.com'
         return host + '/productos/producto/' + str(self.id)
 
 
