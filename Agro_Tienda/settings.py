@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-%447q+urigq37+@ratd84ieh&osjb7dg1sa#si(b#4a0u!w7yr
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://carnetoday.com', 'https://www.carnetoday.com']
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
