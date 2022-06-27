@@ -1,7 +1,17 @@
 .carrousel-container {
-    height: 100vh;
-    max-height: 100vh;
     overflow: hidden;
+}
+
+.container .presentation {
+    min-height: 50vh;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container .recommended-products {
+    margin-bottom: 10rem !important;
 }
 
 .partners .content {
@@ -94,22 +104,12 @@
 
 
 @media screen and (max-width: 991px) {
-    .carrousel-container {
-        height: 70vh;
-        max-height: 70vh;
-    }
-
     .partners .content .logo_partner {
         width: 100px;
     }
 }
 
 @media screen and (max-width: 570px) {
-    .carrousel-container {
-        height: 50vh;
-        max-height: 50vh;
-    }
-
     .partners .content {
         flex-direction: column;
         align-items: center;

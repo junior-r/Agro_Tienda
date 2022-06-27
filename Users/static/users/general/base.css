@@ -117,7 +117,7 @@ footer .content-footer .copytight {
         display: flex !important;
         align-items: start !important;
         justify-content: space-between !important;
-        font-size: 0.8rem !important;
+        font-size: 1.8rem !important;
         padding-top: 0.5rem !important;
     }
 
@@ -125,12 +125,32 @@ footer .content-footer .copytight {
         display: none !important;
     }
 
-    .menu-cart, .icon-x {
-        font-size: 0.8rem !important;
+    .header .navbar-1 p {
+        font-size: 1.8rem;
+    }
+
+    .header .navbar-2 .container-fluid .navbar-brand,
+    .header .navbar-2 .container-fluid > .navbar-toggler .navbar-toggler-icon,
+    .navbar-text .btn-group .cart-button .fa-shopping-cart,
+    .navbar-text .btn-group .menu-cart {
+        font-size: 2rem !important;
+    }
+
+    .navbar-text .btn-group .menu-cart {
+        width: 100% !important;
     }
 
     .super-container {
-        font-size: 0.8rem !important;
+        font-size: 1.8rem !important;
+    }
+
+    .container {
+        max-width: 930px !important;
+    }
+
+    .footer,
+    .footer .content-footer .menu .section-contact ul li a {
+        font-size: 1.5rem !important;
     }
 }
 
