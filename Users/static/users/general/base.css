@@ -79,6 +79,18 @@ body {
     color: #FFFFFF;
 }
 
+.icons-socials {
+    position: fixed;
+    right: 0.5rem;
+    top: 20%;
+    display: flex;
+    z-index: 9999;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 0.5rem !important;
+    border-radius: 10px;
+}
+
 footer {
     background-color: #FFFFFF;
     padding: 3rem 3rem;
