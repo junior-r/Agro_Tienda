@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400;1,700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        .number {
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .title {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .text {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .resalt {
+            color: #0b5ed8;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        thead {
+            border-bottom: 3px solid #000;
+        }
+
+        tbody tr:hover {
+            background-color: rgba(0, 0, 0, 0.075);
+        }
+
+        th, td {
+            padding: 1.25rem;
+        }
+
+        tfoot {
+            border-top: 3px solid #000;
+        }
+
+        .fw-bold {
+            font-weight: bold;
+        }
+
+        .td-none {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">{{ subject }}</h1>
+    <p class="text">{{ message_admin }}</p>
+    <h3 class="title">Código de compra es: <span class="number">{{ codigo_compra }}</span></h3>
+
+    <h3 class="title">Productos</h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" class="title">#</th>
+                <th scope="col" class="title">Nombre</th>
+                <th scope="col" class="title">Precio</th>
+                <th scope="col" class="title">Cantidad</th>
+                <th scope="col" class="title">Monto total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in cart_prd %}
+                <tr>
+                    <th scope="row" class="number">{{ product.producto_id }}</th>
+                    <td class="text">{{ product.nombre }}</td>
+                    <td class="number">{{ product.precio }}</td>
+                    <td class="number">{{ product.cantidad }}</td>
+                    <td class="number">{{ product.monto_total }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th scope="row"></th>
+                <td></td>
+                <td></td>
+                <td class="fw-bold title">Subtotal</td>
+                <td class="number">{{ cart.get_subtotal }}</td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td></td>
+                <td></td>
+                <td class="fw-bold title">I.V.A.</td>
+                <td class="number">{{ cart.get_iva }}</td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td></td>
+                <td></td>
+                <td class="fw-bold title">Total <span class="number">(IVA 16%)</span></td>
+                <td class="number">{{ cart.get_total_iva }}</td>
+            </tr>
+        </tfoot>
+    </table>
+    <time class="text"><strong>Fecha:</strong> {{ fecha }}</time>
+
+    <h3 class="title">Datos de Envío</h3>
+    {% if datos_envio_user %}
+        <p class="text">Nombres: {{ datos_envio_user.name }}</p>
+        <p class="text">Apellidos: {{ datos_envio_user.last_name }}</p>
+        <p class="text">Correo Electrónico: {{ datos_envio_user.email }}</p>
+        <p class="text">Teléfono: <span class="number">{{ datos_envio_user.phone }}</span></p>
+        <p class="text">Dirección: {{ datos_envio_user.address }}</p>
+        <p class="text">Ciudad: {{ datos_envio_user.city }}</p>
+        <p class="text">País: {{ datos_envio_user.country }}</p>
+        <p class="text">Cédula: <span class="number">{{ datos_envio_user.dni }}</span></p>
+        {% if method %}
+            <p class="text">Método de envío: {{ method }}</p>
+        {% endif %}
+    {% endif %}
+
+</body>
+</html>
