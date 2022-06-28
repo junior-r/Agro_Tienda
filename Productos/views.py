@@ -206,7 +206,6 @@ def checkout(request):
             'country': country,
             'dni': dni,
         }
-        messages.success(request, 'Datos de envio guardados')
         return redirect('send_method')
 
     return render(request, 'productos/checkout.html', data)
@@ -232,7 +231,6 @@ def send_method(request):
         method = request.POST.get('method')
         if method:
             request.session['method'] = method
-            messages.success(request, 'Metodo de envio guardado')
             return redirect('pago')
 
     return render(request, 'productos/metodo_envío.html', data)
@@ -307,28 +305,49 @@ def confirmar_pago(request):
 
         # Enviar los productos compraddos al mail del usuario.
         name = request.session['datos_envio']['name']
-        subject = 'Productos que compraste'
+        subject = 'Productos comprados'
         email_user = request.session['datos_envio']['email']
-        message = f'Hola {name}, este es tu comprobante de compra, con esto debes retirar tus productos.'
+        message_user = f'Hola {name}, este es tu comprobante de compra, con esto debes retirar tus productos.'
+        message_admin = f'Le vendiste productos a {name}'
 
         data['name'] = name
         data['subject'] = subject
         data['email_user'] = email_user
-        data['message'] = message
+        data['message'] = message_user
+        data['message_admin'] = message_admin
         data['codigo_compra'] = codigo_transaccion
+        data['datos_envio_user'] = datos_envio
+        data['method'] = method
 
-        template = get_template('productos/send_cart_products.html')
-        content = template.render(data)
+        template_user = get_template('productos/send_cart_products.html')
+        template_admin = get_template('productos/send_cart_products_admin.html')
+        content_user = template_user.render(data)
+        content_admin = template_admin.render(data)
 
+        #  Email que será enviado al usuario.
         email = EmailMultiAlternatives(
             subject,
-            message,
+            message_user,
             settings.EMAIL_HOST_USER,  # From email
             [email_user]  # To email
         )
 
-        email.attach_alternative(content, 'text/html')
-        email.send(fail_silently=False)
+        #  Email que será enviado al administrador.
+        email_admin = EmailMultiAlternatives(
+            subject,
+            message_admin,
+            settings.EMAIL_HOST_USER,  # From email
+            [settings.EMAIL_HOST_USER]  # To email
+        )
+
+        try:
+            email.attach_alternative(content_user, 'text/html')
+            email_admin.attach_alternative(content_admin, 'text/html')
+
+            email.send(fail_silently=False)
+            email_admin.send(fail_silently=False)
+        except Exception as e:
+            messages.error(request, 'No se pudo enviar su orden, intente de nuevo!')
 
         messages.success(request, f'Comprobante de compra enviado al correo {email_user}')
 
