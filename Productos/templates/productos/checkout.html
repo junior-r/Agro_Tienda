@@ -15,11 +15,11 @@
         {% block form_data %}
             <div class="data">
                 <p>
-                    <a class="text-decoration-none text-dark fs-1 w-100 d-inline-block" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    <a class="text-decoration-none text-dark fs-1 w-100 d-inline-block" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
                         <span class="number">1</span> Datos de Envío
                     </a>
                 </p>
-                <div class="collapse" id="collapseExample">
+                <div class="collapse show" id="collapseExample">
                     <div class="card card-body">
                         <form action="{% url 'checkout' %}" method="post" enctype="multipart/form-data">
                             {% csrf_token %}

@@ -22,11 +22,11 @@
                 </div>
                 {% block form_data %}
                     <p>
-                        <a class="text-decoration-none text-dark fs-1 w-100 d-inline-block" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <a class="text-decoration-none text-dark fs-1 w-100 d-inline-block" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
                             <span class="number">2</span> Método de Envío
                         </a>
                     </p>
-                    <div class="collapse" id="collapseExample">
+                    <div class="collapse show" id="collapseExample">
                         <div class="card card-body">
                             <form action="{% url 'send_method' %}" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
