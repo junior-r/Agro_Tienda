@@ -67,7 +67,7 @@
                                         <div class="card-body">
                                             <h5 class="card-title title fw-bold fs-3">{{ producto.nombre }}</h5>
                                             <small class="text-muted">{{ producto.categoria.nombre | capfirst }}</small>
-                                            <p class="card-text text">{{ producto.descripcion }}</p>
+                                            <p class="card-text text">{{ producto.get_short_desc }}</p>
                                             <p class="number fw-bold">$ {{ producto.precio | intcomma }}</p>
                                         </div>
                                     </div>

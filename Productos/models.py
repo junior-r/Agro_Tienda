@@ -25,7 +25,7 @@ class Categoria(models.Model):
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=50)
-    descripcion = models.TextField()
+    descripcion = models.TextField(max_length=500)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     imagen = models.ImageField(upload_to=save_image_product, blank=True)
     cantidad = models.IntegerField(default=0)
@@ -51,6 +51,21 @@ class Producto(models.Model):
     def get_absolute_url(self):
         host = 'https://carnetoday.com'
         return host + '/productos/producto/' + str(self.id)
+
+    def get_price5(self):
+        if self.cantidad > 5:
+            return self.precio * 5
+        return f"{self.precio * 5} (No hay suficientes en stock)"
+
+    def get_price50(self):
+        if self.cantidad > 50:
+            return self.precio * 50
+        return f"{self.precio * 50} (No hay suficientes en stock)"
+
+    def get_price100(self):
+        if self.cantidad > 100:
+            return self.precio * 100
+        return f"{self.precio * 100} (No hay suficientes en stock)"
 
 
 class Compra(models.Model):
