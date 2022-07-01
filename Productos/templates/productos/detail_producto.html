@@ -20,7 +20,7 @@
             <div class="product_info">
                 <h1 class="title mt-3 text-center fw-bold">{{ producto.nombre }}</h1>
                 <div class="legend d-flex gap-3 justify-content-evenly">
-                    <p class="category text">Categoría: {{ producto.categoria.nombre }}</p>
+                    <p class="category text">Categoría: <a href="/productos/?category={{ producto.categoria.id }}" class="text-decoration-none">{{ producto.categoria.nombre }}</a></p>
                     <p class="cantidad text"><span class="number text-primary">{{ producto.cantidad }}</span> en stock</p>
                 </div>
                 <p class="price number text-center">$ {{ producto.precio | intcomma }}</p>
