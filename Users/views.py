@@ -11,6 +11,28 @@ from Productos.models import Categoria, Producto
 from Eventos.models import Evento
 
 
+def contador(request):
+    fichero = open("contador.txt", "a+")
+    fichero.seek(0)
+    contenido = fichero.readline()
+
+    if len(contenido) == 0:
+        contenido = "0"
+        fichero.write(contenido)
+        fichero.close()
+        return 0
+    else:
+        try:
+            contador = int(contenido) + 1
+            fichero = open("contador.txt", "w")
+            fichero.write(str(contador))
+            fichero.close()
+            return contador
+        except:
+            print("Error en archivo")
+    return redirect('home')
+
+
 def home(request):
     categories = Categoria.objects.all()
     recommended_products = Producto.objects.filter(recomendar=True)
@@ -29,7 +51,8 @@ def home(request):
     data = {
         'categories': categories,
         'recommended_products': list_products,
-        'evento': evento
+        'evento': evento,
+        'counter': contador(request)
     }
 
     number_prd_cart, cart, cart_prd = get_total_items_cart(request)
