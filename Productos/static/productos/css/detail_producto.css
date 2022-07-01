@@ -19,4 +19,8 @@
     .content-product {
         grid-template-columns: 1fr;
     }
+
+    .content-product .img_product figure {
+        height: 350px;
+    }
 }
