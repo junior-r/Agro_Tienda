@@ -63,19 +63,32 @@
 
         <section class="recommended-products my-5">
             <h3 class="text-center title fs-2 my-5 fw-bold">PRODUCTOS RECOMENDADOS PARA TI</h3>
+            <p class="text text-center">Ve todos nuestros <a href="{% url 'productos' %}">productos aquí</a></p>
             <div class="content-recommended-products">
                 {% if recommended_products %}
-                    {% for recommended_product in recommended_products %}
-                        <div class="card h-100">
-                            <figure class="card-img-top" style="background-image: url({{ recommended_product.imagen.url }})">
-                            </figure>
-                            <div class="card-body">
-                                <h5 class="card-title title fw-bold fs-2">{{ recommended_product.nombre }}</h5>
-                                <p class="card-text text">{{ recommended_product.descripcion }}</p>
-                                <a href="{% url 'detail_producto' recommended_product.id %}" class="btn btn-outline-info">Ver producto</a>
-                            </div>
+
+                    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+                        <div class="carousel-inner">
+                            {% for recommended_product in recommended_products %}
+                                <div class="carousel-item active">
+                                    <img src="{{ recommended_product.imagen.url }}" class="d-block w-100" alt="..." style="max-height: 350px; height: 100%; object-fit: cover">
+                                    <div class="carousel-caption d-none d-md-block" style="background-color: rgba(0, 0, 0, 0.5);">
+                                        <h5>{{ recommended_product.nombre }}</h5>
+                                        <p>{{ recommended_product.descripcion }}</p>
+                                        <a href="{% url 'detail_producto' recommended_product.id %}" class="btn btn-outline-info">Ver producto</a>
+                                    </div>
+                                </div>
+                            {% endfor %}
                         </div>
-                    {% endfor %}
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon bg-dark" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                            <span class="carousel-control-next-icon bg-dark" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
                 {% endif %}
             </div>
         </section>
