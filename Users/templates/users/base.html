@@ -27,33 +27,38 @@
         <nav class="navbar navbar-expand-lg bg-light navbar-2">
             <div class="container-fluid justify-content-center">
                 <a class="navbar-brand" href="#">Agro_Tienda</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvasLg" aria-controls="navbarOffcanvasLg">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse justify-content-center flex-grow-0" id="navbarSupportedContent">
-                    <ul class="navbar-nav mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'home' %}">INICIO</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'about_us' %}">NOSOTROS</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'productos' %}">PRODUCTOS</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'contact' %}">CONTÁCTANOS</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'answers_questions' %}">FAQ´S</a>
-                        </li>
-                        {% if user.is_superuser %}
+                <div class="offcanvas offcanvas-end justify-content-center flex-grow-0" tabindex="-1" id="navbarOffcanvasLg" aria-labelledby="navbarOffcanvasLgLabel" style="z-index: 99999">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">AgroTienda</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body" style="overflow: inherit">
+                        <ul class="navbar-nav mb-2 mb-lg-0 d-flex align-items-center">
                             <li class="nav-item">
-                                <a class="nav-link" href="/admin/">ADMINISTRACIÓN</a>
+                                <a class="nav-link" href="{% url 'home' %}">INICIO</a>
                             </li>
-                        {% endif %}
-                    </ul>
-                    <span class="navbar-text">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'about_us' %}">NOSOTROS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'productos' %}">PRODUCTOS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'contact' %}">CONTÁCTANOS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'answers_questions' %}">FAQ´S</a>
+                            </li>
+                            {% if user.is_superuser %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/admin/">ADMINISTRACIÓN</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                        <span class="navbar-text">
                         <div class="btn-group me-3">
                             <button type="button" class="btn btn-outline-primary dropdown-toggle cart-button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-shopping-cart"></i>
@@ -97,6 +102,7 @@
                         </div>
 
                     </span>
+                    </div>
                 </div>
             </div>
         </nav>
