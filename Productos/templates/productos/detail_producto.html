@@ -18,22 +18,22 @@
                 <figure style="background-image: url({{ producto.imagen.url }})"></figure>
             </div>
             <div class="product_info">
-                <h1 class="title mt-3 text-center fw-bold">{{ producto.nombre }}</h1>
-                <div class="legend d-flex gap-3 justify-content-evenly">
+                <h1 class="title mt-3 fw-bold">{{ producto.nombre }}</h1>
+                <div class="legend d-flex gap-3">
                     <p class="category text">Categoría: <a href="/productos/?category={{ producto.categoria.id }}" class="text-decoration-none">{{ producto.categoria.nombre }}</a></p>
                     <p class="cantidad text"><span class="number text-primary">{{ producto.cantidad }}</span> en stock</p>
                 </div>
-                <p class="price number text-center">$ {{ producto.precio | intcomma }}</p>
+                <p class="price number">$ {{ producto.precio | intcomma }}</p>
 
-                <ul class="nav nav-pills mb-3 justify-content-between" id="pills-tab" role="tablist">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active rounded-0" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">5 unidades</button>
+                        <button class="nav-link active rounded-0" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">1 - 49 unidades</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link rounded-0" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">50 unidades</button>
+                        <button class="nav-link rounded-0" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">50 - 99 unidades</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link rounded-0" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">100 unidades</button>
+                        <button class="nav-link rounded-0" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">+100 unidades</button>
                     </li>
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
