@@ -8,15 +8,38 @@
     justify-content: space-evenly;
 }
 
+.container .icons .truck,
+.container .icons .pay,
+.container .icons .number1,
+.container .icons .help a {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.container .icons .truck .description h2,
+.container .icons .pay .description h2,
+.container .icons .number1 .description h2,
+.container .icons .help .description h2 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.container .icons .truck .description p,
+.container .icons .pay .description p,
+.container .icons .number1 .description p,
+.container .icons .help .description p {
+    font-size: 14px;
+}
+
 .container .icons .truck svg path {
     font-size: 1rem;
     font-style: italic;
 }
 
 .container .icons .pay .icon-credit-card::before,
-.container .icons .number1 .icon-medal::before,
 .container .icons .help .icon-headphones::before {
-    font-size: 5rem;
+    font-size: 2rem;
     color: #04b547;
 }
 

@@ -62,8 +62,9 @@
                             <div class="product-{{ producto.id }}">
                                 <a href="{% url 'detail_producto' producto.id %}" class="text-decoration-none text-reset">
                                     <div class="card h-100 border-0">
-                                        <figure class="card-img-top" style="background-image: url({{ producto.imagen.url }})">
+                                        <figure class="card-img-top position-relative" style="background-image: url({{ producto.imagen.url }})">
                                         </figure>
+                                        <p class="legend position-absolute px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 999999; font-size: 12px">ENVÍO GRATIS</p>
                                         <div class="card-body">
                                             <h5 class="card-title title fw-bold fs-3">{{ producto.nombre }}</h5>
                                             <small class="text-muted">{{ producto.categoria.nombre | capfirst }}</small>
@@ -79,8 +80,9 @@
                             <div class="product-{{ producto.id }}">
                                 <a href="{% url 'detail_producto' producto.id %}" class="text-decoration-none text-reset">
                                     <div class="card h-100 border-0">
-                                        <figure class="card-img-top" style="background-image: url({{ producto.imagen.url }})">
+                                        <figure class="card-img-top position-relative" style="background-image: url({{ producto.imagen.url }})">
                                         </figure>
+                                        <p class="legend position-absolute px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 999999; font-size: 12px">ENVÍO GRATIS</p>
                                         <div class="card-body">
                                             <h5 class="card-title title fw-bold fs-3">{{ producto.nombre }}</h5>
                                             <small class="text-muted">{{ producto.categoria.nombre | capfirst }}</small>
