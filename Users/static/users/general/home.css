@@ -2,12 +2,22 @@
     overflow: hidden;
 }
 
-.container .presentation {
-    min-height: 50vh;
+.container .icons {
     height: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
+}
+
+.container .icons .truck svg path {
+    font-size: 1rem;
+    font-style: italic;
+}
+
+.container .icons .pay .icon-credit-card::before,
+.container .icons .number1 .icon-medal::before,
+.container .icons .help .icon-headphones::before {
+    font-size: 5rem;
+    color: #04b547;
 }
 
 .container .recommended-products {
@@ -68,7 +78,7 @@
     height: 500px;
     background-attachment: fixed;
 }
-
+/*
 .card-body {
     opacity: 0;
     position: absolute;
@@ -86,7 +96,7 @@
     opacity: 1;
     color: #FFFFFF;
 }
-
+*/
 .info-img {
     position: relative;
 }

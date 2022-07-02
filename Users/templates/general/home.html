@@ -6,6 +6,9 @@
 {% endblock %}
 {% block styles %}
     <link rel="stylesheet" href="{% static 'users/general/home.css' %}">
+    <link rel="stylesheet" href="{% static 'users/Componentes/Carousel/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'users/Componentes/Carousel/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'users/Iconos/style.css' %}">
 {% endblock %}
 
 {% block container %}
@@ -39,16 +42,13 @@
     </div>
 
     <div class="container py-5">
-        <section class="presentation">
-            <h1 class="text-center fs-1 title fw-bold">¿QUÉ ES LOREM IPSUM?</h1>
-            <p class="text-center text">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.
-                Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor
-                (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal
-                manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó
-                como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado
-                en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más
-                recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de
-                Lorem Ipsum.</p>
+        <section class="icons">
+            <div class="truck">
+                <img src="{% static 'users/Iconos/truck-fast-solid.svg' %}" alt="" style="width: 5rem; height: 5rem">
+            </div>
+            <div class="pay"><span class="icon-credit-card"></span></div>
+            <div class="number1"><span class="icon-medal"></span></div>
+            <div class="help"><span class="icon-headphones"></span></div>
         </section>
 
         <section class="partners my-5">
@@ -62,33 +62,28 @@
 
 
         <section class="recommended-products my-5">
-            <h3 class="text-center title fs-2 my-5 fw-bold">PRODUCTOS RECOMENDADOS PARA TI</h3>
+            <h3 class="text-center title fs-2 my-5 fw-bold">PRODUCTOS MÁS VENDIDOS</h3>
             <p class="text text-center">Ve todos nuestros <a href="{% url 'productos' %}">productos aquí</a></p>
             <div class="content-recommended-products">
                 {% if recommended_products %}
-
-                    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
-                        <div class="carousel-inner">
-                            {% for recommended_product in recommended_products %}
-                                <div class="carousel-item active">
-                                    <img src="{{ recommended_product.imagen.url }}" class="d-block w-100" alt="..." style="max-height: 350px; height: 100%; object-fit: cover">
-                                    <div class="carousel-caption d-none d-md-block" style="background-color: rgba(0, 0, 0, 0.5);">
-                                        <h5>{{ recommended_product.nombre }}</h5>
-                                        <p>{{ recommended_product.descripcion }}</p>
-                                        <a href="{% url 'detail_producto' recommended_product.id %}" class="btn btn-outline-info">Ver producto</a>
+                        <div class="owl-container">
+                            <div class="owl-carousel owl-theme">
+                                {% for recommended_product in recommended_products %}
+                                    <div class="item me-5" style="width: 350px;">
+                                        <div class="card" style="height: 100%">
+                                            <img src="{{ recommended_product.imagen.url }}" class="card-img-top position-relative" alt="...">
+                                            <p class="legend position-absolute px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 999999; font-size: 12px">ENVÍO GRATIS</p>
+                                            <div class="card-body">
+                                                <p class="number">$ {{ recommended_product.precio }}</p>
+                                                <h5 class="card-title">{{ recommended_product.nombre | title }}</h5>
+                                                <p class="card-text">{{ recommended_product.get_short_desc }}</p>
+                                                <a href="{% url 'detail_producto' recommended_product.id %}" class="btn btn-primary">Ver producto</a>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            {% endfor %}
+                                {% endfor %}
+                            </div>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon bg-dark" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                            <span class="carousel-control-next-icon bg-dark" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
                 {% endif %}
             </div>
         </section>
@@ -112,4 +107,10 @@
         </section>
 
     </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'users/Componentes/Carousel/jquery.min.js' %}"></script>
+    <script src="{% static 'users/Componentes/Carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'users/Componentes/Carousel/main.js' %}"></script>
 {% endblock %}
