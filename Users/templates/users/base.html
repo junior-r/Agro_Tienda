@@ -144,7 +144,7 @@
                 <section class="section-categories">
                     <h3 class="title">Categorías</h3>
                     <ul class="categories">
-                        {% for category in categories %}
+                        {% for category in recommended_categories %}
                             <li class="categories-item text"><a href="/productos/?category={{ category.id }}" class="text-decoration-none text-dark">{{ category.nombre | capfirst }}</a></li>
                         {% endfor %}
                         <li class="categories-item text"><a href="{% url 'productos' %}" class="text-decoration-none text-dark">Todo</a></li>
@@ -161,7 +161,7 @@
                             <a href="https://www.instagram.com/carnetoday/" target="_blank" class="btn instagram">Instagram <span class="icon-instagram ms-1"></span></a>
                         </li>
                         <li class="contact-item text">
-                            <a href="https://www.facebook.com/CarneToday" target="_blank" class="btn facebook">Telegram <span class="icon-facebook" style="margin-left: 0.7rem"></span></a>
+                            <a href="https://www.facebook.com/CarneToday" target="_blank" class="btn facebook">Facebook <span class="icon-facebook" style="margin-left: 0.7rem"></span></a>
                         </li>
                         <li class="contact-item text">
                             <a href="mailto:junior31064049@gmail.com" target="_blank" class="btn mail">Mail <span class="icon-gmail ms-5"></span></a>

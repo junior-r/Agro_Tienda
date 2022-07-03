@@ -36,22 +36,30 @@ def contador(request):
 def home(request):
     categories = Categoria.objects.all()
     recommended_products = Producto.objects.filter(recomendar=True)
+    prducts = Producto.objects.all()
     evento = Evento.objects.filter(active=True).first()
 
     list_products = []
+    list_catogories = []
 
     if recommended_products:
-        count = 0
         for i in range(len(recommended_products)):
             list_products.append(recommended_products[i])
-            count += 1
-            if count == 3:
+
+    if categories:
+        counter = 0
+        for i in range(len(categories)):
+            list_catogories.append(categories[i])
+            counter += 1
+            if counter >= 4:
                 break
 
     data = {
         'categories': categories,
+        'recommended_categories': list_catogories,
         'recommended_products': list_products,
         'evento': evento,
+        'products': prducts,
         'counter': contador(request)
     }
 
