@@ -59,49 +59,48 @@
                             {% endif %}
                         </ul>
                         <span class="navbar-text">
-                        <div class="btn-group me-3">
-                            <button type="button" class="btn btn-outline-primary dropdown-toggle cart-button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-shopping-cart"></i>
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
-                                    {% if 'cart' in request.session.keys %}
-                                        {{ number_prd_cart }}
-                                    {% else %}
-                                        0
-                                    {% endif %}
-                                    <span class="visually-hidden">unread messages</span></span>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end menu-cart">
-                                {% if cart_prd %}
-                                    {% for product in cart_prd %}
-                                        <li class="d-flex align-items-center pe-3">
-                                            <a class="dropdown-item d-flex gap-2 align-items-center" href="{% url 'detail_producto' product.producto_id %}">
-                                                <figure class="img_product_cart_menu m-0" style="background-image: url({{ product.imagen }})"></figure>
-                                                <div class="info_product_cart">
-                                                    <p class="m-0 nombre text">{{ product.nombre | capfirst }}</p>
-                                                    <p class="m-0 cantida_precio number text-muted">{{ product.cantidad }} x $ {{ product.precio }} = <span class="text-primary">$ {{ product.monto_total }}</span></p>
-                                                </div>
-                                            </a>
-                                            <a href="{% url 'remove_from_cart' product.producto_id %}" class="remove_product_cart text-decoration-none">
-                                                <span class="icon-x"></span>
+                            <div class="btn-group me-3">
+                                <button type="button" class="btn btn-outline-primary dropdown-toggle cart-button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
+                                        {% if 'cart' in request.session.keys %}
+                                            {{ number_prd_cart }}
+                                        {% else %}
+                                            0
+                                        {% endif %}
+                                        <span class="visually-hidden">unread messages</span></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end menu-cart">
+                                    {% if cart_prd %}
+                                        {% for product in cart_prd %}
+                                            <li class="d-flex align-items-center pe-3">
+                                                <a class="dropdown-item d-flex gap-2 align-items-center" href="{% url 'detail_producto' product.producto_id %}">
+                                                    <figure class="img_product_cart_menu m-0" style="background-image: url({{ product.imagen }})"></figure>
+                                                    <div class="info_product_cart">
+                                                        <p class="m-0 nombre text">{{ product.nombre | capfirst }}</p>
+                                                        <p class="m-0 cantida_precio number text-muted">{{ product.cantidad }} x $ {{ product.precio }} = <span class="text-primary">$ {{ product.monto_total }}</span></p>
+                                                    </div>
+                                                </a>
+                                                <a href="{% url 'remove_from_cart' product.producto_id %}" class="remove_product_cart text-decoration-none">
+                                                    <span class="icon-x"></span>
+                                                </a>
+                                            </li>
+                                        {% endfor %}
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item text text-center" href="#">Subtotal: <span class="number text-primary">$ {{ cart.get_subtotal }}</span></a></li>
+
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li class="text-center">
+                                            <a class="dropdown-item" href="{% url 'cart' %}">
+                                                <button class="btn btn-outline-success btn-sm">Ver carrito</button>
                                             </a>
                                         </li>
-                                    {% endfor %}
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item text text-center" href="#">Subtotal: <span class="number text-primary">$ {{ cart.get_subtotal }}</span></a></li>
-
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li class="text-center">
-                                        <a class="dropdown-item" href="{% url 'cart' %}">
-                                            <button class="btn btn-outline-success btn-sm">Ver carrito</button>
-                                        </a>
-                                    </li>
-                                {% else %}
-                                    <li><a class="dropdown-item text" href="#">Vacío</a></li>
-                                {% endif %}
-                            </ul>
-                        </div>
-
-                    </span>
+                                    {% else %}
+                                        <li><a class="dropdown-item text" href="#">Vacío</a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </span>
                     </div>
                 </div>
             </div>

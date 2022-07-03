@@ -110,7 +110,7 @@
                 <p class="text text-center">Ve todas las <a href="{% url 'productos' %}">categorías aquí</a></p>
                 <div class="content d-flex gap-3 justify-content-evenly flex-wrap my-5">
                     {% for recommended_category in recommended_categories %}
-                        <a href="/productos/?category={{ recommended_category.id }}" class="text-decoration-none text-reset d-inline-block" style="width: 400px; height: 400px;">
+                        <a href="/productos/?category={{ recommended_category.id }}" class="text-decoration-none text-reset d-inline-block" style="width: 300px; height: 300px;">
                             <div class="category" style="position: relative">
                                 <figure class="img-category" style="background-image: url({{ recommended_category.imagen.url }})"></figure>
                                 <h3 class="name-category title">{{ recommended_category.nombre | title }}</h3>
