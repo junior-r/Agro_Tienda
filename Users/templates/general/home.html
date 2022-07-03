@@ -108,7 +108,7 @@
             {% if recommended_categories %}
                 <h2 class="title text-center my-3 fw-bold">CATEGORÍAS MÁS VISITADAS</h2>
                 <p class="text text-center">Ve todas las <a href="{% url 'productos' %}">categorías aquí</a></p>
-                <div class="content d-flex gap-3 justify-content-between my-5">
+                <div class="content d-flex gap-3 justify-content-evenly flex-wrap my-5">
                     {% for recommended_category in recommended_categories %}
                         <a href="/productos/?category={{ recommended_category.id }}" class="text-decoration-none text-reset d-inline-block" style="width: 400px; height: 400px;">
                             <div class="category" style="position: relative">
