@@ -134,27 +134,5 @@
 }
 
 @media screen and (max-width: 570px) {
-    .partners .content {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 1rem 0;
-        gap: 3rem;
-    }
 
-    .partners .content .logo_partner {
-        width: 90%;
-        margin-bottom: 1rem;
-        border: 1px solid #e5e5e5;
-        margin-inline: auto;
-    }
-
-    .partners .content a {
-        display: flex;
-    }
-
-    .partners .content .logo_partner:hover {
-        transform: scale(1.1);
-        box-shadow: none;
-    }
 }

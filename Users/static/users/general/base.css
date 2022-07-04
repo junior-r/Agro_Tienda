@@ -137,8 +137,8 @@ footer .content-footer .copytight {
         display: none !important;
     }
 
-    .header .navbar-1 p {
-        font-size: 1.8rem;
+    .header .navbar-1 p{
+        font-size: 1.8rem !important;
     }
 
     .header .navbar-2 .container-fluid .navbar-brand,
@@ -162,6 +162,11 @@ footer .content-footer .copytight {
     }
 }
 
+@media screen and (max-width: 580px) {
+    .navbar-2 .offcanvas .offcanvas-body .navbar-nav .nav-item {
+        font-size: 1.8rem !important;
+    }
+}
 
 @media screen and (max-width: 300px) {
     footer .content-footer .menu .section-navigation ul,
