@@ -148,6 +148,11 @@ footer .content-footer .copytight {
         font-size: 2rem !important;
     }
 
+    .navbar-2 .container-fluid .offcanvas .offcanvas-header .offcanvas-title,
+    .navbar-2 .container-fluid .offcanvas .offcanvas-header .btn-close {
+        font-size: 2rem !important;
+    }
+
     .navbar-2 .container-fluid .offcanvas .offcanvas-body .navbar-nav {
         font-size: 1.8rem !important;
         align-items: flex-start !important;
