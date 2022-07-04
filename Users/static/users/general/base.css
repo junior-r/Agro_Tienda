@@ -150,6 +150,7 @@ footer .content-footer .copytight {
 
     .navbar-2 .container-fluid .offcanvas .offcanvas-body .navbar-nav {
         font-size: 1.8rem !important;
+        align-items: flex-start !important;
     }
 
     .super-container .icons-socials > a {
