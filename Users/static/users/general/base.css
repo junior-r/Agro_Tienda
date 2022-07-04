@@ -148,6 +148,14 @@ footer .content-footer .copytight {
         font-size: 2rem !important;
     }
 
+    .navbar-2 .container-fluid .offcanvas .offcanvas-body .navbar-nav {
+        font-size: 1.8rem !important;
+    }
+
+    .super-container .icons-socials > a {
+        font-size: 1.5rem !important;
+    }
+
     .super-container {
         font-size: 1.8rem !important;
     }
@@ -158,16 +166,6 @@ footer .content-footer .copytight {
 
     .footer,
     .footer .content-footer .menu .section-contact ul li a {
-        font-size: 1.5rem !important;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .navbar-2 .container-fluid .offcanvas .offcanvas-body .navbar-nav {
-        font-size: 1.8rem !important;
-    }
-
-    .super-container .icons-socials > a {
         font-size: 1.5rem !important;
     }
 }
