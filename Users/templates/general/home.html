@@ -87,7 +87,7 @@
                                     <div class="item me-5" style="width: 350px;">
                                         <a href="{% url 'detail_producto' recommended_product.id %}" class="text-decoration-none text-reset">
                                             <div class="card position-relative" style="height: 100%">
-                                                <img src="{{ recommended_get_imagen }}" class="card-img-top" alt="...">
+                                                <img src="{{ recommended_product.get_imagen }}" class="card-img-top" alt="...">
                                                 <p class="legend position-absolute px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 999999; font-size: 12px">ENVÍO GRATIS</p>
                                                 <div class="card-body">
                                                     <p class="number">$ {{ recommended_product.precio }}</p>
@@ -112,7 +112,7 @@
                     {% for recommended_category in recommended_categories %}
                         <a href="/productos/?category={{ recommended_category.id }}" class="text-decoration-none text-reset d-inline-block" style="width: 300px; height: 300px;">
                             <div class="category" style="position: relative">
-                                <figure class="img-category" style="background-image: url({{ recommended_category.imagen.url }})"></figure>
+                                <figure class="img-category" style="background-image: url({{ recommended_category.get_imagen }})"></figure>
                                 <h3 class="name-category title">{{ recommended_category.nombre | title }}</h3>
                             </div>
                         </a>
