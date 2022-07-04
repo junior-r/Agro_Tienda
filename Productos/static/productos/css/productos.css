@@ -58,4 +58,10 @@
     .content {
         grid-template-columns: 1fr !important;
     }
+
+    .content .products .content-products > div {
+        max-width: 70%;
+        width: 100%;
+        margin-inline: auto;
+    }
 }
