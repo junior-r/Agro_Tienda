@@ -19,15 +19,15 @@
             </div>
             <div class="product_info">
                 <h1 class="title mt-3 fw-bold">{{ producto.nombre }}</h1>
+                <hr>
                 <div class="legend d-flex gap-3">
-                    <p class="category text">Categoría: <a href="/productos/?category={{ producto.categoria.id }}" class="text-decoration-none">{{ producto.categoria.nombre }}</a></p>
-                    <p class="cantidad text"><span class="number text-primary">{{ producto.cantidad }}</span> en stock</p>
+                    <p class="price number fs-4">$ {{ producto.precio | intcomma }}</p>
+                    <p class="price number fs-4">$ {{ producto.cantidad | intcomma }} en stock</p>
                 </div>
-                <p class="price number">$ {{ producto.precio | intcomma }}</p>
 
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active rounded-0" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">1 - 49 unidades</button>
+                        <button class="nav-link active rounded-0" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">2 - 49 unidades</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link rounded-0" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">50 - 99 unidades</button>
@@ -37,9 +37,9 @@
                     </li>
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active ps-3" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">$ {{ producto.get_price5 }}</div>
-                    <div class="tab-pane fade ps-3" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">$ {{ producto.get_price50 }}</div>
-                    <div class="tab-pane fade ps-3" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">$ {{ producto.get_price100 }}</div>
+                    <div class="tab-pane fade show active ps-3" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">$ {{ producto.get_descuento1 }} por unidad</div>
+                    <div class="tab-pane fade ps-3" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">$ {{ producto.get_descuento2 }} por unidad</div>
+                    <div class="tab-pane fade ps-3" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">$ {{ producto.get_descuento3 }} por unidad</div>
                 </div>
 
                 <div class="cart-form mt-5 d-flex flex-column">

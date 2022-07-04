@@ -101,27 +101,55 @@ def cart(request):
     return render(request, 'productos/cart.html', data)
 
 
+def get_range_price(request, producto, cantidad, cantidad_cart):
+    cart = Cart(request)
+    if (int(cantidad) + int(cantidad_cart)) == 1:
+        # Si la cantidad ingresada + la cantidad guardada es = 1
+        cart.add(producto, int(cantidad), float(producto.precio))
+    elif (int(cantidad) + int(cantidad_cart)) in range(2, 49+1):
+        # Si la cantidad ingresada + la cantidad guardada esta en el rango 2 - 49
+        cart.add(producto, int(cantidad), float(producto.get_descuento1()))
+    elif (int(cantidad) + int(cantidad_cart)) in range(50, 99+1):
+        # Si la cantidad ingresada + la cantidad guardada esta en el rango 50 - 99
+        cart.add(producto, int(cantidad), float(producto.get_descuento2()))
+    elif (int(cantidad) + int(cantidad_cart)) >= 100:
+        # Si la cantidad ingresada + la cantidad guardada es >= 100
+        cart.add(producto, int(cantidad), float(producto.get_descuento3()))
+    else:
+        messages.error(request, 'Cantidad inválida, intente de nuevo!')
+        return redirect('productos')
+
+    messages.success(request, 'Producto agregado al carrito exitosamente!')
+    return redirect('productos')
+
+
 def add_to_cart(request, id):
     producto = Producto.objects.get(id=id)
     cantidad = request.POST.get('cantidad')
+    cantidad = int(cantidad)
 
     cart = Cart(request)
     cart_prd = cart.get_items()
+    if cantidad > producto.cantidad:
+        messages.error(request, 'No hay suficientes unidades en stock. Intente con menor cantidad!')
+    if cantidad <= 0:
+        messages.error(request, 'Cantidad inválida, intente de nuevo!')
+        return redirect('detail_producto', id=producto.id)
 
-    if int(cantidad) > producto.cantidad:
-        messages.error(request, 'No hay suficientes unidades en stock')
-        return redirect('productos')
-
-    for item in cart_prd:
-        if producto.id == item['producto_id']:  # Si el producto ya esta en el carrito
-            if int(cantidad) + item['cantidad'] > producto.cantidad:  # Si la cantidad a agregar es mayor a la cantidad en stock
-                messages.error(request, 'No hay suficientes unidades en stock')
-                return redirect('productos')
-
+    if cart_prd:  # Si hay productos en el carrito
+        for producto_cart in cart_prd:  # Iterar el carrito
+            if producto.id == int(producto_cart['producto_id']):  # Si el producto está en el carrito
+                cantidad_cart = int(producto_cart['cantidad'])
+                if cantidad + int(producto_cart['cantidad']) > producto.cantidad:
+                    messages.error(request, 'No hay suficientes unidades en stock. Intente con menor cantidad!')
+                    return redirect('detail_producto', id=producto.id)
+                else:
+                    get_range_price(request, producto, cantidad=cantidad, cantidad_cart=cantidad_cart)
+                    break
     else:
-        cart.add(producto, int(cantidad))
-        messages.success(request, 'Producto añadido al carrito')
-        return redirect('productos')
+        get_range_price(request, producto, cantidad, cantidad_cart=0)
+
+    return redirect('productos')
 
 
 def remove_from_cart(request, id):

@@ -1,10 +1,13 @@
 .content-product {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
     gap: 3rem;
     padding: 3rem;
     background-color: #fff;
     margin-top: 3rem;
+}
+
+.content-product .img_product {
+    flex: 1;
 }
 
 .content-product .img_product figure {

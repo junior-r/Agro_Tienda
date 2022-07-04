@@ -34,6 +34,9 @@ class Producto(models.Model):
     nombre = models.CharField(max_length=50)
     descripcion = models.TextField(max_length=500)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
+    descuento1 = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    descuento2 = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    descuento3 = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     imagen = models.ImageField(upload_to=save_image_product, blank=True)
     cantidad = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -64,20 +67,20 @@ class Producto(models.Model):
         host = 'https://carnetoday.com'
         return host + '/productos/producto/' + str(self.id)
 
-    def get_price5(self):
-        if self.cantidad > 5:
-            return self.precio * 5
-        return f"{self.precio * 5} (No hay suficientes en stock)"
+    def get_descuento1(self):
+        if self.cantidad > 2:
+            return self.precio - self.descuento1
+        return f"{self.precio - self.descuento1} (No hay suficientes en stock)"
 
-    def get_price50(self):
+    def get_descuento2(self):
         if self.cantidad > 50:
-            return self.precio * 50
-        return f"{self.precio * 50} (No hay suficientes en stock)"
+            return self.precio - self.descuento2
+        return f"{self.precio - self.descuento2} (No hay suficientes en stock)"
 
-    def get_price100(self):
+    def get_descuento3(self):
         if self.cantidad > 100:
-            return self.precio * 100
-        return f"{self.precio * 100} (No hay suficientes en stock)"
+            return self.precio - self.descuento3
+        return f"{self.precio - self.descuento3} (No hay suficientes en stock)"
 
 
 class Compra(models.Model):

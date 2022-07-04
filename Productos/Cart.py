@@ -1,7 +1,3 @@
-from django.contrib import messages
-from django.shortcuts import redirect
-
-
 class Cart:
     def __init__(self, request):
         self.request = request
@@ -17,7 +13,7 @@ class Cart:
         self.session['cart'] = self.cart
         self.session.modified = True
 
-    def add(self, producto, cantidad):
+    def add(self, producto, cantidad, precio):
         id = str(producto.id)
         if id not in self.cart.keys():
             # Si el producto no está en el carrito, se agrega con una cantidad = 1
@@ -25,10 +21,10 @@ class Cart:
                 'producto_id': producto.id,
                 'imagen': producto.imagen.url,
                 'nombre': producto.nombre,
-                'precio': float(producto.precio),
+                'precio': float(precio),
                 'description': producto.descripcion,
                 'cantidad': cantidad,
-                'monto_total': float(producto.precio) * cantidad
+                'monto_total': float(precio) * cantidad
             }
         else:
             ''' 
@@ -37,6 +33,7 @@ class Cart:
             '''
 
             self.cart[id]['cantidad'] += cantidad
+            self.cart[id]['precio'] = precio
             self.cart[id]['monto_total'] = float(self.cart[id]['precio']) * self.cart[id]['cantidad']
         self.save()
 
