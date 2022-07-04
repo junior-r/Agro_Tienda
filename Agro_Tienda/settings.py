@@ -65,7 +65,7 @@ ROOT_URLCONF = 'Agro_Tienda.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -88,12 +88,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'agrotienda',
-	'USER': 'postgres',
-	'PASSWORD': 'tiendaOnline2022agro',
-	'HOST': 'localhost',
-	'PORT': '5432',
+        'USER': 'postgres',
+        'PASSWORD': '31064049',
+        'HOST': 'localhost',
+        'PORT': '5432',
+        }
     }
-}
 
 
 # Password validation
