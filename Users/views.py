@@ -56,7 +56,7 @@ def home(request):
 
     data = {
         'categories': categories,
-        'recommended_categories': categories,
+        'recommended_categories': list_catogories,
         'recommended_products': recommended_products,
         'evento': evento,
         'products': prducts,
