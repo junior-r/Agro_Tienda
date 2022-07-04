@@ -42,6 +42,10 @@ body {
     }
 }
 
+.menu-cart {
+    z-index: 999999;
+}
+
 .cart-button::after {
     display: none !important;
 }
