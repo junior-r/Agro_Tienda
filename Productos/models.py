@@ -21,6 +21,11 @@ class Categoria(models.Model):
     def __str__(self):
         return self.nombre
 
+    def get_imagen(self):
+        if self.imagen:
+            return f'{settings.MEDIA_URL}{self.imagen}'
+        return f'{settings.STATIC_URL}img/default/empty.png'
+
     def get_number_prd(self):
         return self.producto_set.count()
 
