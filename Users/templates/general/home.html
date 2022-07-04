@@ -87,7 +87,7 @@
                                     <div class="item me-5" style="width: 350px;">
                                         <a href="{% url 'detail_producto' recommended_product.id %}" class="text-decoration-none text-reset">
                                             <div class="card position-relative" style="height: 100%">
-                                                <img src="{{ recommended_product.imagen.url }}" class="card-img-top" alt="...">
+                                                <img src="{{ recommended_get_imagen }}" class="card-img-top" alt="...">
                                                 <p class="legend position-absolute px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 999999; font-size: 12px">ENVÍO GRATIS</p>
                                                 <div class="card-body">
                                                     <p class="number">$ {{ recommended_product.precio }}</p>

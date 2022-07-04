@@ -1,6 +1,8 @@
 from django.core.exceptions import ValidationError
 from django.db import models
 
+from Agro_Tienda import settings
+
 
 def save_image_product(instance, filename):
     return 'productos/{}/{}'.format(instance.id, filename)
@@ -39,6 +41,11 @@ class Producto(models.Model):
     def clean_descripcion(self):
         if len(self.descripcion) < 5:
             raise ValidationError('La descripción debe tener al menos 5 caracteres')
+
+    def get_imagen(self):
+        if self.imagen:
+            return f'{settings.MEDIA_URL}{self.imagen}'
+        return f'{settings.STATIC_URL}img/default/empty.png'
 
     def __str__(self):
         return self.nombre
