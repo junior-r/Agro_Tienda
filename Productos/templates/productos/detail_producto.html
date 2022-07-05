@@ -21,7 +21,11 @@
         </nav>
         <div class="content-product">
             <div class="img_product">
-                <figure style="background-image: url({{ producto.imagen.url }})"></figure>
+                <figure style="background-image: url({{ producto.imagen.url }})" class="position-relative"></figure>
+                <p class="legend position-absolute px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 9999; font-size: 12px; top: 24.25%">ENVÍO GRATIS</p>
+                {% if producto.cantidad == 0 %}
+                    <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(255, 255, 255, 0.5); z-index: 9999; font-size: 12px; top: 40%; left: 32.5%">AGOTADO</p>
+                {% endif %}
             </div>
             <div class="product_info">
                 <h1 class="title mt-3 fw-bold">{{ producto.nombre }}</h1>

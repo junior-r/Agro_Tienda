@@ -33,7 +33,7 @@ def productos(request):
     categories = Categoria.objects.all()
 
     try:
-        paginator = Paginator(productos, 9)
+        paginator = Paginator(productos, 12)
         productos = paginator.page(page)
     except:
         raise Http404
