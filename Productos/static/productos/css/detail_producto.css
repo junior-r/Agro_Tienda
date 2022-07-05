@@ -33,7 +33,7 @@
 
 @media screen and (max-width: 1200px){
     .content-product {
-        grid-template-columns: 1fr;
+        flex-direction: column;
     }
 
     .content-product .img_product figure {
