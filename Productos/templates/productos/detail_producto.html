@@ -8,6 +8,7 @@
 
 {% block styles %}
     <link rel="stylesheet" href="{% static 'productos/css/detail_producto.css' %}">
+    <link rel="stylesheet" href="{% static 'users/Componentes/Iconos/style.css' %}">
 {% endblock %}
 
 {% block container %}
@@ -53,7 +54,7 @@
                     <div class="tab-pane fade ps-3" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">$ {{ producto.get_descuento3 }} por unidad</div>
                 </div>
 
-                <div class="cart-form mt-5 d-flex align-items-baseline gap-3">
+                <div class="cart-form mt-3 d-flex align-items-baseline gap-3">
                     <form action="{% url 'add_to_cart' producto.id %}" method="post" enctype="multipart/form-data" class="d-flex justify-content-between gap-3 ms-auto">
                         {% csrf_token %}
                         <input type="number" class="form-control" value="1" name="cantidad" style="width: 6rem; display: inline-block">
@@ -62,6 +63,42 @@
                     <a href="https://wa.me/584129032865/?text=Hola, me puede dar información de este producto {{ producto.get_absolute_url }} Producto: {{ producto.nombre }}" class="btn rounded-0 mt-5 text-white fw-bold me-auto" style="background-color: #24bb5d;">
                         WhatsApp
                     </a>
+                </div>
+                <hr class="my-3">
+                <div class="icons-prd d-flex gap-3 justify-content-end">
+                    <div class="truck d-flex flex-column align-items-center gap-1">
+                        <img src="{% static 'users/Iconos/truck-fast-solid.svg' %}" alt="" style="width: 2.5rem; height: 2.5rem">
+                        <div class="description text-center">
+                            <p class="text m-0 text-muted" style="font-size: 0.68rem">Envíos Gratis</p>
+                            <p class="text m-0 text-muted" style="font-size: 0.68rem">a nivel nacional</p>
+                        </div>
+                    </div>
+
+                    <div class="pay d-flex flex-column align-items-center gap-1">
+                        <span class="icon-credit-card"></span>
+                        <div class="description text-center">
+                            <p class="text m-0 text-muted" style="font-size: 0.68rem">Pago Rápido</p>
+                            <p class="text m-0 text-muted" style="font-size: 0.68rem">Pago 100% seguro</p>
+                        </div>
+                    </div>
+
+                    <div class="number1 d-flex flex-column align-items-center gap-1">
+                        <img src="{% static 'users/Iconos/ranking-star-solid.svg' %}" alt="" style="width: 2.5rem; height: 2.5rem">
+                        <div class="description text-center">
+                            <p class="text m-0 text-muted" style="font-size: 0.68rem">Mejores Productos</p>
+                            <p class="text m-0 text-muted" style="font-size: 0.68rem">de primera calidad.</p>
+                        </div>
+                    </div>
+
+                    <div class="help">
+                        <a href="https://api.whatsapp.com/send?phone=584122647923" class="text-reset text-decoration-none d-flex flex-column align-items-center gap-1" target="_blank">
+                            <span class="icon-headphones"></span>
+                            <div class="description text-center">
+                                <p class="text m-0 text-muted" style="font-size: 0.68rem">Contactanos</p>
+                                <p class="text m-0 text-muted" style="font-size: 0.68rem">+58 412-2647 923</p>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
