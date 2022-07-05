@@ -15,7 +15,7 @@
                 <li class="breadcrumb-item"><a href="{% url 'cart' %}">Carrito</a></li>
                 <li class="breadcrumb-item"><a href="{% url 'checkout' %}">CheckOut - Datos de Envío</a></li>
                 <li class="breadcrumb-item"><a href="{% url 'send_method' %}">Método de envío</a></li>
-                <li class="breadcrumb-item active">Método de Envío</li>
+                <li class="breadcrumb-item active">Método de Pago</li>
             </ol>
         </nav>
     </div>
@@ -23,7 +23,15 @@
         {% if datos_envio and method %}
             <div class="datos_envio">
                 <div class="card bg-transparent border-0">
-                    <h1 class="title card-title"><span class="text-success icon-checkmark"></span> Datos de Envío</h1>
+                    <h1 class="title card-title d-flex justify-content-between">
+                        <span class="header-title">
+                            <span class="text-success icon-checkmark"></span>
+                            Datos de Envío
+                        </span>
+                        <span class="edit">
+                            <a href="{% url 'checkout' %}" class="text-muted fs-6">Editar</a>
+                        </span>
+                    </h1>
                     <div class="card-body">
                         <p class="text-muted name text m-0">Nombre: {{ datos_envio.name }} {{ datos_envio.last_name }}</p>
                         <p class="text-muted email text m-0">Email: {{ datos_envio.email }}</p>
@@ -36,7 +44,15 @@
                 </div>
 
                 <div class="card bg-transparent border-0">
-                    <h1 class="title card-title"><span class="text-success icon-checkmark"></span> Método de Envío</h1>
+                    <h1 class="title card-title d-flex justify-content-between">
+                        <span class="header-title">
+                            <span class="text-success icon-checkmark"></span>
+                            Método de Envío
+                        </span>
+                        <span class="edit">
+                            <a href="{% url 'send_method' %}" class="text-muted fs-6">Editar</a>
+                        </span>
+                    </h1>
                     <div class="card-body">
                         <p class="text-muted name text m-0">Método: {{ method }}</p>
                     </div>
@@ -47,85 +63,49 @@
                         <h1 class="card-title title"><span class="number">3</span> Métodos de Pago</h1>
                         <small class="text-muted text ms-3">Puedes realizar transferencias por cualquiera de las siguientes vías y enviarnos el comprobante por
                             <a href="https://api.whatsapp.com/send?phone=584122656008" class="text-reset"> WhatsApp.</a></small>
-                        <p class="ms-3 text-muted">Transferencia Bancaria (USD $1 = Bs 5,50)</p>
                         <div class="card-body">
+                            <p class="text-muted">Transferencia Bancaria (USD $1 = Bs 5,50)</p>
+                            <div class="section-tranfer mb-3 pb-3 ms-3">
+                                <div class="banco-1 mb-3 pb-3 border-bottom">
+                                    <p class="fw-bold m-0">Beneficiario: TIENDAS LBN, C.A</p>
+                                    <p class="fw-bold m-0">Rif: J-29848722-4</p>
+                                </div>
 
-                            <p>
-                                <a class="text-decoration-none text-reset fs-2 d-flex align-items-baseline justify-content-between" data-bs-toggle="collapse" href="#method-1" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                    <span>Pago móvil</span> <small class="text-muted fs-5">(Click para ver datos)</small>
-                                </a>
-                            </p>
-                            <div class="collapse" id="method-1">
-                                <div class="method mb-3">
-                                    <div class="description_method ps-3">
-                                        <p class="number m-0"><span class="text">Cédula:</span> 00.000.000</p>
-                                        <p class="number m-0"><span class="text">Teléfono:</span> 0412 903-2865</p>
-                                        <p class="text m-0"><span class="text">Banco:</span> Provincial (0102)</p>
-                                        <p class="text m-0"><span class="text">Beneficiario:</span> Michael Abraham Ruíz Azuaje</p>
-                                    </div>
+                                <div class="banco-1 mb-3 pb-3 border-bottom">
+                                    <p class="fw-bold m-0">Banco: BANESCO</p>
+                                    <p class="fw-bold m-0">Cta. Corriente: 0134-0389-91-3891395954</p>
+                                </div>
+
+                                <div class="banco-1 mb-3 pb-3 border-bottom">
+                                    <p class="fw-bold m-0">Banco: PROVINCIAL</p>
+                                    <p class="fw-bold m-0">Cta. Corriente: 0108-0580-51-0100035973</p>
+                                </div>
+
+                                <div class="banco-1 mb-3 pb-3 border-bottom">
+                                    <p class="fw-bold m-0">Banco: VENEZUELA</p>
+                                    <p class="fw-bold m-0">Cta. Corriente: 0102-0471-20-0000078540</p>
+                                </div>
+
+                            </div>
+
+                            <p class="text-muted">O por Tpago Mercantil (USD$1=Bs.D 5,57)</p>
+                            <div class="section-p-movil mb-3 pb-3 ms-3">
+                                <div class="banco-1 mb-3 pb-3 border-bottom">
+                                    <p class="fw-bold m-0">TIENDAS LBN</p>
+                                    <p class="fw-bold m-0">J298487224</p>
+                                    <p class="fw-bold m-0 number">04143055382</p>
                                 </div>
                             </div>
 
-                            <p>
-                                <a class="text-decoration-none text-reset fs-2 d-flex align-items-baseline justify-content-between" data-bs-toggle="collapse" href="#method-2" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                    <span>Tranferencia</span> <small class="text-muted fs-5">(Click para ver datos)</small>
-                                </a>
-                            </p>
-                            <div class="collapse" id="method-2">
-                                <div class="banco mb-3 ms-4">
-                                    <h3 class="title fs-4">Provincial</h3>
-                                    <div class="description_method ps-3">
-                                        <p class="number m-0"><span class="text">Cédula:</span> 00.000.000</p>
-                                        <p class="number m-0"><span class="text">Teléfono:</span> 0412 903-2865</p>
-                                        <p class="text m-0"><span class="text">Banco:</span> Provincial (0102)</p>
-                                        <p class="text m-0"><span class="text">Beneficiario:</span> Michael Abraham Ruíz Azuaje</p>
-                                    </div>
-                                </div>
-
-                                <div class="banco mb-3 ms-4">
-                                    <h3 class="title fs-4">Venezuela</h3>
-                                    <div class="description_method ps-3">
-                                        <p class="number m-0"><span class="text">Cédula:</span> 00.000.000</p>
-                                        <p class="number m-0"><span class="text">Teléfono:</span> 0412 903-2865</p>
-                                        <p class="text m-0"><span class="text">Banco:</span> Venezuela (0102)</p>
-                                        <p class="text m-0"><span class="text">Beneficiario:</span> Michael Abraham Ruíz Azuaje</p>
-                                    </div>
+                            <p class="text-muted">Zelle con los siguientes datos</p>
+                            <div class="section-p-movil mb-3 pb-3 ms-3">
+                                <div class="banco-1 mb-3 pb-3 border-bottom">
+                                    <p class="fw-bold m-0">Juan Carlos López</p>
+                                    <p class="fw-bold m-0">jclopez@loblan.com.ve</p>
                                 </div>
                             </div>
 
-                            <p>
-                                <a class="text-decoration-none text-reset fs-2 d-flex align-items-baseline justify-content-between" data-bs-toggle="collapse" href="#method-3" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                    <span>Zelle</span> <small class="text-muted fs-5">(Click para ver datos)</small>
-                                </a>
-                            </p>
-                            <div class="collapse" id="method-3">
-                                <div class="method mb-3">
-                                    <div class="description_method ps-3">
-                                        <p class="number m-0"><span class="text">Cédula:</span> 00.000.000</p>
-                                        <p class="number m-0"><span class="text">Teléfono:</span> 0412 903-2865</p>
-                                        <p class="text m-0"><span class="text">Banco:</span> Provincial (0102)</p>
-                                        <p class="text m-0"><span class="text">Beneficiario:</span> Michael Abraham Ruíz Azuaje</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <p>
-                                <a class="text-decoration-none text-reset fs-2 d-flex align-items-baseline justify-content-between" data-bs-toggle="collapse" href="#method-4" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                    <span>PayPal</span> <small class="text-muted fs-5">(Click para ver datos)</small>
-                                </a>
-                            </p>
-                            <div class="collapse" id="method-4">
-                                <div class="method mb-3">
-                                    <div class="description_method ps-3">
-                                        <p class="number m-0"><span class="text">Cédula:</span> 00.000.000</p>
-                                        <p class="number m-0"><span class="text">Teléfono:</span> 0412 903-2865</p>
-                                        <p class="text m-0"><span class="text">Banco:</span> Provincial (0102)</p>
-                                        <p class="text m-0"><span class="text">Beneficiario:</span> Michael Abraham Ruíz Azuaje</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="alert alert-warning" role="alert">
+                            <div class="alert alert-info" role="alert">
                                 <strong>Advertencia: </strong>Para obtener tus productos debes: <br>
                                 <ul>
                                     <li>Enviar captura de tu pago a nuestro
@@ -161,17 +141,17 @@
                         </tr>
                     {% endfor %}
                     <tr>
-                        td
+                        <td></td>
                         <th scope="row" class="title">Subtotal</th>
                         <td class="center-y number">$ {{ cart.get_subtotal }}</td>
                     </tr>
                     <tr>
-                        td
+                        <td></td>
                         <th scope="row" class="title">I.V.A.</th>
                         <td class="center-y number">$ {{ cart.get_iva }}</td>
                     </tr>
                     <tr>
-                        td
+                        <td></td>
                         <th scope="row" class="title">Total</th>
                         <td class="center-y number">$ {{ cart.get_total_iva }}</td>
                     </tr>

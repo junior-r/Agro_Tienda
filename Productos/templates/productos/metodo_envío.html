@@ -20,7 +20,15 @@
         {% if datos_envio %}
             <div class="datos_envio">
                 <div class="card bg-transparent border-0">
-                    <h1 class="title card-title"><span class="text-success icon-checkmark"></span> Datos de Envío</h1>
+                    <h1 class="title card-title d-flex justify-content-between">
+                        <span class="header-title">
+                            <span class="text-success icon-checkmark"></span>
+                            Datos de Envío
+                        </span>
+                        <span class="edit">
+                            <a href="{% url 'checkout' %}" class="text-muted fs-6">Editar</a>
+                        </span>
+                    </h1>
                     <div class="card-body">
                         <p class="text-muted name text m-0">Nombre: {{ datos_envio.name }} {{ datos_envio.last_name }}</p>
                         <p class="text-muted email text m-0">Email: {{ datos_envio.email }}</p>
