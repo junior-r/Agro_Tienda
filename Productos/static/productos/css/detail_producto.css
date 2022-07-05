@@ -18,6 +18,19 @@
     background-repeat: no-repeat;
 }
 
+.content-product .product_info h1.title {
+    font-size: 1.75rem;
+}
+
+.content-product .product_info .legend {
+    align-items: baseline;
+    flex-direction: column;
+}
+
+.content-product .product_info .legend .price {
+    font-size: 1.625rem;
+}
+
 @media screen and (max-width: 1200px){
     .content-product {
         grid-template-columns: 1fr;

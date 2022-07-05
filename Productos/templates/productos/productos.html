@@ -12,11 +12,16 @@
 
 {% block container %}
     <div class="container" style="min-height: 100vh">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
+                <li class="breadcrumb-item active">Productos</li>
+            </ol>
+        </nav>
         <div class="content pt-5">
             <sidebar class="sidebar">
                 <h2 class="title">Categorias</h2>
                 <section class="categories mt-3">
-
                     <form action="" method="get">
                         {% for category in categories %}
                             <div class="content mb-3 ps-3 d-flex justify-content-between">

@@ -7,6 +7,18 @@
 {% endblock %}
 
 {% block container %}
+    <div class="container d-block">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'productos' %}">Productos</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'cart' %}">Carrito</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'checkout' %}">CheckOut - Datos de Envío</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'send_method' %}">Método de envío</a></li>
+                <li class="breadcrumb-item active">Método de Envío</li>
+            </ol>
+        </nav>
+    </div>
     <div class="container" style="min-height: 100vh;">
         {% if datos_envio and method %}
             <div class="datos_envio">
@@ -131,9 +143,10 @@
             <h3 class="title fw-bold text-center">Tu Orden</h3>
             <p class="text">Código de compra: <span class="number fw-bold fs-4">{{ codigo_transaccion }}</span></p>
             <p class="text">Fecha: <span class="number">{{ fecha }}</span></p>
-            <table class="table">
+            <table class="table table-hover">
                 <thead>
                     <tr>
+                        <td></td>
                         <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
@@ -142,19 +155,23 @@
                 <tbody>
                     {% for producto in cart_prd %}
                         <tr>
-                            <th scope="row" class="title">{{ producto.nombre }} </th>
-                            <td class="text-muted number">{{ producto.cantidad }} x $ {{ producto.precio }} = $ {{ producto.monto_total }}</td>
+                            <th scope="row" class="title"><figure class="m-0 align-middle img_product_cart" style="background-image: url({{ producto.imagen }}); width: 3rem; height: 3rem"></figure></th>
+                            <th scope="row" class="title align-middle">{{ producto.nombre }}</th>
+                            <td class="text-muted number align-middle">{{ producto.cantidad }} x $ {{ producto.precio }} = $ {{ producto.monto_total }}</td>
                         </tr>
                     {% endfor %}
                     <tr>
+                        td
                         <th scope="row" class="title">Subtotal</th>
                         <td class="center-y number">$ {{ cart.get_subtotal }}</td>
                     </tr>
                     <tr>
+                        td
                         <th scope="row" class="title">I.V.A.</th>
                         <td class="center-y number">$ {{ cart.get_iva }}</td>
                     </tr>
                     <tr>
+                        td
                         <th scope="row" class="title">Total</th>
                         <td class="center-y number">$ {{ cart.get_total_iva }}</td>
                     </tr>

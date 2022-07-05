@@ -8,9 +8,20 @@
 
 {% block styles %}
     <link rel="stylesheet" href="{% static 'productos/css/checkout.css' %}">
+    <link rel="stylesheet" href="{% static 'productos/css/cart.css' %}">
 {% endblock %}
 
 {% block container %}
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'productos' %}">Productos</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'cart' %}">Carrito</a></li>
+                <li class="breadcrumb-item active">CheckOut - Datos de Envío</li>
+            </ol>
+        </nav>
+    </div>
     <div class="container">
         {% block form_data %}
             <div class="data">
@@ -76,9 +87,10 @@
 
         <div class="total_cart bg-white p-5" style="position: sticky; top: 0">
             <h3 class="title fw-bold text-center">Tu Orden</h3>
-            <table class="table">
+            <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th scope="col"></th>
                         <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
@@ -87,20 +99,24 @@
                 <tbody>
                     {% for producto in cart_prd %}
                         <tr>
-                            <th scope="row" class="title">{{ producto.nombre }} </th>
-                            <td class="text-muted number">{{ producto.cantidad }} x $ {{ producto.precio }} = $ {{ producto.monto_total }}</td>
+                            <th scope="row" class="title"><figure class="m-0 align-middle img_product_cart" style="background-image: url({{ producto.imagen }}); width: 3rem; height: 3rem"></figure></th>
+                            <th scope="row" class="title align-middle">{{ producto.nombre }}</th>
+                            <td class="text-muted number align-middle">{{ producto.cantidad }} x $ {{ producto.precio }} = $ {{ producto.monto_total }}</td>
                         </tr>
                     {% endfor %}
 
                     <tr>
+                        <td></td>
                         <th scope="row" class="title">Subtotal</th>
                         <td class="center-y number">$ {{ cart.get_subtotal }}</td>
                     </tr>
                     <tr>
+                        <td></td>
                         <th scope="row" class="title">I.V.A.</th>
                         <td class="center-y number">$ {{ cart.get_iva }}</td>
                     </tr>
                     <tr>
+                        <td></td>
                         <th scope="row" class="title">Total</th>
                         <td class="center-y number">$ {{ cart.get_total_iva }}</td>
                     </tr>

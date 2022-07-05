@@ -12,7 +12,13 @@
 
 {% block container %}
     <div class="container" style="min-height: 100vh">
-        <a href="{% url 'productos' %}" class="text-primary text-decoration-none"><span class="icon-arrow-left2"></span> Volver a productos</a>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'productos' %}">Productos</a></li>
+                <li class="breadcrumb-item active">#{{ producto.id }} {{ producto.nombre | title }}</li>
+            </ol>
+        </nav>
         <div class="content-product">
             <div class="img_product">
                 <figure style="background-image: url({{ producto.imagen.url }})"></figure>
@@ -20,9 +26,9 @@
             <div class="product_info">
                 <h1 class="title mt-3 fw-bold">{{ producto.nombre }}</h1>
                 <hr>
-                <div class="legend d-flex gap-3">
-                    <p class="price number fs-4">$ {{ producto.precio | intcomma }}</p>
-                    <p class="price number fs-4">$ {{ producto.cantidad | intcomma }} en stock</p>
+                <div class="legend d-flex gap-1 mb-2">
+                    <p class="price number m-0">$ {{ producto.precio | intcomma }}</p>
+                    <p class="cantidad number fs-6 m-0">{{ producto.cantidad | intcomma }} en stock</p>
                 </div>
 
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -42,13 +48,13 @@
                     <div class="tab-pane fade ps-3" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">$ {{ producto.get_descuento3 }} por unidad</div>
                 </div>
 
-                <div class="cart-form mt-5 d-flex flex-column">
-                    <form action="{% url 'add_to_cart' producto.id %}" method="post" enctype="multipart/form-data" class="d-flex justify-content-between">
+                <div class="cart-form mt-5 d-flex align-items-baseline gap-3">
+                    <form action="{% url 'add_to_cart' producto.id %}" method="post" enctype="multipart/form-data" class="d-flex justify-content-between gap-3 ms-auto">
                         {% csrf_token %}
-                        <input type="number" class="form-control" value="1" name="cantidad" style="width: 4rem; display: inline-block">
+                        <input type="number" class="form-control" value="1" name="cantidad" style="width: 6rem; display: inline-block">
                         <button type="submit" class="btn btn-primary btn-add-cart rounded-0">Agregar al carrito</button>
                     </form>
-                    <a href="https://wa.me/584129032865/?text=Hola, me puede dar información de este producto {{ producto.get_absolute_url }} Producto: {{ producto.nombre }}" class="btn rounded-0 mt-5 btn-lg text-white fw-bold mx-auto px-5 py-2" style="background-color: #24bb5d;">
+                    <a href="https://wa.me/584129032865/?text=Hola, me puede dar información de este producto {{ producto.get_absolute_url }} Producto: {{ producto.nombre }}" class="btn rounded-0 mt-5 text-white fw-bold me-auto" style="background-color: #24bb5d;">
                         WhatsApp
                     </a>
                 </div>

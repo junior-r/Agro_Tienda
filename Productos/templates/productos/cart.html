@@ -12,6 +12,13 @@
 
 {% block container %}
     <div class="container" style="min-height: 100vh">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'productos' %}">Productos</a></li>
+                <li class="breadcrumb-item active">Carrito</li>
+            </ol>
+        </nav>
         <h1 class="title text-center my-5 fw-bold">Carrito de Compras</h1>
         {% if cart and cart_prd %}
             <div class="content">
