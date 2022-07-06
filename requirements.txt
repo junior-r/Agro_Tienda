@@ -2,3 +2,4 @@ django == 4.0.5
 pillow == 9.1.1
 django-crispy-forms
 requests
+django-recaptcha

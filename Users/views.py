@@ -6,7 +6,7 @@ from django.core.mail import send_mail, EmailMultiAlternatives
 from django.shortcuts import render, redirect
 from django.template.loader import get_template
 
-from Users.forms import SignUpForm
+from Users.forms import SignUpForm, ContactForm
 from Productos.views import get_total_items_cart
 from Productos.models import Categoria, Producto
 from Eventos.models import Evento
@@ -112,7 +112,8 @@ def contact(request):
     categories = Categoria.objects.all()
 
     data = {
-        'site_key': settings.RECAPTCHA_SITE_KEY
+        'categories': categories,
+        'form': ContactForm()
     }
 
     number_prd_cart, cart, cart_prd = get_total_items_cart(request)
@@ -135,44 +136,38 @@ def send_email_contact(request):
         https://github.com/edwinlunando/django-naomi
         Clave de aplicación en Gmail
     """
-    secret_key = settings.RECAPTCHA_SECRET_KEY
     if request.method == 'POST':
-        name = request.POST.get('name')
-        subject = request.POST.get('subject')
-        email = request.POST.get('email')
-        message = request.POST.get('message')
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            subject = form.cleaned_data['subject']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
 
-        data = {
-            'name': name,
-            'subject': subject,
-            'email': email,
-            'message': message,
-            'response': request.POST.get('g-recaptcha-response'),
-            'secret': secret_key
-        }
+            data = {
+                'name': name,
+                'subject': subject,
+                'email': email,
+                'message': message
+            }
 
-        resp = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
-        result_json = resp.json()
+            template = get_template('general/email_template.html')
+            content = template.render(data)
 
-        print(result_json)
+            email = EmailMultiAlternatives(
+                subject,
+                message,
+                settings.EMAIL_HOST_USER,  # From email
+                [settings.EMAIL_HOST_USER]  # To email
+            )
 
-        if not result_json.get('success'):
-            return render(request, 'general/contactos.html', {'is_robot': True})
-        # end captcha verification
-
-        template = get_template('general/email_template.html')
-        content = template.render(data)
-
-        email = EmailMultiAlternatives(
-            subject,
-            message,
-            settings.EMAIL_HOST_USER,  # From email
-            [settings.EMAIL_HOST_USER]  # To email
-        )
-
-        email.attach_alternative(content, 'text/html')
-        email.send(fail_silently=False)
-        messages.success(request, 'Mensaje enviado correctamente.')
+            email.attach_alternative(content, 'text/html')
+            email.send(fail_silently=False)
+            messages.success(request, 'Mensaje enviado correctamente.')
+        else:
+            messages.error(request, 'Algún dato es inválido. Intente de nuevo!')
+            print(form.errors)
+            return redirect('contact')
 
     return redirect('contact')
 

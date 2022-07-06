@@ -1,3 +1,5 @@
+from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV2Checkbox
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from Users.models import User
@@ -32,3 +34,14 @@ class SignUpForm(UserCreationForm):
 
 class DateInput(forms.DateInput):
     input_type = 'date'
+
+
+class ContactForm(forms.Form):
+    name = forms.CharField(max_length=150, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'John'}), required=True, label='Nombres ')
+    subject = forms.CharField(max_length=150, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Hello'}), required=True, label='Asunto ')
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Johndoe@example.com'}), required=True, label='Correo electrónico ')
+    message = forms.CharField(max_length=500, widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Hello, this site is awesome.'}), required=True, label='Mensaje ')
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox, label='Verificación ')
+
+    class Meta:
+        fields = ['name', 'subject', 'email', 'message', 'captcha']
