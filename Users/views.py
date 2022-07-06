@@ -1,3 +1,4 @@
+import requests
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
@@ -111,7 +112,7 @@ def contact(request):
     categories = Categoria.objects.all()
 
     data = {
-        'categories': categories,
+        'site_key': settings.RECAPTCHA_SITE_KEY
     }
 
     number_prd_cart, cart, cart_prd = get_total_items_cart(request)
@@ -134,7 +135,7 @@ def send_email_contact(request):
         https://github.com/edwinlunando/django-naomi
         Clave de aplicación en Gmail
     """
-
+    secret_key = settings.RECAPTCHA_SECRET_KEY
     if request.method == 'POST':
         name = request.POST.get('name')
         subject = request.POST.get('subject')
@@ -145,8 +146,19 @@ def send_email_contact(request):
             'name': name,
             'subject': subject,
             'email': email,
-            'message': message
+            'message': message,
+            'response': request.POST.get('g-recaptcha-response'),
+            'secret': secret_key
         }
+
+        resp = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+        result_json = resp.json()
+
+        print(result_json)
+
+        if not result_json.get('success'):
+            return render(request, 'general/contactos.html', {'is_robot': True})
+        # end captcha verification
 
         template = get_template('general/email_template.html')
         content = template.render(data)
