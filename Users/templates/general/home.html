@@ -87,7 +87,9 @@
                                     <div class="item me-5" style="width: 350px;">
                                         <a href="{% url 'detail_producto' recommended_product.id %}" class="text-decoration-none text-reset">
                                             <div class="card position-relative" style="height: 100%">
-                                                <img src="{{ recommended_product.get_imagen }}" class="card-img-top" alt="...">
+                                                {% if recommended_product.imagenes %}
+                                                    <img src="{{ recommended_product.imagenes.first.imagen.url }}" class="card-img-top" alt="...">
+                                                {% endif %}
                                                 <p class="legend position-absolute px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 999999; font-size: 12px">ENVÍO GRATIS</p>
                                                 {% if recommended_product.cantidad == 0 %}
                                                     <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(255, 255, 255, 0.5); z-index: 9999; font-size: 12px; top: 25%; left: 25%">AGOTADO</p>
@@ -153,7 +155,9 @@
                                     <div class="item me-5" style="width: 350px;">
                                         <a href="{% url 'detail_producto' product.id %}" class="text-decoration-none text-reset">
                                             <div class="card position-relative" style="height: 100%">
-                                                <img src="{{ product.imagen.url }}" class="card-img-top" alt="...">
+                                                {% if product.imagenes %}
+                                                    <img src="{{ product.imagenes.first.imagen.url }}" class="card-img-top" alt="...">
+                                                {% endif %}
                                                 <p class="legend position-absolute px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 999999; font-size: 12px">ENVÍO GRATIS</p>
                                                 {% if product.cantidad == 0 %}
                                                     <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(255, 255, 255, 0.5); z-index: 9999; font-size: 12px; top: 30%; left: 25%">AGOTADO</p>

@@ -19,14 +19,14 @@ class ProductoForm(forms.ModelForm):
     descuento1 = forms.DecimalField(max_digits=10, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control'}), label='Precio de Descuento 1')
     descuento2 = forms.DecimalField(max_digits=10, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control'}), label='Precio de Descuento 2')
     descuento3 = forms.DecimalField(max_digits=10, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control'}), label='Precio de Descuento 3')
-    imagen = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control'}), label='Imagen')
+
     cantidad = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}), label='Cantidad')
     categoria = forms.ModelChoiceField(queryset=Categoria.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}), label='Categoría')
     recomendar = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class': 'form-control'}), label='¿Recomendar?', required=False)
 
     class Meta:
         model = Producto
-        fields = ['nombre', 'descripcion', 'precio', 'descuento1', 'descuento2', 'descuento3', 'imagen', 'cantidad', 'categoria', 'recomendar']
+        fields = ['nombre', 'descripcion', 'precio', 'descuento1', 'descuento2', 'descuento3', 'cantidad', 'categoria', 'recomendar']
         help_texts = {
             'descuento1': 'Esta cantidad será restada al precio unitario y presentada en la categoría de 2 - 49.',
             'descuento2': 'Esta cantidad será restada al precio unitario y presentada en la categoría de 50 - 99.',

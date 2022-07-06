@@ -9,6 +9,8 @@
 {% block styles %}
     <link rel="stylesheet" href="{% static 'productos/css/detail_producto.css' %}">
     <link rel="stylesheet" href="{% static 'users/Componentes/Iconos/style.css' %}">
+    <link rel="stylesheet" href="{% static 'users/Componentes/Carousel/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'users/Componentes/Carousel/owl.carousel.min.css' %}">
 {% endblock %}
 
 {% block container %}
@@ -21,13 +23,22 @@
             </ol>
         </nav>
         <div class="content-product">
-            <div class="img_product">
-                <figure style="background-image: url({{ producto.imagen.url }})" class="position-relative">
-                    <p class="legend position-absolute px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 9999; font-size: 12px; top: 0">ENVÍO GRATIS</p>
-                    {% if producto.cantidad == 0 %}
-                        <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(255, 255, 255, 0.5); z-index: 9999; font-size: 12px; top: calc(50% - 1.5rem); left: 39%">AGOTADO</p>
-                    {% endif %}
-                </figure>
+            <div class="img_product position-relative">
+                <div class="owl-container">
+                    <div class="owl-carousel owl-theme">
+                        <div class="owl-carousel owl-theme">
+                            {% for img in producto.imagenes.all %}
+                                <div class="item">
+                                    <img src="{{ img.imagen.url }}" alt="">
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <p class="legend position-absolute top-0 px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 999; font-size: 12px">ENVÍO GRATIS</p>
+                {% if product.cantidad == 0 %}
+                    <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(255, 255, 255, 0.5); z-index: 999; font-size: 12px; top: 30%; left: 25%">AGOTADO</p>
+                {% endif %}
             </div>
             <div class="product_info">
                 <h1 class="title mt-3 fw-bold">{{ producto.nombre }}</h1>
@@ -107,4 +118,10 @@
             <p class="text">{{ producto.descripcion }}</p>
         </div>
     </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'users/Componentes/Carousel/jquery.min.js' %}"></script>
+    <script src="{% static 'users/Componentes/Carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'productos/js/main.js' %}"></script>
 {% endblock %}

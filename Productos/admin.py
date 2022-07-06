@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Categoria, Producto, Compra
+from .models import Categoria, Producto, Compra, ImagenProducto
 from .forms import CategoriaForm, ProductoForm
 
 
@@ -10,12 +10,19 @@ class CategoriaAdmin(admin.ModelAdmin):
     form = CategoriaForm
 
 
+class ImagenProductoAdmin(admin.TabularInline):
+    model = ImagenProducto
+
+
 class ProductoAdmin(admin.ModelAdmin):
-    list_display = ('nombre', 'imagen', 'precio', 'cantidad', 'categoria', 'created_at', 'recomendar')
+    list_display = ('nombre', 'precio', 'cantidad', 'categoria', 'created_at', 'recomendar')
     search_fields = ('nombre',)
     list_filter = ('created_at', 'cantidad', 'categoria')
     list_per_page = 10
     form = ProductoForm
+    inlines = [
+        ImagenProductoAdmin
+    ]
 
 
 class CompraAdmin(admin.ModelAdmin):

@@ -79,7 +79,9 @@
                                         {% for product in cart_prd %}
                                             <li class="d-flex align-items-center pe-3">
                                                 <a class="dropdown-item d-flex gap-2 align-items-center" href="{% url 'detail_producto' product.producto_id %}">
-                                                    <figure class="img_product_cart_menu m-0" style="background-image: url({{ product.imagen }})"></figure>
+                                                    {% if product.imagen %}
+                                                        <figure class="img_product_cart_menu m-0" style="background-image: url({{ product.imagen }})"></figure>
+                                                    {% endif %}
                                                     <div class="info_product_cart">
                                                         <p class="m-0 nombre text">{{ product.nombre | capfirst }}</p>
                                                         <p class="m-0 cantida_precio number text-muted">{{ product.cantidad }} x $ {{ product.precio }} = <span class="text-primary">$ {{ product.monto_total }}</span></p>
