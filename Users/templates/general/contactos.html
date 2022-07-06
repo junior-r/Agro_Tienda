@@ -1,5 +1,6 @@
 {% extends 'users/base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% load humanize %}
 
 {% block title %}
@@ -33,30 +34,10 @@
                 <div class="form_contact">
                     <h3 class="title fw-bold ms-3 mb-5">¿Alguna Pregunta?, Escríbenos</h3>
                     <small class="text-muted d-inline-bock ms-5">Los campos con <span class="fw-bold">*</span> son obligatorios</small>
-                    <form action="{% url 'send_email_contact' %}" method="post" enctype="multipart/form-data" class="w-75 ms-5">
+                    <form action="{% url 'send_email_contact' %}" method="post" enctype="multipart/form-data" class="w-75 ms-5" id="contactform">
                         {% csrf_token %}
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="John" name="name">
-                            <label for="floatingInput">Nombre</label>
-                        </div>
-
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="Hello" name="subject" required>
-                            <label for="floatingInput">Asunto *</label>
-                        </div>
-
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingInput" placeholder="Johndoe@gmail.com" name="email" required>
-                            <label for="floatingInput">Correo Electrónico *</label>
-                        </div>
-
-                        <div class="form-floating">
-                            <textarea class="form-control" placeholder="Hello, this page is awesome." id="floatingTextarea2" style="height: 100px" name="message" required></textarea>
-                            <label for="floatingTextarea2">Mensaje *</label>
-                        </div>
-
+                        {{ form | crispy }}
                         <hr>
-
                         <div class="actions d-flex justify-content-between mt-3 px-3 gap-2">
                             <button type="reset" class="btn btn-outline-danger rounded-0"><i class="fas fa-exclamation-triangle"></i> Limpiar Campos</button>
                             <button type="submit" class="btn btn-primary rounded-0">Enviar Mensaje <i class="fa fa-paper-plane" aria-hidden="true"></i></button>
@@ -69,3 +50,8 @@
 
     </div>
 {% endblock %}
+
+{% block js %}
+
+{% endblock %}
+

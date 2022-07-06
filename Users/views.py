@@ -1,3 +1,4 @@
+import requests
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
@@ -5,7 +6,7 @@ from django.core.mail import send_mail, EmailMultiAlternatives
 from django.shortcuts import render, redirect
 from django.template.loader import get_template
 
-from Users.forms import SignUpForm
+from Users.forms import SignUpForm, ContactForm
 from Productos.views import get_total_items_cart
 from Productos.models import Categoria, Producto
 from Eventos.models import Evento
@@ -112,6 +113,7 @@ def contact(request):
 
     data = {
         'categories': categories,
+        'form': ContactForm()
     }
 
     number_prd_cart, cart, cart_prd = get_total_items_cart(request)
@@ -134,33 +136,38 @@ def send_email_contact(request):
         https://github.com/edwinlunando/django-naomi
         Clave de aplicación en Gmail
     """
-
     if request.method == 'POST':
-        name = request.POST.get('name')
-        subject = request.POST.get('subject')
-        email = request.POST.get('email')
-        message = request.POST.get('message')
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            subject = form.cleaned_data['subject']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
 
-        data = {
-            'name': name,
-            'subject': subject,
-            'email': email,
-            'message': message
-        }
+            data = {
+                'name': name,
+                'subject': subject,
+                'email': email,
+                'message': message
+            }
 
-        template = get_template('general/email_template.html')
-        content = template.render(data)
+            template = get_template('general/email_template.html')
+            content = template.render(data)
 
-        email = EmailMultiAlternatives(
-            subject,
-            message,
-            settings.EMAIL_HOST_USER,  # From email
-            [settings.EMAIL_HOST_USER]  # To email
-        )
+            email = EmailMultiAlternatives(
+                subject,
+                message,
+                settings.EMAIL_HOST_USER,  # From email
+                [settings.EMAIL_HOST_USER]  # To email
+            )
 
-        email.attach_alternative(content, 'text/html')
-        email.send(fail_silently=False)
-        messages.success(request, 'Mensaje enviado correctamente.')
+            email.attach_alternative(content, 'text/html')
+            email.send(fail_silently=False)
+            messages.success(request, 'Mensaje enviado correctamente.')
+        else:
+            messages.error(request, 'Algún dato es inválido. Intente de nuevo!')
+            print(form.errors)
+            return redirect('contact')
 
     return redirect('contact')
 

@@ -17,16 +17,11 @@
     background-position: center;
     background-repeat: no-repeat;
 }
-/*
-.owl-stage-outer{
-    width: 100% !important;
-    height: 100% !important;
+
+.owl-item{
+    height: 425px !important;
 }
 
-.owl-stage {
-    width: 100% !important;
-}
-*/
 .content-product .product_info h1.title {
     font-size: 1.75rem;
 }

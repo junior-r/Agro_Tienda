@@ -149,30 +149,30 @@
             <p class="text text-center">Ve todos nuestros <a href="{% url 'productos' %}">productos aquí</a></p>
             <div class="content-products my-5">
                 {% if recommended_products %}
-                        <div class="owl-container">
-                            <div class="owl-carousel owl-theme">
-                                {% for product in products %}
-                                    <div class="item me-5" style="width: 350px;">
-                                        <a href="{% url 'detail_producto' product.id %}" class="text-decoration-none text-reset">
-                                            <div class="card position-relative" style="height: 100%">
-                                                {% if product.imagenes %}
-                                                    <img src="{{ product.imagenes.first.imagen.url }}" class="card-img-top" alt="...">
-                                                {% endif %}
-                                                <p class="legend position-absolute px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 999999; font-size: 12px">ENVÍO GRATIS</p>
-                                                {% if product.cantidad == 0 %}
-                                                    <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(255, 255, 255, 0.5); z-index: 9999; font-size: 12px; top: 30%; left: 25%">AGOTADO</p>
-                                                {% endif %}
-                                                <div class="card-body">
-                                                    <p class="number">$ {{ product.precio }}</p>
-                                                    <h5 class="card-title">{{ product.nombre | title }}</h5>
-                                                    <p class="card-text">{{ product.get_short_desc }}</p>
-                                                </div>
+                    <div class="owl-container">
+                        <div class="owl-carousel owl-theme">
+                            {% for product in products %}
+                                <div class="item me-5" style="width: 350px;">
+                                    <a href="{% url 'detail_producto' product.id %}" class="text-decoration-none text-reset">
+                                        <div class="card position-relative" style="height: 100%">
+                                            {% if product.imagenes %}
+                                                <img src="{{ product.imagenes.first.imagen.url }}" class="card-img-top" alt="...">
+                                            {% endif %}
+                                            <p class="legend position-absolute px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 999999; font-size: 12px">ENVÍO GRATIS</p>
+                                            {% if product.cantidad == 0 %}
+                                                <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(255, 255, 255, 0.5); z-index: 9999; font-size: 12px; top: 30%; left: 25%">AGOTADO</p>
+                                            {% endif %}
+                                            <div class="card-body">
+                                                <p class="number">$ {{ product.precio }}</p>
+                                                <h5 class="card-title">{{ product.nombre | title }}</h5>
+                                                <p class="card-text">{{ product.get_short_desc }}</p>
                                             </div>
-                                        </a>
-                                    </div>
-                                {% endfor %}
-                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
                         </div>
+                    </div>
                 {% endif %}
             </div>
         </section>
