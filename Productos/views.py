@@ -78,10 +78,25 @@ def productos(request):
 def detail_producto(request, id):
     producto = Producto.objects.get(id=id)
     categories = Categoria.objects.all()
+    recommended_products = []
+    counter = 0
+    try:
+        productos = Producto.objects.filter(categoria=producto.categoria)
+        for i in range(len(productos)):
+            recommended_products.append(productos[i])
+            if counter >= 4:
+                break
+    except Exception as e:
+        productos = Producto.objects.filter(categoria=categories.first())
+        for i in range(len(productos)):
+            recommended_products.append(productos[i])
+            if counter >= 4:
+                break
 
     data = {
         'producto': producto,
         'categories': categories,
+        'recommended_products': recommended_products
     }
 
     number_prd_cart, cart, cart_prd = get_total_items_cart(request)
