@@ -19,8 +19,14 @@ def get_total_items_cart(request):
         number_prd_cart = 0
         cart_prd = []
         for item in cart.get_items():
-            number_prd_cart += 1
-            cart_prd.append(item)
+            try:
+                product = Producto.objects.get(id=int(item['producto_id']))
+            except:
+                product = None
+
+            if product is not None:
+                number_prd_cart += 1
+                cart_prd.append(item)
 
         return number_prd_cart, cart, cart_prd
     else:
@@ -119,9 +125,6 @@ def get_range_price(request, producto, cantidad, cantidad_cart):
         messages.error(request, 'Cantidad inválida, intente de nuevo!')
         return redirect('productos')
 
-    messages.success(request, 'Producto agregado al carrito exitosamente!')
-    return redirect('productos')
-
 
 def add_to_cart(request, id):
     producto = Producto.objects.get(id=id)
@@ -145,9 +148,16 @@ def add_to_cart(request, id):
                     return redirect('detail_producto', id=producto.id)
                 else:
                     get_range_price(request, producto, cantidad=cantidad, cantidad_cart=cantidad_cart)
-                    break
+                    messages.success(request, 'Producto agregado al carrito exitosamente!')
+                    return redirect('productos')
+            else:
+                get_range_price(request, producto, cantidad, cantidad_cart=0)
+                messages.success(request, 'Producto agregado al carrito exitosamente!')
+                return redirect('productos')
     else:
         get_range_price(request, producto, cantidad, cantidad_cart=0)
+        messages.success(request, 'Producto agregado al carrito exitosamente!')
+        return redirect('productos')
 
     return redirect('productos')
 

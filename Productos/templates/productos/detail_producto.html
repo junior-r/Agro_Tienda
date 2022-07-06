@@ -28,8 +28,8 @@
                     <div class="owl-carousel owl-theme">
                         <div class="owl-carousel owl-theme">
                             {% for img in producto.imagenes.all %}
-                                <div class="item">
-                                    <img src="{{ img.imagen.url }}" alt="">
+                                <div class="item h-100">
+                                    <img src="{{ img.imagen.url }}" alt="" class="h-100" style="object-fit: contain">
                                 </div>
                             {% endfor %}
                         </div>
@@ -48,15 +48,15 @@
                     <p class="cantidad number fs-6 m-0">{{ producto.cantidad | intcomma }} en stock</p>
                 </div>
 
-                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <ul class="nav nav-pills mb-3 mt-3" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active rounded-0" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">2 - 49 unidades</button>
+                        <button class="nav-link active rounded-0" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">2 - 49 u</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link rounded-0" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">50 - 99 unidades</button>
+                        <button class="nav-link rounded-0" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">50 - 99 u</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link rounded-0" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">+100 unidades</button>
+                        <button class="nav-link rounded-0" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">+100 u</button>
                     </li>
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
@@ -65,13 +65,13 @@
                     <div class="tab-pane fade ps-3" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">$ {{ producto.get_descuento3 }} por unidad</div>
                 </div>
 
-                <div class="cart-form mt-3 d-flex align-items-baseline gap-3">
+                <div class="cart-form d-flex align-items-baseline gap-3 mt-3">
                     <form action="{% url 'add_to_cart' producto.id %}" method="post" enctype="multipart/form-data" class="d-flex justify-content-between gap-3">
                         {% csrf_token %}
-                        <input type="number" class="form-control" value="1" name="cantidad" style="width: 6rem; display: inline-block">
+                        <input type="number" class="form-control" value="1" max="{{ producto.cantidad }}" name="cantidad" style="width: 6rem; display: inline-block">
                         <button type="submit" class="btn btn-primary btn-add-cart rounded-0">Agregar al carrito</button>
                     </form>
-                    <a href="https://wa.me/584129032865/?text=Hola, me puede dar información de este producto {{ producto.get_absolute_url }} Producto: {{ producto.nombre }}" class="btn rounded-0 mt-5 text-white fw-bold" style="background-color: #24bb5d;">
+                    <a href="https://wa.me/584129032865/?text=Hola, me puede dar información de este producto {{ producto.get_absolute_url }} Producto: {{ producto.nombre }}" class="btn rounded-0 text-white fw-bold" style="background-color: #24bb5d;">
                         WhatsApp
                     </a>
                 </div>

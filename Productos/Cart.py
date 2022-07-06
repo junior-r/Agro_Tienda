@@ -1,4 +1,6 @@
-from Productos.models import ImagenProducto
+from Productos.models import ImagenProducto, Producto
+
+
 class Cart:
     def __init__(self, request):
         self.request = request
@@ -17,7 +19,11 @@ class Cart:
     def add(self, producto, cantidad, precio):
         id = str(producto.id)
         img_product = ImagenProducto.objects.filter(producto_id=producto.id).first()
-        img = img_product.imagen.url
+        if img_product is not None:
+            img = img_product.imagen.url
+            print(img)
+        else:
+            img = ""
 
         if id not in self.cart.keys():
             # Si el producto no está en el carrito, se agrega con una cantidad = 1
