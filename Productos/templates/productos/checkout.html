@@ -9,6 +9,7 @@
 {% block styles %}
     <link rel="stylesheet" href="{% static 'productos/css/checkout.css' %}">
     <link rel="stylesheet" href="{% static 'productos/css/cart.css' %}">
+    <link rel="stylesheet" href="{% static 'users/Iconos/style.css' %}">
 {% endblock %}
 
 {% block container %}
@@ -122,6 +123,9 @@
                     </tr>
                 </tbody>
             </table>
+
+            {% include 'productos/icons.html' %}
+
         </div>
     </div>
 {% endblock %}
