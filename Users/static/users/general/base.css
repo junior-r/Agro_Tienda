@@ -145,6 +145,10 @@ footer .content-footer .copytight {
         font-size: 1.8rem !important;
     }
 
+    .super-container .navbar-2 {
+        padding: 1rem !important;
+    }
+
     .header .navbar-2 .container-fluid .navbar-brand,
     .header .navbar-2 .container-fluid > .navbar-toggler .navbar-toggler-icon,
     .navbar-text .btn-group .cart-button .fa-shopping-cart,
