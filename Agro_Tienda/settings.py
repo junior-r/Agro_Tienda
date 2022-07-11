@@ -93,7 +93,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'agrotienda',
         'USER': 'postgres',
-        'PASSWORD': '31064049',
+        'PASSWORD': 'tiendaOnline2022agro',
         'HOST': 'localhost',
         'PORT': '5432',
         }

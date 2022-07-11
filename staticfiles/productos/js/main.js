@@ -1,0 +1,1 @@
+/home/michael/Agro_Tienda/Productos/static/productos/js/main.js
