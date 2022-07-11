@@ -34,30 +34,38 @@
 .content .who_we_are {
     margin: 5rem 0;
     padding-inline: 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
 }
 
 .content .header .banner .banner-text h1,
-.content .who_we_are .us .us_description h3 {
+.content .who_we_are .us .us_description h3,
+.content .who_we_are .us-2 .us2-description h3 {
     font-size: 3.5rem;
 }
 
-.content .who_we_are .us {
+.content .who_we_are .us,
+.content .who_we_are .us-2 {
     display: grid;
     gap: 1rem;
     grid-template-columns: 1fr 1fr;
 }
 
-.content .who_we_are .us .us_description {
+.content .who_we_are .us .us_description,
+.content .who_we_are .us-2 .us2-description {
     padding: 10rem 5rem;
 }
 
-.content .who_we_are .us .us_description p {
+.content .who_we_are .us .us_description p,
+.content .who_we_are .us-2 .us2-description p {
     font-size: 1rem;
     line-height: 1.5;
 }
 
-.content .who_we_are .us .us_imagen {
-    background-image: url("https://carnetoday.com/wp-content/uploads/2021/05/banner-04.jpg");
+.content .who_we_are .us .us_imagen,
+.content .who_we_are .us-2 .us2_imagen {
+    background-image: url('https://www.financialstand.com/wp-content/uploads/2022/03/top-5-reasons-why-you-need-a-social-media-manager-616015983b3ba-sej-1520x800-1.png');
     width: 100%;
     height: 100%;
     background-position: center;
@@ -124,13 +132,29 @@
 }
 
 @media screen and (max-width: 991px) {
-    .content .who_we_are .us {
+    .content .who_we_are .us,
+    .content .who_we_are .us-2 {
         grid-template-columns: 1fr;
+        position: relative;
     }
 
-    .content .who_we_are .us .us_imagen {
+    .content .who_we_are .us .us_imagen,
+    .content .who_we_are .us-2 .us2_imagen {
         width: 100%;
-        height: 30rem;
+        height: 480px;
+    }
+
+    .content .who_we_are .us .us_description,
+    .content .who_we_are .us-2 .us2-description {
+        position: absolute;
+        z-index: 999;
+        background-color: rgba(0, 0, 0, 0.5);
+        height: 100%;
+        color: #FFFFFF;
+    }
+
+    .content .follow_us {
+        min-height: 20vh;
     }
 }
 
