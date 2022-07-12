@@ -49,4 +49,65 @@
     .content-product .img_product figure {
         height: 350px;
     }
+
+    .content-product .product_info h1.title {
+        font-size: 5rem;
+    }
+
+    .content-product .product_info .legend .price {
+        font-size: 3.5rem !important;
+    }
+
+    .content-product .product_info .legend .cantidad {
+        font-size: 3rem !important;
+    }
+
+    .content-product .product_info .nav-pills {
+        justify-content: space-evenly;
+        margin-top: 2rem !important;
+    }
+
+    .content-product .product_info .tab-content {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem !important;
+    }
+
+    .content-product .product_info .cart-form {
+        flex-direction: column !important;
+        margin: 1.5rem 0;
+    }
+
+    .content-product .product_info .cart-form form {
+        justify-content: space-between !important;
+        width: 100%;
+    }
+
+    .content-product .product_info .cart-form form input,
+    .content-product .product_info .cart-form form button {
+        font-size: 2rem !important;
+    }
+
+    .content-product .product_info .cart-form form input {
+        width: 10rem !important;
+    }
+
+    .content-product .product_info .cart-form form button {
+        padding: 1rem 2rem !important;
+    }
+
+    .content-product .product_info .cart-form > a {
+        width: 100%;
+        font-size: 2rem;
+        padding: 1.5rem 2rem;
+        text-transform: uppercase;
+    }
+
+    .content-product .product_info .icons-prd {
+        justify-content: space-between !important;
+    }
+
+    .content-product .product_info .icons-prd > div .description p {
+        font-size: 1.2rem !important;
+    }
 }
