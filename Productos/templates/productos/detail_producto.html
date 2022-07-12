@@ -39,6 +39,13 @@
                 {% if producto.cantidad == 0 %}
                     <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(255, 255, 255, 0.5); z-index: 999; font-size: 12px; top: 45%; left: 38%;">AGOTADO</p>
                 {% endif %}
+                <p class="text-muted text text-center">Desliza para ver la siguiente imágen</p>
+                <div class="content-images d-flex gap-3 justify-content-center mt-3 align-items-center">
+                    {% for img in producto.imagenes.all %}
+                        <figure style="width: 4rem; height: 4rem; background-image: url({{ img.imagen.url }}); border-radius: 50%; background-position: center; background-size: cover; margin: 0"></figure>
+                        <span class="icon-arrow-right2"></span>
+                    {% endfor %}
+                </div>
             </div>
             <div class="product_info">
                 <h1 class="title mt-3 fw-bold">{{ producto.nombre }}</h1>

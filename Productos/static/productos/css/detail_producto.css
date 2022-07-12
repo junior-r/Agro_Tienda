@@ -10,6 +10,10 @@
     flex: 1;
 }
 
+.content-product .img_product .content-images span:last-of-type {
+    display: none !important;
+}
+
 .content-product .img_product figure {
     width: 100%;
     height: 100%;
