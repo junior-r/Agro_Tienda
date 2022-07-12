@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'Eventos.apps.EventosConfig',
     'django.contrib.humanize',
     'crispy_forms',
-    'captcha'
+    'captcha',
+    'facebook_pixel_code'
 ]
 
 INSTALLED_APPS += ('naomi',)
