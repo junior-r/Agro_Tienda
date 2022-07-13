@@ -49,8 +49,7 @@ INSTALLED_APPS = [
     'Eventos.apps.EventosConfig',
     'django.contrib.humanize',
     'crispy_forms',
-    'captcha',
-    'facebook_pixel_code'
+    'captcha'
 ]
 
 INSTALLED_APPS += ('naomi',)
@@ -158,5 +157,3 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'junior31064049@gmail.com'
 EMAIL_HOST_PASSWORD = 'ubzwfnzwxszyvhqn'
 EMAIL_USE_TLS = True
-
-FACEBOOK_PIXEL_CODE_ID = '575794997486157'
