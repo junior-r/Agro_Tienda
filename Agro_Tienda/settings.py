@@ -94,7 +94,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'agrotienda',
         'USER': 'postgres',
-        'PASSWORD': '31064049',
+        'PASSWORD': 'tiendaOnline2022agro',
         'HOST': 'localhost',
         'PORT': '5432',
         }
@@ -159,4 +159,4 @@ EMAIL_HOST_USER = 'junior31064049@gmail.com'
 EMAIL_HOST_PASSWORD = 'ubzwfnzwxszyvhqn'
 EMAIL_USE_TLS = True
 
-FACEBOOK_PIXEL_CODE_ID = '588767652661516'
+FACEBOOK_PIXEL_CODE_ID = '575794997486157'
