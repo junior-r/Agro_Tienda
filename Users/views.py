@@ -1,3 +1,5 @@
+from smtplib import SMTPDataError
+
 import requests
 from django.conf import settings
 from django.contrib import messages
@@ -162,8 +164,12 @@ def send_email_contact(request):
             )
 
             email.attach_alternative(content, 'text/html')
-            email.send(fail_silently=False)
-            messages.success(request, 'Mensaje enviado correctamente.')
+            try:
+                email.send(fail_silently=False)
+                messages.success(request, 'Mensaje enviado correctamente.')
+            except SMTPDataError as daily_quote:
+                messages.error(request, 'En estos momentos no se puede enviar su correo. Porfavor intente de nuevo en 24 horas.')
+                return redirect('contact')
         else:
             messages.error(request, 'Algún dato es inválido. Intente de nuevo!')
             print(form.errors)
