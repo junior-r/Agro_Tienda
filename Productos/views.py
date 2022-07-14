@@ -1,4 +1,5 @@
 import datetime
+from smtplib import SMTPDataError
 
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
@@ -399,10 +400,15 @@ def confirmar_pago(request):
 
             email.send(fail_silently=False)
             email_admin.send(fail_silently=False)
+            messages.success(request, f'Comprobante de compra enviado al correo {email_user}')
+        except SMTPDataError as daily_quote:
+            messages.error(request,
+                           'En estos momentos no se puede enviar su correo. Porfavor comunicate a nuestro WhatsApp para completar tu orden!')
+            return redirect('cart')
         except Exception as e:
             messages.error(request, 'No se pudo enviar su orden, intente de nuevo!')
+            return redirect('cart')
 
-        messages.success(request, f'Comprobante de compra enviado al correo {email_user}')
 
         # Borrar los datos de envío del usuario.
         request.session['datos_envio'] = ''
