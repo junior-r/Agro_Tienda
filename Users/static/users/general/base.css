@@ -243,6 +243,11 @@ footer .content-footer .copytight .poweredby > span:hover a {
     .navbar-2 .container-fluid .offcanvas .offcanvas-body .navbar-nav {
         font-size: 1.8rem !important;
         align-items: flex-start !important;
+        gap: 3rem;
+    }
+
+    .navbar-2 .container-fluid .offcanvas .offcanvas-body .navbar-nav .nav-item {
+        font-weight: bold;
     }
 
     .navbar-2 .container-fluid .offcanvas .offcanvas-body .navbar-text .container-cart-2 {
@@ -253,12 +258,35 @@ footer .content-footer .copytight .poweredby > span:hover a {
         font-size: 1.5rem !important;
     }
 
+    .super-container .icons-socials {
+        top: 95%;
+        bottom: 0;
+        flex-direction: row;
+        justify-content: space-evenly;
+        right: 0;
+        left: 0;
+        height: fit-content;
+        background-color: #fff;
+        padding: 2rem !important;
+    }
+
+    .btn-whatsapp {
+        animation: none;
+        bottom: 8rem;
+        font-size: 1.5rem !important;
+        box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.3);
+    }
+
     .super-container {
         font-size: 1.8rem !important;
     }
 
     .container {
         max-width: 930px !important;
+    }
+
+    .footer {
+        padding-bottom: 8rem;
     }
 
     .footer,
