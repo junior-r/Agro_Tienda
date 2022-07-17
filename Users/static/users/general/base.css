@@ -259,7 +259,7 @@ footer .content-footer .copytight .poweredby > span:hover a {
     }
 
     .super-container .icons-socials {
-        top: 95%;
+        top: 94%;
         bottom: 0;
         flex-direction: row;
         justify-content: space-evenly;
@@ -286,7 +286,7 @@ footer .content-footer .copytight .poweredby > span:hover a {
     }
 
     .footer {
-        padding-bottom: 8rem;
+        padding-bottom: 10rem;
     }
 
     .footer,
