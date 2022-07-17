@@ -46,7 +46,7 @@
 }
 
 .container .recommended-products > h3 {
-    font-size: 3.5rem !important;
+    font-size: 2.5rem !important;
     margin: 3rem 0;
 }
 
@@ -118,5 +118,10 @@
 
     .content-product .product_info .icons-prd > div .description p {
         font-size: 1.2rem !important;
+    }
+
+    .container .recommended-products > h3 {
+        font-size: 3.5rem !important;
+        margin: 3rem 0;
     }
 }
