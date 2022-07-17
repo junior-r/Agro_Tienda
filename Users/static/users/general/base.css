@@ -17,6 +17,10 @@ body {
     scroll-behavior: smooth;
 }
 
+.super-container .navbar-2 .container-fluid .container-cart-1 {
+        display: none;
+}
+
 .btn-whatsapp {
     position: fixed;
     bottom: 5rem;
@@ -207,10 +211,27 @@ footer .content-footer .copytight .poweredby > span:hover a {
         padding: 1rem !important;
     }
 
-    .header .navbar-2 .container-fluid .navbar-brand,
-    .header .navbar-2 .container-fluid > .navbar-toggler .navbar-toggler-icon,
-    .navbar-text .btn-group .cart-button .fa-shopping-cart,
-    .navbar-text .btn-group .menu-cart {
+    .super-container .navbar-2 .container-fluid {
+        justify-content: space-between !important;
+    }
+
+    .super-container .navbar-2 .container-fluid > .navbar-toggler {
+        margin-left: 0 !important;
+    }
+
+    .super-container .navbar-2 .container-fluid .navbar-brand,
+    .super-container .navbar-2 .container-fluid > .navbar-toggler {
+        font-size: 2rem !important;
+    }
+
+    .super-container .navbar-2 .container-fluid .container-cart-1, .cart-button {
+        display: block;
+        font-size: 2rem !important;
+    }
+
+    .super-container .navbar-2 .container-fluid .container-cart-1, .cart-button .fa-shopping-cart,
+    .super-container .navbar-2 .container-fluid .container-cart-1, .menu-cart,
+    .super-container .navbar-2 .container-fluid .container-cart-1, .menu-cart .items-view-cart a button {
         font-size: 2rem !important;
     }
 
@@ -222,6 +243,10 @@ footer .content-footer .copytight .poweredby > span:hover a {
     .navbar-2 .container-fluid .offcanvas .offcanvas-body .navbar-nav {
         font-size: 1.8rem !important;
         align-items: flex-start !important;
+    }
+
+    .navbar-2 .container-fluid .offcanvas .offcanvas-body .navbar-text .container-cart-2 {
+        display: none;
     }
 
     .super-container .icons-socials > a {

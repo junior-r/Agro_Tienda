@@ -90,14 +90,14 @@
                                                 {% if recommended_product.imagenes %}
                                                     <img src="{{ recommended_product.imagenes.first.imagen.url }}" class="card-img-top" alt="...">
                                                 {% endif %}
-                                                <p class="legend position-absolute px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 999999; font-size: 12px">ENVÍO GRATIS</p>
+                                                <p class="legend position-absolute px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 999999;">ENVÍO GRATIS</p>
                                                 {% if recommended_product.cantidad == 0 %}
-                                                    <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(255, 255, 255, 0.5); z-index: 9999; font-size: 12px; top: 25%; left: 25%">AGOTADO</p>
+                                                    <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(255, 255, 255, 0.5); z-index: 9999; top: 25%; left: 25%">AGOTADO</p>
                                                 {% endif %}
                                                 <div class="card-body">
                                                     <p class="number">$ {{ recommended_product.precio }}</p>
                                                     <h5 class="card-title">{{ recommended_product.nombre | title }}</h5>
-                                                    <p class="card-text">{{ recommended_product.get_short_desc }}</p>
+                                                    <p class="card-text text">{{ recommended_product.get_short_desc }}</p>
                                                 </div>
                                             </div>
                                         </a>
@@ -158,9 +158,9 @@
                                             {% if product.imagenes %}
                                                 <img src="{{ product.imagenes.first.imagen.url }}" class="card-img-top" alt="...">
                                             {% endif %}
-                                            <p class="legend position-absolute px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 999999; font-size: 12px">ENVÍO GRATIS</p>
+                                            <p class="legend position-absolute px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 999999">ENVÍO GRATIS</p>
                                             {% if product.cantidad == 0 %}
-                                                <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(255, 255, 255, 0.5); z-index: 9999; font-size: 12px; top: 30%; left: 25%">AGOTADO</p>
+                                                <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(255, 255, 255, 0.5); z-index: 9999; top: 30%; left: 25%">AGOTADO</p>
                                             {% endif %}
                                             <div class="card-body">
                                                 <p class="number">$ {{ product.precio }}</p>
