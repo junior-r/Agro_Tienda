@@ -143,13 +143,13 @@
 
     .container .icons .pay .icon-credit-card::before,
     .container .icons .help .icon-headphones::before {
-        font-size: 5rem !important;
+        font-size: 8rem !important;
     }
 
     .container .icons .truck img,
     .container .icons .number1 img {
-        width: 5rem !important;
-        height: 5rem !important;
+        width: 8rem !important;
+        height: 8rem !important;
     }
 
     .container .icons .truck,
