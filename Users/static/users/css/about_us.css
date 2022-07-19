@@ -61,6 +61,7 @@
 .content .who_we_are .us-2 .us2-description p {
     font-size: 1rem;
     line-height: 1.5;
+    text-align: justify;
 }
 
 .content .who_we_are .us .us_imagen,
