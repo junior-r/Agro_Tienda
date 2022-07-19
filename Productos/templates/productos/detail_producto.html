@@ -29,7 +29,7 @@
                         <div class="owl-carousel owl-theme">
                             {% for img in producto.imagenes.all %}
                                 <div class="item h-100">
-                                    <img src="{{ img.imagen.url }}" alt="" class="h-100" style="object-fit: cover">
+                                    <img src="{{ img.imagen.url }}" alt="" class="h-100" style="object-fit: cover" loading="lazy">
                                 </div>
                             {% endfor %}
                         </div>
@@ -44,7 +44,9 @@
                 {% endif %}
                 <div class="content-images d-flex gap-3 justify-content-center mt-3 align-items-center">
                     {% for img in producto.imagenes.all %}
-                        <figure style="width: 4rem; height: 4rem; background-image: url({{ img.imagen.url }}); border-radius: 50%; background-position: center; background-size: cover; margin: 0"></figure>
+                        <a href="{{ img.imagen.url }}" target="_blank">
+                            <figure style="width: 4rem; height: 4rem; background-image: url({{ img.imagen.url }}); border-radius: 50%; background-position: center; background-size: cover; margin: 0"></figure>
+                        </a>
                         <span class="icon-arrow-right2"></span>
                     {% endfor %}
                 </div>
@@ -104,7 +106,7 @@
                 <hr class="my-3">
                 <div class="icons-prd d-flex gap-3 justify-content-start">
                     <div class="truck d-flex flex-column align-items-center gap-1">
-                        <img src="{% static 'users/Iconos/truck-fast-solid.svg' %}" alt="" style="width: 2.5rem; height: 2.5rem">
+                        <img src="{% static 'users/Iconos/truck-fast-solid.svg' %}" alt="" style="width: 2.5rem; height: 2.5rem" loading="lazy">
                         <div class="description text-center">
                             <p class="text m-0 text-muted" style="font-size: 0.68rem">Envíos Gratis</p>
                             <p class="text m-0 text-muted" style="font-size: 0.68rem">a nivel nacional</p>
@@ -120,7 +122,7 @@
                     </div>
 
                     <div class="number1 d-flex flex-column align-items-center gap-1">
-                        <img src="{% static 'users/Iconos/ranking-star-solid.svg' %}" alt="" style="width: 2.5rem; height: 2.5rem">
+                        <img src="{% static 'users/Iconos/ranking-star-solid.svg' %}" alt="" style="width: 2.5rem; height: 2.5rem" loading="lazy">
                         <div class="description text-center">
                             <p class="text m-0 text-muted" style="font-size: 0.68rem">Mejores Productos</p>
                             <p class="text m-0 text-muted" style="font-size: 0.68rem">de primera calidad.</p>
@@ -153,7 +155,7 @@
                             <div class="product-{{ recommended_product.id }}">
                                 <div class="card position-relative">
                                     {% if recommended_product.imagenes %}
-                                        <img src="{{ recommended_product.imagenes.first.imagen.url }}" class="card-img-top" alt="...">
+                                        <img src="{{ recommended_product.imagenes.first.imagen.url }}" class="card-img-top" alt="..." loading="lazy">
                                     {% endif %}
                                     <p class="legend position-absolute px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 999; font-size: 12px">ENVÍO GRATIS</p>
                                     {% if recommended_product.cantidad == 0 %}
