@@ -26,6 +26,16 @@
     height: 425px !important;
 }
 
+.content-product .product_info .options-price {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 !important;
+}
+
+.content-product .product_info .options-price li {
+    list-style: none;
+}
+
 .content-product .product_info h1.title {
     font-size: 1.75rem;
 }
