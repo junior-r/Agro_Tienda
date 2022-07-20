@@ -44,9 +44,7 @@
                 {% endif %}
                 <div class="content-images d-flex gap-3 justify-content-center mt-3 align-items-center">
                     {% for img in producto.imagenes.all %}
-                        <a href="{{ img.imagen.url }}" target="_blank">
-                            <figure style="width: 4rem; height: 4rem; background-image: url({{ img.imagen.url }}); border-radius: 50%; background-position: center; background-size: cover; margin: 0"></figure>
-                        </a>
+                        <figure style="width: 4rem; height: 4rem; background-image: url({{ img.imagen.url }}); border-radius: 50%; background-position: center; background-size: cover; margin: 0"></figure>
                         <span class="icon-arrow-right2"></span>
                     {% endfor %}
                 </div>
@@ -56,26 +54,29 @@
                 <hr>
                 <div class="legend d-flex gap-1 mb-2">
                     <p class="price number m-0">$ {{ producto.precio | intcomma }}</p>
-                    <p class="cantidad number fs-6 m-0">{{ producto.cantidad | intcomma }} en stock</p>
                 </div>
 
-                <ul class="nav nav-pills mb-3 mt-3" id="pills-tab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active rounded-0" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">2 - 49 u</button>
+                <ul class="mb-3 mt-3 options-price">
+                    <li class="item">
+                        <button class="btn btn-outline-primary position-relative">
+                            1 - 49 u
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">{{ producto.get_descuento1 }} <span class="visually-hidden">unread messages</span></span>
+                        </button>
                     </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link rounded-0" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">50 - 99 u</button>
+                    <li class="item">
+                        <button class="btn btn-outline-primary position-relative">
+                            50 - 99 u
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">{{ producto.get_descuento2 }} <span class="visually-hidden">unread messages</span></span>
+                        </button>
                     </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link rounded-0" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">+100 u</button>
+                    <li class="item">
+                        <button class="btn btn-outline-primary position-relative">
+                            100+ u
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">{{ producto.get_descuento3 }} <span class="visually-hidden">unread messages</span></span>
+                        </button>
                     </li>
                 </ul>
-                <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active ps-3" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">$ {{ producto.get_descuento1 }} por unidad</div>
-                    <div class="tab-pane fade ps-3" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">$ {{ producto.get_descuento2 }} por unidad</div>
-                    <div class="tab-pane fade ps-3" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">$ {{ producto.get_descuento3 }} por unidad</div>
-                </div>
-
+                <p class="cantidad number fs-6 m-0">{{ producto.cantidad | intcomma }} disponibles</p>
                 <div class="cart-form d-flex align-items-baseline gap-3 mt-3">
                     <form action="{% url 'add_to_cart' producto.id %}" method="post" enctype="multipart/form-data" class="d-flex justify-content-between gap-3">
                         {% csrf_token %}

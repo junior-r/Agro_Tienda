@@ -128,7 +128,7 @@ def get_range_price(request, producto, cantidad, cantidad_cart):
     if (int(cantidad) + int(cantidad_cart)) == 1:
         # Si la cantidad ingresada + la cantidad guardada es = 1
         cart.add(producto, int(cantidad), float(producto.precio))
-    elif (int(cantidad) + int(cantidad_cart)) in range(2, 49+1):
+    elif (int(cantidad) + int(cantidad_cart)) in range(1, 49+1):
         # Si la cantidad ingresada + la cantidad guardada esta en el rango 2 - 49
         cart.add(producto, int(cantidad), float(producto.get_descuento1()))
     elif (int(cantidad) + int(cantidad_cart)) in range(50, 99+1):
