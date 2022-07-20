@@ -10,20 +10,12 @@
     <link rel="stylesheet" href="{% static 'productos/css/checkout.css' %}">
     <link rel="stylesheet" href="{% static 'productos/css/cart.css' %}">
     <link rel="stylesheet" href="{% static 'users/Iconos/style.css' %}">
+    <link rel="stylesheet" href="{% static 'productos/css/pago.css' %}">
 {% endblock %}
 
 {% block container %}
-    <div class="container">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'productos' %}">Productos</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'cart' %}">Carrito</a></li>
-                <li class="breadcrumb-item active">CheckOut - Datos de Envío</li>
-            </ol>
-        </nav>
-    </div>
-    <div class="container">
+
+    <div class="container my-5">
         {% block form_data %}
             <div class="data">
                 <p>
@@ -35,14 +27,15 @@
                     <div class="card card-body">
                         <form action="{% url 'checkout' %}" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
-                            <div class="mb-3">
-                                <label for="formGroupExampleInput" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="John" name="name" required>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="formGroupExampleInput" class="form-label">Apellido</label>
-                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Doe", name="last_name" required>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="formGroupExampleInput" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" placeholder="Nombre" aria-label="name" name="name" required>
+                                </div>
+                                <div class="col">
+                                    <label for="formGroupExampleInput" class="form-label">Apellido</label>
+                                    <input type="text" class="form-control" placeholder="Apellido" aria-label="Last-name" name="last_name" required>
+                                </div>
                             </div>
 
                             <div class="mb-3">
@@ -56,18 +49,46 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="formGroupExampleInput" class="form-label">Dirección</label>
+                                <label for="formGroupExampleInput" class="form-label">Dirección del domicilio</label>
                                 <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Urbanización ** Calle 00 con Avenida 00" name="address" required>
                             </div>
 
-                            <div class="mb-3">
-                                <label for="formGroupExampleInput" class="form-label">Ciudad</label>
-                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Lara" name="city" required>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="formGroupExampleInput" class="form-label">País</label>
-                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Venezuela" name="country" required>
+                            <div class="row g-3 mb-3">
+                                <label for="city" class="form-label">Dirección de la oficina MRW</label>
+                                <div class="col">
+                                    <select id="inputState" name="state" required class="form-select">
+                                        <option selected>Lara</option>
+                                        <option>Amazonas</option>
+                                        <option>Anzoátegui</option>
+                                        <option>Apure</option>
+                                        <option>Aragua</option>
+                                        <option>Barinas</option>
+                                        <option>Bolívar</option>
+                                        <option>Carabobo</option>
+                                        <option>Cojedes</option>
+                                        <option>Delta Amacuro</option>
+                                        <option>Distrito Capital</option>
+                                        <option>Falcón</option>
+                                        <option>Guárico</option>
+                                        <option>Mérida</option>
+                                        <option>Miranda</option>
+                                        <option>Monagas</option>
+                                        <option>Nueva Esparta</option>
+                                        <option>Portuguesa</option>
+                                        <option>Sucre</option>
+                                        <option>Táchira</option>
+                                        <option>Trujillo</option>
+                                        <option>Vargas</option>
+                                        <option>Yaracuy</option>
+                                        <option>Zulia</option>
+                                    </select>
+                                </div>
+                                <div class="col mb-3">
+                                    <input type="text" class="form-control" id="city" placeholder="Ciudad" aria-label="city" name="city" required>
+                                </div>
+                                <div class="col mb-3">
+                                    <input type="text" class="form-control" value="Venezuela" placeholder="Venezuela" aria-label="country" name="country" required>
+                                </div>
                             </div>
 
                             <div class="mb-3">
@@ -76,8 +97,8 @@
                             </div>
 
                             <div class="actions d-flex justify-content-between gap-3">
-                                <button class="btn btn-outline-danger rounded-0" type="reset">Limpiar</button>
-                                <button class="btn btn-primary rounded-0" type="submit">Siguiente</button>
+                                <button class="btn btn-success rounded-0 px-5 py-2" type="submit">Siguiente</button>
+                                <button class="btn btn-outline-danger rounded-0 px-5 py-2" type="reset">Limpiar</button>
                             </div>
 
                         </form>

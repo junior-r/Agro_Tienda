@@ -5,18 +5,8 @@
 {% endblock %}
 
 {% block container %}
-    <div class="container">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'productos' %}">Productos</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'cart' %}">Carrito</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'checkout' %}">CheckOut - Datos de Envío</a></li>
-                <li class="breadcrumb-item active">Método de envío</li>
-            </ol>
-        </nav>
-    </div>
-    <div class="container" style="min-height: 100vh;">
+
+    <div class="container my-5" style="min-height: 100vh;">
         {% if datos_envio %}
             <div class="datos_envio">
                 <div class="card bg-transparent border-0">
@@ -34,9 +24,10 @@
                         <p class="text-muted email text m-0">Email: {{ datos_envio.email }}</p>
                         <p class="text-muted phone number m-0">Teléfono: {{ datos_envio.phone }}</p>
                         <p class="text-muted direccion text m-0">Dirección: {{ datos_envio.address }}</p>
+                        <p class="text-muted city text m-0">Estado: {{ datos_envio.state }}</p>
                         <p class="text-muted city text m-0">Ciudad: {{ datos_envio.city }}</p>
                         <p class="text-muted country text m-0">País: {{ datos_envio.country }}</p>
-                        <p class="text-muted dni number m-0">Documentos de Identificación: {{ datos_envio.dni }}</p>
+                        <p class="text-muted dni number m-0">Documento de Identificación: {{ datos_envio.dni }}</p>
                     </div>
                 </div>
                 {% block form_data %}
@@ -56,7 +47,7 @@
                                     <div class="description w-100">
                                         <label for="formGroupExampleInput" class="form-label">MRW</label>
                                         <p class="d-flex justify-content-between">
-                                            <span class="time text-muted text">3 - 7 días hábiles </span>
+                                            <span class="time text-muted text">2 - 3 días hábiles </span>
                                             <span class="costo text">GRATIS</span>
                                         </p>
                                     </div>
@@ -78,8 +69,8 @@
                                 </div>
 
                                 <div class="actions d-flex justify-content-between align-items-center mt-3">
-                                    <a href="{% url 'checkout' %}" class="btn btn-outline-secondary">Anterior</a>
-                                    <button type="submit" class="btn btn-primary">Siguiente</button>
+                                    <button type="submit" class="btn btn-success px-5 py-2">Siguiente</button>
+                                    <a href="{% url 'checkout' %}" class="btn btn-outline-secondary px-5 py-2">Anterior</a>
                                 </div>
 
                             </form>
