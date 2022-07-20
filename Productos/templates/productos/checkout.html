@@ -10,20 +10,12 @@
     <link rel="stylesheet" href="{% static 'productos/css/checkout.css' %}">
     <link rel="stylesheet" href="{% static 'productos/css/cart.css' %}">
     <link rel="stylesheet" href="{% static 'users/Iconos/style.css' %}">
+    <link rel="stylesheet" href="{% static 'productos/css/pago.css' %}">
 {% endblock %}
 
 {% block container %}
-    <div class="container">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'productos' %}">Productos</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'cart' %}">Carrito</a></li>
-                <li class="breadcrumb-item active">CheckOut - Datos de Envío</li>
-            </ol>
-        </nav>
-    </div>
-    <div class="container">
+
+    <div class="container my-5">
         {% block form_data %}
             <div class="data">
                 <p>
@@ -76,8 +68,8 @@
                             </div>
 
                             <div class="actions d-flex justify-content-between gap-3">
-                                <button class="btn btn-outline-danger rounded-0" type="reset">Limpiar</button>
-                                <button class="btn btn-primary rounded-0" type="submit">Siguiente</button>
+                                <button class="btn btn-success rounded-0 px-5 py-2" type="submit">Siguiente</button>
+                                <button class="btn btn-outline-danger rounded-0 px-5 py-2" type="reset">Limpiar</button>
                             </div>
 
                         </form>

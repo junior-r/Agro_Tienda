@@ -204,7 +204,7 @@ def increment_prd_cart(request, id):
     cart = Cart(request)
 
     try:
-        cart.add(producto, 1)
+        cart.add(producto, 1, int(producto.precio))
     except Exception as e:
         messages.error(request, 'Ocurrió algún error')
 

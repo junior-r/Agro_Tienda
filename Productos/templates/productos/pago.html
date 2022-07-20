@@ -7,19 +7,8 @@
 {% endblock %}
 
 {% block container %}
-    <div class="container d-block">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'productos' %}">Productos</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'cart' %}">Carrito</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'checkout' %}">CheckOut - Datos de Envío</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'send_method' %}">Método de envío</a></li>
-                <li class="breadcrumb-item active">Método de Pago</li>
-            </ol>
-        </nav>
-    </div>
-    <div class="container" style="min-height: 100vh;">
+
+    <div class="container my-5" style="min-height: 100vh;">
         {% if datos_envio and method %}
             <div class="datos_envio">
                 <div class="card bg-transparent border-0">
@@ -163,8 +152,8 @@
                 Deberás presentarlo al momento de retirar tus productos.
             </p>
             <div class="actions d-flex justify-content-between gap-3">
-                <a href="#" onclick="cancelBuy()" class="btn btn-outline-danger">Cancelar compra</a>
-                <a href="#" onclick="warningPay()" class="btn btn-outline-primary">Finalizar compra</a>
+                <a href="#" onclick="warningPay()" class="btn btn-success px-5 py-2">Finalizar compra</a>
+                <a href="#" onclick="cancelBuy()" class="btn btn-outline-danger px-3 py-2">Cancelar compra</a>
             </div>
             <hr>
             {% include 'productos/icons.html' %}
