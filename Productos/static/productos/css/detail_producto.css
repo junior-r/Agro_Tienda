@@ -81,17 +81,6 @@
         font-size: 3rem !important;
     }
 
-    .content-product .product_info .nav-pills {
-        justify-content: space-evenly;
-        margin-top: 2rem !important;
-    }
-
-    .content-product .product_info .tab-content {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 2rem !important;
-    }
-
     .content-product .product_info .cart-form {
         flex-direction: column !important;
         margin: 1.5rem 0;
@@ -102,6 +91,7 @@
         width: 100%;
     }
 
+    .content-product .product_info .options-price li button,
     .content-product .product_info .cart-form form input,
     .content-product .product_info .cart-form form button {
         font-size: 2rem !important;
