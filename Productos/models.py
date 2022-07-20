@@ -59,7 +59,7 @@ class Producto(models.Model):
         return self.descripcion
 
     def get_absolute_url(self):
-        host = 'https://carnetoday.com'
+        host = 'https://agrovenca.com'
         return host + '/productos/producto/' + str(self.id)
 
     def get_descuento1(self):

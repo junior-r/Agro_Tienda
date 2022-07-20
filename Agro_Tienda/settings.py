@@ -26,7 +26,7 @@ RECAPTCHA_PRIVATE_KEY = "6LeVGM4gAAAAAPWSA7rMAMecJ362hElMuPTO_1dI"
 RECAPTCHA_REQUIRED_SCORE = 0.85
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = ['https://agrovenca.com', 'https://www.agrovenca.com']
@@ -93,7 +93,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'agrotienda',
         'USER': 'postgres',
-        'PASSWORD': 'tiendaOnline2022agro',
+        'PASSWORD': '31064049',
         'HOST': 'localhost',
         'PORT': '5432',
         }
