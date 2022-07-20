@@ -26,7 +26,7 @@ RECAPTCHA_PRIVATE_KEY = "6LeVGM4gAAAAAPWSA7rMAMecJ362hElMuPTO_1dI"
 RECAPTCHA_REQUIRED_SCORE = 0.85
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = ['https://agrovenca.com', 'https://www.agrovenca.com']
