@@ -29,7 +29,7 @@ RECAPTCHA_REQUIRED_SCORE = 0.85
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://carnetoday.com', 'https://www.carnetoday.com']
+CSRF_TRUSTED_ORIGINS = ['https://agrovenca.com', 'https://www.agrovenca.com']
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
@@ -93,7 +93,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'agrotienda',
         'USER': 'postgres',
-        'PASSWORD': '31064049',
+        'PASSWORD': 'tiendaOnline2022agro',
         'HOST': 'localhost',
         'PORT': '5432',
         }
