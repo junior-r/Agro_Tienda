@@ -1,11 +1,6 @@
-.content {
-    min-height: 100vh;
-}
-
 .content .header .banner {
     width: 100%;
     height: 70vh;
-    background-image: url('https://www.debt.com/wp-content/uploads/2014/07/faq-2027970_1280.png');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -33,7 +28,6 @@
 
 .content .container {
     margin-top: 3rem;
-    min-height: 100vh;
 }
 
 .content .container .questions-container .question {
