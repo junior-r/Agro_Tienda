@@ -29,34 +29,38 @@
                             {% csrf_token %}
                             <div class="row mb-3">
                                 <div class="col">
-                                    <label for="formGroupExampleInput" class="form-label">Nombre</label>
-                                    <input type="text" class="form-control" placeholder="Nombre" aria-label="name" name="name" required>
+                                    <label for="formGroupExampleInput" class="form-label title">Nombre</label>
+                                    <input type="text" class="form-control text" placeholder="Nombre" aria-label="name" name="name" required>
                                 </div>
                                 <div class="col">
-                                    <label for="formGroupExampleInput" class="form-label">Apellido</label>
-                                    <input type="text" class="form-control" placeholder="Apellido" aria-label="Last-name" name="last_name" required>
+                                    <label for="formGroupExampleInput" class="form-label title">Apellido</label>
+                                    <input type="text" class="form-control text" placeholder="Apellido" aria-label="Last-name" name="last_name" required>
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="formGroupExampleInput" class="form-label">Correo electrónico</label>
-                                <input type="email" class="form-control" id="formGroupExampleInput" placeholder="JohnDoe123@gmail.com" name="email" required>
+                                <label for="formGroupExampleInput" class="form-label title">Correo electrónico</label>
+                                <input type="email" class="form-control text" id="formGroupExampleInput" placeholder="JohnDoe123@gmail.com" name="email" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="formGroupExampleInput" class="form-label">Teléfono</label>
-                                <input type="number" class="form-control" id="formGroupExampleInput" placeholder="0000 0000000" name="phone" required>
+                                <label for="formGroupExampleInput" class="form-label title">Teléfono</label>
+                                <input type="number" class="form-control number" id="formGroupExampleInput" placeholder="0000 0000000" name="phone" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="formGroupExampleInput" class="form-label">Dirección del domicilio</label>
-                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Urbanización ** Calle 00 con Avenida 00" name="address" required>
+                                <label for="formGroupExampleInput" class="form-label title">Dirección del domicilio</label>
+                                <input type="text" class="form-control text" id="formGroupExampleInput" placeholder="Urbanización ** Calle 00 con Avenida 00" name="address" required>
                             </div>
 
                             <div class="row g-3 mb-3">
-                                <label for="city" class="form-label">Dirección de la oficina MRW</label>
+                                <label for="address_mrw" class="form-label title">Dirección de la oficina MRW</label>
+                                <div class="mt-0">
+                                    <input type="text" class="form-control text" id="address_mrw" placeholder="" name="address_mrw" required>
+                                </div>
                                 <div class="col">
-                                    <select id="inputState" name="state" required class="form-select">
+                                    <label for="inputState" class="form-label title">Estado</label>
+                                    <select id="inputState" name="state" required class="form-select text">
                                         <option selected>Lara</option>
                                         <option>Amazonas</option>
                                         <option>Anzoátegui</option>
@@ -83,17 +87,19 @@
                                         <option>Zulia</option>
                                     </select>
                                 </div>
-                                <div class="col mb-3">
-                                    <input type="text" class="form-control" id="city" placeholder="Ciudad" aria-label="city" name="city" required>
+                                <div class="col">
+                                    <label for="city" class="form-label title">Ciudad</label>
+                                    <input type="text" class="form-control text" id="city" placeholder="Barquisimeto" aria-label="city" name="city" required>
                                 </div>
-                                <div class="col mb-3">
-                                    <input type="text" class="form-control" value="Venezuela" placeholder="Venezuela" aria-label="country" name="country" required>
+                                <div class="col">
+                                    <label for="country" class="form-label title">País</label>
+                                    <input type="text" id="country" class="form-control text" value="Venezuela" placeholder="Venezuela" aria-label="country" name="country" required>
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="formGroupExampleInput" class="form-label">Documento de Identidad</label>
-                                <input type="number" class="form-control" id="formGroupExampleInput" placeholder="" name="dni" required>
+                                <label for="formGroupExampleInput" class="form-label title">Documento de Identidad</label>
+                                <input type="number" class="form-control number" id="formGroupExampleInput" placeholder="" name="dni" required>
                             </div>
 
                             <div class="actions d-flex justify-content-between gap-3">

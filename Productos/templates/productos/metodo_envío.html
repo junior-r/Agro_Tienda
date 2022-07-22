@@ -1,4 +1,5 @@
 {% extends 'productos/checkout.html' %}
+{% load static %}
 
 {% block title %}
     <title>Método de Envío - Agrovenca</title>
@@ -24,6 +25,7 @@
                         <p class="text-muted email text m-0">Email: {{ datos_envio.email }}</p>
                         <p class="text-muted phone number m-0">Teléfono: {{ datos_envio.phone }}</p>
                         <p class="text-muted direccion text m-0">Dirección: {{ datos_envio.address }}</p>
+                        <p class="text-muted direccion text m-0">Dirección de MRW: {{ datos_envio.address_mrw }}</p>
                         <p class="text-muted city text m-0">Estado: {{ datos_envio.state }}</p>
                         <p class="text-muted city text m-0">Ciudad: {{ datos_envio.city }}</p>
                         <p class="text-muted country text m-0">País: {{ datos_envio.country }}</p>
@@ -42,29 +44,34 @@
                                 {% csrf_token %}
                                 <div class="mb-3 mrw d-flex gap-3">
                                     <div class="input">
-                                        <input type="checkbox" class="form-check-input" id="formGroupExampleInput" value="MRW" name="method">
+                                        <input type="radio" class="form-check-input" id="mrw" value="MRW" name="method">
                                     </div>
                                     <div class="description w-100">
-                                        <label for="formGroupExampleInput" class="form-label">MRW</label>
-                                        <p class="d-flex justify-content-between">
+                                        <label for="mrw" class="form-label">Servicios expresos MRW Venezuela</label>
+                                        <div class="d-flex justify-content-between">
                                             <span class="time text-muted text">2 - 3 días hábiles </span>
-                                            <span class="costo text">GRATIS</span>
-                                        </p>
+                                            <figure class="logo_mrw m-0" style="width: 8rem; height: 2rem">
+                                                <img src="{% static 'productos/images/logo_mrw.png' %}" alt="" style="object-fit: cover; width: 100%; height: 100%" class="logo" loading="lazy">
+                                            </figure>
+                                        </div>
+                                        <span class="costo title fw-bold">GRATIS</span>
                                     </div>
                                 </div>
 
                                 <hr>
 
-                                <div class="mb-3 mrw d-flex gap-3">
+                                <div class="mb-3 tienda d-flex gap-3">
                                     <div class="input">
-                                        <input type="checkbox" class="form-check-input" id="formGroupExampleInput" value="Retirar en Tienda Física" name="method">
+                                        <input type="radio" class="form-check-input" id="tienda" value="Retirar en Tienda Física" name="method">
                                     </div>
                                     <div class="description w-100">
-                                        <label for="formGroupExampleInput" class="form-label">Retirar en Tienda Física</label>
-                                        <p class="d-flex justify-content-between">
-                                            <span class="time text-muted text">AV. Puente Hierro  N° 140, Santa Rosalía, <br> Caracas, 1010, Venezuela </span>
-                                            <span class="costo text">GRATIS</span>
-                                        </p>
+                                        <label for="tienda" class="form-label">Retirar en Tienda Física</label>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="time text-muted text">Avenida 02 con Calle 12, Quíbor, <br> Lara, 3061, Venezuela</span>
+                                            <div class="map m-0" style="width: 8rem; height: 6rem">
+                                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1211.5472908119973!2d-69.62042367077417!3d9.91958482061264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e7d811fb0e15ed5%3A0xb6b3897f68d223ee!2sAgroalimentos%20Venezuela%20C.A.!5e1!3m2!1ses-419!2sve!4v1658500299354!5m2!1ses-419!2sve" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -72,6 +79,7 @@
                                     <button type="submit" class="btn btn-success px-5 py-2">Siguiente</button>
                                     <a href="{% url 'checkout' %}" class="btn btn-outline-secondary px-5 py-2">Anterior</a>
                                 </div>
+
 
                             </form>
                         </div>

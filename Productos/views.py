@@ -229,12 +229,13 @@ def datos_envio(request):
     email = request.POST.get('email')
     phone = request.POST.get('phone')
     address = request.POST.get('address')
+    address_mrw = request.POST.get('address_mrw')
     state = request.POST.get('state')
     city = request.POST.get('city')
     country = request.POST.get('country')
     dni = request.POST.get('dni')
 
-    return name, last_name, email, phone, address, state, city, country, dni
+    return name, last_name, email, phone, address, address_mrw, state, city, country, dni
 
 
 def checkout(request):
@@ -250,13 +251,14 @@ def checkout(request):
     data['cart_prd'] = cart_prd
 
     if request.method == 'POST':
-        name, last_name, email, phone, address, state, city, country, dni = datos_envio(request)
+        name, last_name, email, phone, address, address_mrw, state, city, country, dni = datos_envio(request)
         request.session['datos_envio'] = {
             'name': name,
             'last_name': last_name,
             'email': email,
             'phone': phone,
             'address': address,
+            'address_mrw': address_mrw,
             'state': state,
             'city': city,
             'country': country,

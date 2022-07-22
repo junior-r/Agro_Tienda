@@ -2,42 +2,13 @@
     min-height: 100vh;
 }
 
-.content .header .banner {
-    width: 100%;
-    height: 70vh;
-    background-image: url('https://reportecripto.com/wp-content/uploads/2019/08/servicio-al-cliente-e1565299571335.png');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    position: relative;
-}
-
-.content .header .banner .banner-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: #fff;
-    letter-spacing: 0.1rem;
-    line-height: 1.5;
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-transform: uppercase;
-}
-
 .content .box_contact {
     margin: 5rem 0;
     padding-inline: 5rem;
 }
 
 .content .header .banner .banner-text h1,
-.content .box_contact .content_contact .contact_description h3 {
+.content .box_contact > h1 {
     font-size: 3.5rem;
 }
 
@@ -50,7 +21,9 @@
 
 .content .box_contact .content_contact .contact_description {
     padding: 10rem 0;
-    justify-self: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto 1fr;
 }
 
 .content .box_contact .content_contact .contact_description p {
@@ -58,11 +31,50 @@
     line-height: 1.5;
     margin-top: 1rem;
     margin-left: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
 }
+
+.content .box_contact .content_contact .contact_description p:not(.text-muted)::after {
+    content: "";
+    width: 0;
+    height: 2px;
+    position: absolute;
+    background-color: #000;
+    bottom: 0;
+    text-align: center;
+}
+
+.content .box_contact .content_contact .contact_description p:not(.text-muted):hover::after {
+    width: 60%;
+    transition: linear all 0.3s;
+}
+
+.content .box_contact .content_contact .contact_description p a.icon span {
+    font-size: 3rem;
+}
+
+.content .box_contact .content_contact .contact_description p.ws,
+.content .box_contact .content_contact .contact_description p.ig {
+    grid-column: 1 / 2;
+}
+
+.content .box_contact .content_contact .contact_description p.gm,
+.content .box_contact .content_contact .contact_description p.fc {
+    grid-column: 2 / 3;
+}
+
 
 .content .box_contact .content_contact .contact_description .text-muted {
     margin-left: 2rem !important;
     display: block;
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
 }
 
 .content .box_contact .content_contact .contact_description p a {
@@ -71,13 +83,20 @@
 }
 
 .content .box_contact .content_contact .form_contact {
-    justify-self: center;
     height: 100%;
     padding: 3rem 0;
 }
 
-.content .box_contact .content_contact .form_contact h3 {
-    font-size: 3rem;
+.content .box_contact .content_contact .form_contact form > div {
+    margin-bottom: 1rem;
+}
+
+.content .box_contact .content_contact .form_contact form > div label {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.content .box_contact .content_contact .form_contact form > div > div input {
+    font-family: 'Roboto', sans-serif;
 }
 
 .icon-telegram::before {
