@@ -224,7 +224,7 @@
                         {% for category in recommended_categories %}
                             <li class="categories-item text"><a href="/productos/?category={{ category.id }}" class="text-decoration-none text-dark">{{ category.nombre | capfirst }}</a></li>
                         {% endfor %}
-                        <li class="categories-item text"><a href="{% url 'productos' %}" class="text-decoration-none text-dark">Todo</a></li>
+                        <li class="categories-item text"><a href="{% url 'productos' %}" class="text-decoration-none text-dark">Otras categorías</a></li>
                     </ul>
                 </section>
 
