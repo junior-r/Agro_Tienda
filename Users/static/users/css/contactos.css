@@ -19,7 +19,7 @@
     padding: 10rem 0;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto 1fr 1fr auto;
 }
 
 .content .box_contact .content_contact .contact_description p {
@@ -65,6 +65,12 @@
     grid-column: 2 / 3;
 }
 
+.content .box_contact .content_contact .contact_description div.map_container {
+    grid-column: 1 / -1;
+    grid-row: 4 / 5;
+    display: flex;
+    justify-content: center;
+}
 
 .content .box_contact .content_contact .contact_description .text-muted {
     margin-left: 2rem !important;
