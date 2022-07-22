@@ -10,16 +10,19 @@
 
 .content .box_contact .content_contact {
     display: grid;
-    gap: 1rem;
+    gap: 4rem;
     grid-template-columns: 1fr 1fr;
     padding-inline: 1rem;
+    background-color: transparent;
 }
 
 .content .box_contact .content_contact .contact_description {
-    padding: 10rem 0;
+    padding: 2rem 0;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto 1fr 1fr auto;
+    background-color: #FFFFFF;
+    height: 100%;
 }
 
 .content .box_contact .content_contact .contact_description p {
@@ -87,6 +90,7 @@
 .content .box_contact .content_contact .form_contact {
     height: 100%;
     padding: 3rem 0;
+    background-color: #FFFFFF;
 }
 
 .content .box_contact .content_contact .form_contact form > div {
