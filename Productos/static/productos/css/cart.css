@@ -40,3 +40,13 @@
 .icons div .description p {
     font-size: 0.68rem;
 }
+
+.container .content .total_cart {
+    margin-left: 50%;
+}
+
+@media screen and (max-width: 991px) {
+    .container .content .total_cart {
+        margin-left: 0;
+    }
+}
