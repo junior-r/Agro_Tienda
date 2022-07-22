@@ -36,19 +36,8 @@ def contador(request):
     return redirect('home')
 
 
-def home(request):
-    categories = Categoria.objects.all()
-    recommended_products = Producto.objects.filter(recomendar=True)
-    prducts = Producto.objects.all()
-    evento = Evento.objects.filter(active=True).first()
-
-    list_products = []
+def get_categories(request, categories):
     list_catogories = []
-
-    if recommended_products:
-        for i in range(len(recommended_products)):
-            list_products.append(recommended_products[i])
-
     if categories:
         counter = 0
         for i in range(len(categories)):
@@ -56,6 +45,23 @@ def home(request):
             counter += 1
             if counter >= 4:
                 break
+    return list_catogories
+
+
+def home(request):
+    categories = Categoria.objects.all()
+    recommended_products = Producto.objects.filter(recomendar=True)
+    prducts = Producto.objects.all()
+    evento = Evento.objects.filter(active=True).first()
+
+    list_products = []
+
+
+    if recommended_products:
+        for i in range(len(recommended_products)):
+            list_products.append(recommended_products[i])
+
+    list_catogories = get_categories(request, categories)
 
     data = {
         'categories': categories,
@@ -97,9 +103,11 @@ def signup(request):
 
 def about_us(request):
     categories = Categoria.objects.all()
+    list_catogories = get_categories(request, categories)
 
     data = {
         'categories': categories,
+        'recommended_categories': list_catogories
     }
 
     number_prd_cart, cart, cart_prd = get_total_items_cart(request)
@@ -113,9 +121,12 @@ def about_us(request):
 def contact(request):
     categories = Categoria.objects.all()
 
+    list_catogories = get_categories(request, categories)
+
     data = {
         'categories': categories,
-        'form': ContactForm()
+        'form': ContactForm(),
+        'recommended_categories': list_catogories,
     }
 
     number_prd_cart, cart, cart_prd = get_total_items_cart(request)
@@ -180,9 +191,11 @@ def send_email_contact(request):
 
 def answers_questions(request):
     categories = Categoria.objects.all()
+    list_catogories = get_categories(request, categories)
 
     data = {
         'categories': categories,
+        'recommended_categories': list_catogories,
     }
 
     number_prd_cart, cart, cart_prd = get_total_items_cart(request)

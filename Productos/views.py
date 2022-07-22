@@ -7,7 +7,6 @@ from django.core.paginator import Paginator
 from django.http import Http404
 from django.shortcuts import render, redirect
 from django.template.loader import get_template
-
 from Productos.Cart import Cart
 from Productos.models import Categoria, Producto, Compra
 from django.contrib import messages
@@ -34,10 +33,23 @@ def get_total_items_cart(request):
         return 0, None, None
 
 
+def get_categories(request, categories):
+    list_catogories = []
+    if categories:
+        counter = 0
+        for i in range(len(categories)):
+            list_catogories.append(categories[i])
+            counter += 1
+            if counter >= 4:
+                break
+    return list_catogories
+
+
 def productos(request):
     productos = Producto.objects.all()
     page = request.GET.get('page', 1)
     categories = Categoria.objects.all()
+    list_categories = get_categories(request, categories)
 
     try:
         paginator = Paginator(productos, 12)
@@ -49,6 +61,7 @@ def productos(request):
         'entity': productos,
         'paginator': paginator,
         'categories': categories,
+        'recommended_categories': list_categories
     }
 
     number_prd_cart, cart, cart_prd  = get_total_items_cart(request)
@@ -94,10 +107,13 @@ def detail_producto(request, id):
             if counter >= 4:
                 break
 
+    list_categories = get_categories(request, categories)
+
     data = {
         'producto': producto,
         'categories': categories,
-        'recommended_products': recommended_products
+        'recommended_products': recommended_products,
+        'recommended_categories': list_categories
     }
 
     number_prd_cart, cart, cart_prd = get_total_items_cart(request)
@@ -110,9 +126,11 @@ def detail_producto(request, id):
 
 def cart(request):
     categories = Categoria.objects.all()
+    list_categories = get_categories(request, categories)
 
     data = {
         'categories': categories,
+        'recommended_categories': list_categories
     }
 
     number_prd_cart, cart, cart_prd = get_total_items_cart(request)
@@ -240,9 +258,11 @@ def datos_envio(request):
 
 def checkout(request):
     categories = Categoria.objects.all()
+    list_categories = get_categories(request, categories)
 
     data = {
         'categories': categories,
+        'recommended_categories': list_categories
     }
 
     number_prd_cart, cart, cart_prd = get_total_items_cart(request)
@@ -271,9 +291,11 @@ def checkout(request):
 
 def send_method(request):
     categories = Categoria.objects.all()
+    list_categories = get_categories(request, categories)
 
     data = {
         'categories': categories,
+        'recommended_categories': list_categories
     }
 
     number_prd_cart, cart, cart_prd = get_total_items_cart(request)
@@ -296,6 +318,7 @@ def send_method(request):
 
 def pago(request):
     categories = Categoria.objects.all()
+    list_categories = get_categories(request, categories)
 
     # generar numero aleatorio irrepetible de 5 digitos para el codigo de la transaccion
     import random
@@ -305,6 +328,7 @@ def pago(request):
         'categories': categories,
         'codigo_transaccion': codigo_transaccion,
         'fecha': datetime.datetime.now(),
+        'recommended_categories': list_categories
     }
 
     number_prd_cart, cart, cart_prd = get_total_items_cart(request)
@@ -325,10 +349,12 @@ def pago(request):
 
 def confirmar_pago(request):
     categories = Categoria.objects.all()
+    list_categories = get_categories(request, categories)
 
     data = {
         'categories': categories,
         'fecha': datetime.datetime.now(),
+        'recommended_categories': list_categories
     }
 
     number_prd_cart, cart, cart_prd = get_total_items_cart(request)
