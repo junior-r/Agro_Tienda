@@ -33,6 +33,7 @@ body {
     padding: 0.8rem 1.2rem;
     border-radius: 10px;
     gap: 0.5rem;
+    align-items: center;
 }
 
 .btn-whatsapp .icon-whatsapp::before {
@@ -280,7 +281,6 @@ footer .content-footer .copytight .poweredby > span:hover a {
     .btn-whatsapp {
         bottom: 8rem;
         font-size: 1.5rem !important;
-        box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.3);
     }
 
     .super-container {
