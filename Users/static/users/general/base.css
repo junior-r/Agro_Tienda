@@ -141,6 +141,7 @@ footer .content-footer .menu section ul li::after {
     height: 2px;
     background-color: #000000;
     transition: 0.2s width linear;
+    bottom: 0;
 }
 
 footer .content-footer .menu section ul li:hover::after {

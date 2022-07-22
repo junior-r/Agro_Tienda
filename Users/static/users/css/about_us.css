@@ -2,35 +2,6 @@
     min-height: 100vh;
 }
 
-.content .header .banner {
-    width: 100%;
-    height: 70vh;
-    background-image: url('https://carnetoday.com/wp-content/uploads/2021/05/banner-04.jpg');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    position: relative;
-}
-
-.content .header .banner .banner-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: #fff;
-    letter-spacing: 0.1rem;
-    line-height: 1.5;
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-transform: uppercase;
-}
-
 .content .who_we_are {
     margin: 5rem 0;
     padding-inline: 5rem;
@@ -122,8 +93,8 @@
     color: #e4405f;
 }
 
-.content .follow_us .content-follow-us .socials a:hover .icon-telegram::before {
-    color: #0088cc;
+.content .follow_us .content-follow-us .socials a:hover .icon-facebook::before {
+    color: #1877f2;
 }
 
 .content .follow_us .content-follow-us .socials a:hover .icon-gmail::before {
