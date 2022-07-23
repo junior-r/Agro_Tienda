@@ -38,7 +38,7 @@ class DateInput(forms.DateInput):
 
 class ContactForm(forms.Form):
     name = forms.CharField(max_length=150, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'John'}), required=True, label='Nombres ')
-    subject = forms.CharField(max_length=150, widget=forms.TextInput(attrs={'class': 'form-control', 'value': 'Requerimos su catálogo de productos...'}), required=True, label='Asunto ')
+    subject = forms.CharField(max_length=150, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Requerimos su catálogo de productos...'}), required=True, label='Asunto ')
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Johndoe@example.com'}), required=True, label='Correo electrónico ')
     message = forms.CharField(max_length=500, widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Hola, somos (tu empresa), estamos en la búsqueda...'}), required=True, label='Mensaje ')
     captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox, label='')
