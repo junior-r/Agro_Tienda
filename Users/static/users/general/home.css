@@ -2,6 +2,11 @@
     overflow: hidden;
 }
 
+.carousel-item img {
+    height: 560px !important;
+    object-fit: cover;
+}
+
 .container .icons {
     height: 100%;
     display: grid;
