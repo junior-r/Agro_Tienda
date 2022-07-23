@@ -1,11 +1,11 @@
 .content .box_contact {
-    margin: 5rem 0;
+    margin: 1rem 0;
     padding-inline: 5rem;
 }
 
 .content .header .banner .banner-text h1,
 .content .box_contact > h1 {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
 }
 
 .content .box_contact .content_contact {
