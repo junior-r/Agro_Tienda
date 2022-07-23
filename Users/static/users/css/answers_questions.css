@@ -8,6 +8,14 @@
     position: relative;
 }
 
+.content .header .banner img {
+    object-fit: cover;
+}
+
+.content .header .banner .img-t {
+    display: none;
+}
+
 .content .header .banner .banner-text {
     position: absolute;
     top: 50%;
@@ -44,6 +52,20 @@
     font-size: 1rem;
     line-height: 1.5;
     margin-left: 2rem;
+}
+
+@media screen and (max-width: 991px) {
+    .content .header .banner {
+        height: 600px;
+    }
+
+    .content .header .banner .img-t {
+        display: inline-block;
+    }
+
+    .content .header .banner .img-c {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 560px) {
