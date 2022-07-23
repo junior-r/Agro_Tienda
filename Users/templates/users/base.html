@@ -51,7 +51,11 @@
                 <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvasLg" aria-controls="navbarOffcanvasLg">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" href="{% url 'home' %}">Agrovenca</a>
+                <a class="navbar-brand d-flex align-items-baseline h-100" href="{% url 'home' %}">
+                    <figure style="width: 15rem; height: 3rem; margin: 0; border-radius: 30px; overflow: hidden;">
+                        <img src="{% static 'users/imagenes/Agro_Tienda/logo_agrovenca.jpg' %}" loading="lazy" alt="" class="logo_agrovenca w-100 h-100" style="object-fit: cover">
+                    </figure>
+                </a>
 
                 <div class="btn-group me-3 container-cart-1">
                     <button type="button" class="btn btn-outline-primary dropdown-toggle cart-button" data-bs-toggle="dropdown" aria-expanded="false">
