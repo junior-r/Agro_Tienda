@@ -38,6 +38,7 @@
 
 .content-product .product_info h1.title {
     font-size: 1.75rem;
+    width: 300px;
 }
 
 .content-product .product_info .legend {
