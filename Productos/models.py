@@ -69,12 +69,12 @@ class Producto(models.Model):
 
     def get_descuento2(self):
         if self.cantidad >= 50:
-            return self.precio - self.descuento2
+            return self.descuento2
         return f"{self.precio - self.descuento2} (No hay suficientes en stock)"
 
     def get_descuento3(self):
         if self.cantidad >= 100:
-            return self.precio - self.descuento3
+            return self.descuento3
         return f"{self.precio - self.descuento3} (No hay suficientes en stock)"
 
 
