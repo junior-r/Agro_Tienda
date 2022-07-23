@@ -8,12 +8,35 @@
 
 {% block styles %}
     <link rel="stylesheet" href="{% static 'users/css/answers_questions.css' %}">
+    <style>
+        .content .header .banner img {
+            object-fit: cover;
+        }
+
+        .content .header .banner .img-t {
+            display: none;
+        }
+
+        @media screen and (max-width: 991px) {
+            .content .header .banner {
+                height: 500px;
+            }
+            .content .header .banner .img-t {
+                display: inline-block;
+            }
+            .content .header .banner .img-c {
+                display: none;
+            }
+        }
+    </style>
 {% endblock %}
 
 {% block container %}
     <div class="content">
         <header class="header">
-            <figure class="banner" style="background-image: url({% static 'users/imagenes/Agro_Tienda/faq.jpg' %})">
+            <figure class="banner">
+                <img src="{% static 'users/imagenes/Agro_Tienda/faqs-c.jpg' %}" class="img-c w-100 h-100" alt="">
+                <img src="{% static 'users/imagenes/Agro_Tienda/faqs-t.jpg' %}" class="img-t w-100 h-100" alt="">
                 <figcaption class="banner-text">
                     <h1 class="title fw-bold">Preguntas Frecuentes</h1>
                 </figcaption>
