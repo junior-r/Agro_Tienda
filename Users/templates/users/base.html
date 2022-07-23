@@ -109,19 +109,39 @@
                     <div class="offcanvas-body" style="overflow: inherit">
                         <ul class="navbar-nav mb-2 mb-lg-0 d-flex align-items-center">
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'home' %}">INICIO</a>
+                                {% if request.path == '/' %}
+                                    <a class="nav-link border-bottom border-primary border-3" href="{% url 'home' %}">INICIO</a>
+                                {% else %}
+                                    <a class="nav-link" href="{% url 'home' %}">INICIO</a>
+                                {% endif %}
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'about_us' %}">NOSOTROS</a>
+                                {% if '/about_us' in request.path %}
+                                    <a class="nav-link border-bottom border-primary border-3" href="{% url 'about_us' %}">NOSOTROS</a>
+                                {% else %}
+                                    <a class="nav-link" href="{% url 'about_us' %}">NOSOTROS</a>
+                                {% endif %}
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'productos' %}">PRODUCTOS</a>
+                                {% if '/productos/' in request.path %}
+                                    <a class="nav-link border-bottom border-primary border-3" href="{% url 'productos' %}">PRODUCTOS</a>
+                                {% else %}
+                                    <a class="nav-link" href="{% url 'productos' %}">PRODUCTOS</a>
+                                {% endif %}
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'contact' %}">CONTÁCTANOS</a>
+                                {% if '/contact' in request.path %}
+                                    <a class="nav-link border-bottom border-primary border-3" href="{% url 'contact' %}">CONTÁCTANOS</a>
+                                {% else %}
+                                    <a class="nav-link" href="{% url 'contact' %}">CONTÁCTANOS</a>
+                                {% endif %}
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'answers_questions' %}">FAQ´S</a>
+                                {% if '/answers_questions' in request.path %}
+                                    <a class="nav-link border-bottom border-primary border-3" href="{% url 'answers_questions' %}">FAQ´S</a>
+                                {% else %}
+                                    <a class="nav-link" href="{% url 'answers_questions' %}">FAQ´S</a>
+                                {% endif %}
                             </li>
                             {% if user.is_superuser %}
                                 <li class="nav-item">
@@ -130,7 +150,7 @@
                             {% endif %}
                         </ul>
 
-                        <span class="navbar-text">
+                        <span class="navbar-text ms-3">
                             <div class="btn-group me-3 container-cart-2">
                                 <button type="button" class="btn btn-outline-primary dropdown-toggle cart-button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fas fa-shopping-cart"></i>
@@ -265,17 +285,28 @@
                 <section class="section-pay">
                     <h3 class="title">Pagos</h3>
                     <ul class="menu-pay">
-                        <li class="item text">Tranferencias en Bs.S y $.</li>
                         <li class="item text d-flex align-items-center gap-2">
                             <img src="{% static 'users/imagenes/Agro_Tienda/Zelle_logo.svg' %}" alt="" loading="lazy" style="height: 2rem; width: 2rem; object-fit: cover; border-radius: 50%">
                             <p class="label m-0">Zelle</p>
+                        </li>
+                        <li class="item text d-flex align-items-center gap-2">
+                            <img src="{% static 'users/imagenes/Agro_Tienda/logo_BDV.jpg' %}" alt="" loading="lazy" style="height: 2rem; width: 2rem; object-fit: cover; border-radius: 50%">
+                            <p class="label m-0">Venezuela</p>
+                        </li>
+                        <li class="item text d-flex align-items-center gap-2">
+                            <img src="{% static 'users/imagenes/Agro_Tienda/pago_movil.png' %}" alt="" loading="lazy" style="height: 2rem; width: 2rem; object-fit: cover; border-radius: 50%">
+                            <p class="label m-0">Pago móvil</p>
+                        </li>
+                        <li class="item text d-flex align-items-center gap-2">
+                            <img src="{% static 'users/imagenes/Agro_Tienda/bcv_logo.png' %}" alt="" loading="lazy" style="height: 2rem; width: 2rem; object-fit: cover; border-radius: 50%">
+                            <p class="label m-0">BCV</p>
                         </li>
                     </ul>
                 </section>
             </div>
             <div class="copytight">
                 <p class="copytight-content text m-0">
-                    <span class="icon-copyright"></span> 2022 Agro_Tienda. Todos los derechos reservados.
+                    <span class="icon-copyright"></span> 2022 Agroalimentos Venezuela C.A. Todos los derechos reservados.
                 </p>
                 <p class="poweredby text m-0">
                     <span>Powered by <a href="https://junior-ruiz.herokuapp.com" target="_blank">Junior Ruíz</a></span>

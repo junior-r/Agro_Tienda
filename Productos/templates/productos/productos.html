@@ -53,7 +53,7 @@
             </sidebar>
 
             <section class="products p-5 bg-white">
-                {% if result_category %}
+                {% if category_request %}
                     <h3 class="title my-3">({{ result_category.count }}) Productos con categoria <span class="text-primary">{{ category | capfirst }}</span></h3>
                 {% endif %}
                 <div class="content-products d-grid gap-4">
