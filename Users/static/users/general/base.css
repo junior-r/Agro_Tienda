@@ -48,7 +48,7 @@ body {
     color: #1a9d4a;
 }
 
-.btn-whatsapp .legend span:first-child {
+.btn-whatsapp .legend a:first-child {
     text-transform: uppercase;
 }
 
