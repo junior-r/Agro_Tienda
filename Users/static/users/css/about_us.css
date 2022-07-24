@@ -1,3 +1,36 @@
+.content .header .banner {
+    width: 100%;
+    height: 400px;
+    background-position: top;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.content .header .banner img {
+    object-fit: cover;
+}
+
+.content .header .banner .banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    letter-spacing: 0.1rem;
+    line-height: 1.5;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-transform: uppercase;
+}
+
 .content .who_we_are {
     margin: 5rem 0;
     padding-inline: 5rem;
@@ -42,9 +75,9 @@
 
 .content .follow_us {
     background-position: center;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
-    min-height: 450px;
+    height: 300px;
     width: 100%;
 }
 
@@ -97,6 +130,10 @@
 }
 
 @media screen and (max-width: 991px) {
+    .content .header .banner {
+        height: 600px;
+    }
+
     .content .who_we_are .us,
     .content .who_we_are .us-2 {
         grid-template-columns: 1fr;

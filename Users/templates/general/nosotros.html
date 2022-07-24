@@ -12,6 +12,16 @@
 
 {% block container %}
     <div class="content">
+        <header class="header">
+            <figure class="banner">
+                <img src="{% static 'users/imagenes/Agro_Tienda/siguenos.jpg' %}" class="img-c w-100 h-100" alt="">
+                <figcaption class="banner-text">
+                    <h1 class="title fw-bold">Nosotros</h1>
+                    <p class="m-0">Somos uno mismo.</p>
+                </figcaption>
+            </figure>
+        </header>
+
         <div class="container-fluid who_we_are">
             <div class="us bg-white">
                 <div class="us_description">
@@ -33,8 +43,10 @@
             </div>
         </div>
 
-        <div class="container-fluid follow_us position-relative" style="background-image: url({% static 'users/imagenes/Agro_Tienda/siguenos.jpg' %})">
-            <div class="content-follow-us position-absolute">
+        <div class="container-fluid follow_us">
+            <figure class="position-relative" style="height: 100%">
+                <img src="{% static 'users/imagenes/Agro_Tienda/siguenos.png' %}" width="100%" height="100%" style="object-fit: cover" loading="lazy" alt="">
+                <div class="content-follow-us position-absolute">
                 <h3 class=title>Siguenos</h3>
                 <div class="socials">
                     <a href="https://api.whatsapp.com/send?phone=584122656008" target="_blank" class="text-reset text-decoration-none">
@@ -54,6 +66,7 @@
                     </a>
                 </div>
             </div>
+            </figure>
         </div>
 
     </div>
