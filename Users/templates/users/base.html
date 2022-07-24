@@ -145,7 +145,7 @@
                             </li>
                             {% if user.is_superuser %}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/admin/">ADMINISTRACIÓN</a>
+                                    <a class="nav-link" href="/admin/" target="_blank">ADMINISTRACIÓN</a>
                                 </li>
                             {% endif %}
                         </ul>
@@ -208,6 +208,15 @@
             <a href="mailto:junior31064049@gmail.com" target="_blank" class="btn mail"><span class="icon-gmail"></span></a>
             {% if user.is_superuser and counter %}
                 <a href="#" class="btn">{{ counter }}</a>
+            {% endif %}
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" style="width: 3rem;" class="btn logout">
+                    <img src="{% static 'users/imagenes/Agro_Tienda/logout_icon.svg' %}" alt="icon logout">
+                </a>
+            {% else %}
+                <a href="{% url 'login' %}" style="width: 3rem;" class="btn login">
+                    <img src="{% static 'users/imagenes/Agro_Tienda/login_icon.svg' %}" alt="icon login">
+                </a>
             {% endif %}
         </section>
         {% block container %}

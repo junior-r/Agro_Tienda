@@ -13,7 +13,7 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2']
+        fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2', 'is_superuser', 'is_staff', 'is_active']
         labels = {
             'username': 'Nombre de usuario',
             'email': 'Correo electrónico',
