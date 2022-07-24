@@ -13,7 +13,7 @@ class CategoriaForm(forms.ModelForm):
 
 
 class ProductoForm(forms.ModelForm):
-    nombre = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class': 'form-control'}), label='Nombre')
+    nombre = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}), label='Nombre')
     descripcion = forms.CharField(max_length=1000, widget=forms.Textarea(attrs={'class': 'form-control'}), label='Descripción')
     precio = forms.DecimalField(max_digits=10, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control'}), label='Precio unitario')
     descuento1 = forms.DecimalField(max_digits=10, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control'}), label='Precio de Descuento 1')
