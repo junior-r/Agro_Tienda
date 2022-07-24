@@ -31,7 +31,7 @@ class Categoria(models.Model):
 
 
 class Producto(models.Model):
-    nombre = models.CharField(max_length=50)
+    nombre = models.CharField(max_length=100)
     descripcion = models.TextField(max_length=1000)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     descuento1 = models.DecimalField(max_digits=10, decimal_places=2, default=0.00, null=True, blank=True)

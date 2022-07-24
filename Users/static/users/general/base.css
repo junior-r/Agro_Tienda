@@ -27,7 +27,7 @@ body {
     right: 2rem;
     z-index: 9999;
     border: 1px solid #4dc247 !important;
-    background-color: #FFFFFF !important;
+    background-color: transparent !important;
 
     display: flex;
     padding: 0.8rem 1.2rem;
