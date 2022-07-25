@@ -142,6 +142,10 @@
         font-size: 1.2rem !important;
     }
 
+    .container .description-product > h3 {
+        font-size: 2rem;
+    }
+
     .container .recommended-products > h3 {
         font-size: 3.5rem !important;
         margin: 3rem 0;
