@@ -163,7 +163,7 @@
                                 {% endif %}
                                 <div class="card-body">
                                     <p class="number">$ {{ recommended_product.get_descuento3 }}</p>
-                                    <h5 class="card-title title mb-3">
+                                    <h5 class="card-title title mb-3 fw-bold">
                                         <a href="{% url 'detail_producto' recommended_product.id %}">{{ recommended_product.nombre | title }}</a>
                                     </h5>
                                     <p class="card-text text">{{ recommended_product.get_short_desc }}</p>
