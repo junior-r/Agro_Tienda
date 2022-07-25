@@ -210,37 +210,35 @@ def clean_cart(request):
 def get_price_by_quantity_add(request, product, cant_add, cant_prd_cart):
     cart = Cart(request)
 
-    match cant_prd_cart:
-        case int(cant) if int(cant) + cant_add in range(1, 49 + 1):
-            cart.add(product, 1, float(product.get_descuento1()))
-            return redirect('cart')
-        case int(cant) if int(cant) + cant_add in range(50, 99 + 1):
-            cart.add(product, 1, float(product.get_descuento2()))
-            return redirect('cart')
-        case int(cant) if int(cant) + cant_add >= 100:
-            cart.add(product, 1, float(product.get_descuento3()))
-            return redirect('cart')
-        case _:
-            cart.add(product, 1, float(product.precio))
-            return redirect('cart')
+    if int(cant_prd_cart) + cant_add in range(1, 49 + 1):
+        cart.add(product, 1, float(product.get_descuento1()))
+        return redirect('cart')
+    elif int(cant_prd_cart) + cant_add in range(50, 99 + 1):
+        cart.add(product, 1, float(product.get_descuento2()))
+        return redirect('cart')
+    elif int(cant_prd_cart) + cant_add >= 100:
+        cart.add(product, 1, float(product.get_descuento3()))
+        return redirect('cart')
+    else:
+        cart.add(product, 1, float(product.precio))
+        return redirect('cart')
 
 
 def get_price_by_quantity_sub(request, product, cant_prd_cart):
     cart = Cart(request)
 
-    match cant_prd_cart:
-        case int(cant) if int(cant) - 1 in range(1, 49 + 1):
-            cart.sub(product, float(product.get_descuento1()))
-            return redirect('cart')
-        case int(cant) if int(cant) - 1 in range(50, 99 + 1):
-            cart.sub(product, float(product.get_descuento2()))
-            return redirect('cart')
-        case int(cant) if int(cant) - 1 >= 100:
-            cart.sub(product, float(product.get_descuento3()))
-            return redirect('cart')
-        case _:
-            cart.sub(product, float(product.precio))
-            return redirect('cart')
+    if int(cant_prd_cart) - 1 in range(1, 49 + 1):
+        cart.sub(product, float(product.get_descuento1()))
+        return redirect('cart')
+    elif int(cant_prd_cart) - 1 in range(50, 99 + 1):
+        cart.sub(product, float(product.get_descuento2()))
+        return redirect('cart')
+    elif int(cant_prd_cart) - 1 >= 100:
+        cart.sub(product, float(product.get_descuento3()))
+        return redirect('cart')
+    else:
+        cart.sub(product, float(product.precio))
+        return redirect('cart')
 
 
 def increment_prd_cart(request, id):
