@@ -173,7 +173,7 @@ def add_to_cart(request, id):
         messages.error(request, 'Cantidad inválida, intente de nuevo!')
         return redirect('detail_producto', id=producto.id)
 
-    if cart_prd:  # Si hay productos en el carrito
+    if cart_prd:  # Si hay productos en el carrito.
         for producto_cart in cart_prd:  # Iterar el carrito
             if producto.id == int(producto_cart['producto_id']):  # Si el producto está en el carrito
                 cantidad_cart = int(producto_cart['cantidad'])
