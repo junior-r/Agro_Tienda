@@ -150,30 +150,33 @@
             {% if recommended_products %}
                 <h3 class="title text-center fw-bold">MÁS PRODUCTOS PARA TI</h3>
                 <div class="content d-flex gap-3 flex-wrap">
-                    {% for recommended_product in recommended_products %}
-                        <a href="{% url 'detail_producto' recommended_product.id %}" class="text-decoration-none text-reset" style="width: 25%;">
-                            <div class="product-{{ recommended_product.id }}">
-                                <div class="card position-relative">
-                                    {% if recommended_product.imagenes %}
-                                        <img src="{{ recommended_product.imagenes.first.imagen.url }}" class="card-img-top" alt="..." loading="lazy">
-                                    {% endif %}
-                                    <p class="legend position-absolute px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 999; font-size: 12px">ENVÍO GRATIS</p>
-                                    {% if recommended_product.cantidad == 0 %}
-                                        <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(255, 255, 255, 0.5); z-index: 999; font-size: 12px; top: 30%; left: 25%">AGOTADO</p>
-                                    {% endif %}
-                                    <div class="card-body">
-                                        <p class="number">$ {{ recommended_product.get_descuento3 }}</p>
-                                        <h5 class="card-title fw-bold">{{ recommended_product.nombre | title }}</h5>
-                                        <p class="card-text">{{ recommended_product.get_short_desc }}</p>
-                                    </div>
+
+                    <div class="card-group gap-3">
+                        {% for recommended_product in recommended_products %}
+                            <div class="card position-relative">
+                                {% if recommended_product.imagenes %}
+                                    <img src="{{ recommended_product.imagenes.first.imagen.url }}" style="object-fit: cover; height: 300px" class="card-img-top" alt="imagen del producto" loading="lazy">
+                                {% endif %}
+                                <p class="legend position-absolute px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 999; font-size: 12px">ENVÍO GRATIS</p>
+                                {% if recommended_product.cantidad == 0 %}
+                                    <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(255, 255, 255, 0.5); z-index: 999; font-size: 12px; top: 30%; left: 25%">AGOTADO</p>
+                                {% endif %}
+                                <div class="card-body">
+                                    <p class="number">$ {{ recommended_product.get_descuento3 }}</p>
+                                    <h5 class="card-title title mb-3">
+                                        <a href="{% url 'detail_producto' recommended_product.id %}">{{ recommended_product.nombre | title }}</a>
+                                    </h5>
+                                    <p class="card-text text">{{ recommended_product.get_short_desc }}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <p class="text-muted m-0 text-center w-100"><a href="{% url 'detail_producto' recommended_product.id %}">Ver más detalles</a></p>
                                 </div>
                             </div>
-                        </a>
-                    {% endfor %}
+                        {% endfor %}
+                    </div>
                 </div>
             {% endif %}
         </div>
-
     </div>
 {% endblock %}
 
