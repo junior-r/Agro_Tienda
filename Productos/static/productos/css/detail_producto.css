@@ -85,6 +85,10 @@
         height: 350px;
     }
 
+    .content-product .img_product > .legend {
+        font-size: 1.5rem;
+    }
+
     .content-product .product_info h1.title {
         font-size: 3rem;
         width: 100%;
@@ -153,6 +157,10 @@
     }
 
     .container .recommended-products .card-group .card .card-body .card-text {
+        font-size: 1.5rem;
+    }
+
+    .container .recommended-products .card-group .card p.legend {
         font-size: 1.5rem;
     }
 }

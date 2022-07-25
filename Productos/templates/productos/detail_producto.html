@@ -35,9 +35,9 @@
                         </div>
                     </div>
                 </div>
-                <p class="legend position-absolute top-0 px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 999; font-size: 12px">ENVÍO GRATIS</p>
+                <p class="legend position-absolute top-0 px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 999;">ENVÍO GRATIS</p>
                 {% if producto.cantidad == 0 %}
-                    <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(255, 255, 255, 0.5); z-index: 999; font-size: 12px; top: 45%; left: 38%;">AGOTADO</p>
+                    <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(255, 255, 255, 0.5); z-index: 999; top: 45%; left: 38%;">AGOTADO</p>
                 {% endif %}
                 {% if producto.imagenes.all.count > 1 %}
                     <p class="text-muted text text-center">Desliza para ver la siguiente imágen</p>
@@ -157,9 +157,9 @@
                                 {% if recommended_product.imagenes %}
                                     <img src="{{ recommended_product.imagenes.first.imagen.url }}" style="object-fit: cover; height: 300px" class="card-img-top" alt="imagen del producto" loading="lazy">
                                 {% endif %}
-                                <p class="legend position-absolute px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 999; font-size: 12px">ENVÍO GRATIS</p>
+                                <p class="legend position-absolute px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 999;">ENVÍO GRATIS</p>
                                 {% if recommended_product.cantidad == 0 %}
-                                    <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(255, 255, 255, 0.5); z-index: 999; font-size: 12px; top: 30%; left: 25%">AGOTADO</p>
+                                    <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(255, 255, 255, 0.5); z-index: 999; top: 30%; left: 25%">AGOTADO</p>
                                 {% endif %}
                                 <div class="card-body">
                                     <p class="number">$ {{ recommended_product.get_descuento3 }}</p>
