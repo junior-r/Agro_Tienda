@@ -21,7 +21,6 @@ class Cart:
         img_product = ImagenProducto.objects.filter(producto_id=producto.id).first()
         if img_product is not None:
             img = img_product.imagen.url
-            print(img)
         else:
             img = ""
 
@@ -32,9 +31,9 @@ class Cart:
                 'imagen': img,
                 'nombre': producto.nombre,
                 'precio': float(precio),
-                'description': producto.descripcion,
+                'description': producto.get_short_desc(),
                 'cantidad': cantidad,
-                'monto_total': float(precio) * cantidad
+                'monto_total': round(float(precio) * cantidad, 2)
             }
         else:
             ''' 
@@ -44,7 +43,7 @@ class Cart:
 
             self.cart[id]['cantidad'] += cantidad
             self.cart[id]['precio'] = precio
-            self.cart[id]['monto_total'] = float(self.cart[id]['precio']) * self.cart[id]['cantidad']
+            self.cart[id]['monto_total'] = round(float(self.cart[id]['precio']) * self.cart[id]['cantidad'], 2)
         self.save()
 
     def delete(self, producto):
@@ -53,13 +52,14 @@ class Cart:
             del self.cart[id]
             self.save()
 
-    def sub(self, producto):
+    def sub(self, producto, precio):
         id = str(producto.id)
         if id in self.cart.keys():
             # Si el producto está en el carrito
-            self.cart[id]['cantidad'] -= int(1) # Se resta 1 a la cantidad
-            self.cart[id]['monto_total'] -= float(producto.precio) # Se resta el precio del producto
-            if self.cart[id]['cantidad'] <= 0: # Si la cantidad es menor o igual a 0
+            self.cart[id]['cantidad'] -= int(1)  # Se resta 1 a la cantidad
+            self.cart[id]['precio'] = float(precio)  # Se resta 1 a la cantidad
+            self.cart[id]['monto_total'] = round(float(self.cart[id]['precio']) * self.cart[id]['cantidad'], 2)
+            if self.cart[id]['cantidad'] <= 0:  # Si la cantidad es menor o igual a 0
                 self.delete(producto)
         self.save()
 
@@ -70,13 +70,14 @@ class Cart:
         subtotal = 0
         for item in self.cart.values():
             subtotal += item['monto_total']
-        return subtotal
+        return round(subtotal, 2)
 
     def get_iva(self):
-        return self.get_subtotal() * 0.16
+        return round(self.get_subtotal() * 0.16, 2)
 
     def get_total_iva(self):
-        return self.get_subtotal() * 0.16 + self.get_subtotal()
+        subtotal_iva = round(self.get_subtotal() * 0.16 + self.get_subtotal(), 2)
+        return subtotal_iva
 
     def clean(self):
         self.session['cart'] = {}

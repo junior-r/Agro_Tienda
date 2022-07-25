@@ -143,13 +143,10 @@ def cart(request):
 
 def get_range_price(request, producto, cantidad, cantidad_cart):
     cart = Cart(request)
-    if (int(cantidad) + int(cantidad_cart)) == 1:
-        # Si la cantidad ingresada + la cantidad guardada es = 1
-        cart.add(producto, int(cantidad), float(producto.precio))
-    elif (int(cantidad) + int(cantidad_cart)) in range(1, 49+1):
-        # Si la cantidad ingresada + la cantidad guardada esta en el rango 2 - 49
+    if (int(cantidad) + int(cantidad_cart)) in range(1, 49 + 1):
+        # Si la cantidad ingresada + la cantidad guardada esta en el rango 1 - 49
         cart.add(producto, int(cantidad), float(producto.get_descuento1()))
-    elif (int(cantidad) + int(cantidad_cart)) in range(50, 99+1):
+    elif (int(cantidad) + int(cantidad_cart)) in range(50, 99 + 1):
         # Si la cantidad ingresada + la cantidad guardada esta en el rango 50 - 99
         cart.add(producto, int(cantidad), float(producto.get_descuento2()))
     elif (int(cantidad) + int(cantidad_cart)) >= 100:
@@ -173,26 +170,19 @@ def add_to_cart(request, id):
         messages.error(request, 'Cantidad inválida, intente de nuevo!')
         return redirect('detail_producto', id=producto.id)
 
-    if cart_prd:  # Si hay productos en el carrito.
-        for producto_cart in cart_prd:  # Iterar el carrito
-            if producto.id == int(producto_cart['producto_id']):  # Si el producto está en el carrito
-                cantidad_cart = int(producto_cart['cantidad'])
-                if cantidad + int(producto_cart['cantidad']) > producto.cantidad:
-                    messages.error(request, 'No hay suficientes unidades en stock. Intente con menor cantidad!')
-                    return redirect('detail_producto', id=producto.id)
-                else:
-                    get_range_price(request, producto, cantidad=cantidad, cantidad_cart=cantidad_cart)
-                    messages.success(request, 'Producto agregado al carrito exitosamente!')
-                    return redirect('productos')
+    for producto_cart in cart_prd:  # Iterar el carrito
+        if producto.id == int(producto_cart['producto_id']):
+            cantidad_cart = int(producto_cart['cantidad'])
+            if cantidad + int(producto_cart['cantidad']) > producto.cantidad:
+                messages.error(request, 'No hay suficientes unidades en stock. Intente con menor cantidad!')
+                return redirect('detail_producto', id=producto.id)
             else:
-                get_range_price(request, producto, cantidad, cantidad_cart=0)
+                get_range_price(request, producto, cantidad=cantidad, cantidad_cart=cantidad_cart)
                 messages.success(request, 'Producto agregado al carrito exitosamente!')
                 return redirect('productos')
-    else:
-        get_range_price(request, producto, cantidad, cantidad_cart=0)
-        messages.success(request, 'Producto agregado al carrito exitosamente!')
-        return redirect('productos')
 
+    get_range_price(request, producto, cantidad, cantidad_cart=0)
+    messages.success(request, 'Producto agregado al carrito exitosamente!')
     return redirect('productos')
 
 
@@ -217,12 +207,58 @@ def clean_cart(request):
     return redirect('productos')
 
 
+def get_price_by_quantity_add(request, product, cant_add, cant_prd_cart):
+    cart = Cart(request)
+
+    match cant_prd_cart:
+        case int(cant) if int(cant) + cant_add in range(1, 49 + 1):
+            cart.add(product, 1, float(product.get_descuento1()))
+            return redirect('cart')
+        case int(cant) if int(cant) + cant_add in range(50, 99 + 1):
+            cart.add(product, 1, float(product.get_descuento2()))
+            return redirect('cart')
+        case int(cant) if int(cant) + cant_add >= 100:
+            cart.add(product, 1, float(product.get_descuento3()))
+            return redirect('cart')
+        case _:
+            cart.add(product, 1, float(product.precio))
+            return redirect('cart')
+
+
+def get_price_by_quantity_sub(request, product, cant_prd_cart):
+    cart = Cart(request)
+
+    match cant_prd_cart:
+        case int(cant) if int(cant) - 1 in range(1, 49 + 1):
+            cart.sub(product, float(product.get_descuento1()))
+            return redirect('cart')
+        case int(cant) if int(cant) - 1 in range(50, 99 + 1):
+            cart.sub(product, float(product.get_descuento2()))
+            return redirect('cart')
+        case int(cant) if int(cant) - 1 >= 100:
+            cart.sub(product, float(product.get_descuento3()))
+            return redirect('cart')
+        case _:
+            cart.sub(product, float(product.precio))
+            return redirect('cart')
+
+
 def increment_prd_cart(request, id):
     producto = Producto.objects.get(id=id)
     cart = Cart(request)
 
     try:
-        cart.add(producto, 1, int(producto.precio))
+        cart_prd = cart.get_items()
+        print(cart_prd)
+        for producto_cart in cart_prd:
+            if producto.id == int(producto_cart['producto_id']):
+                if int(producto_cart['cantidad']) + 1 > producto.cantidad:
+                    messages.error(request, 'Límite de cantidad alcanzado.')
+                    return redirect('cart')
+                else:
+                    cantidad_prd_cart = int(producto_cart['cantidad'])
+                    get_price_by_quantity_add(request, producto, 1, cantidad_prd_cart)
+                    return redirect('cart')
     except Exception as e:
         messages.error(request, 'Ocurrió algún error')
 
@@ -234,7 +270,12 @@ def decrement_prd_cart(request, id):
     cart = Cart(request)
 
     try:
-        cart.sub(producto)
+        cart_prd = cart.get_items()
+        for producto_cart in cart_prd:
+            if producto.id == int(producto_cart['producto_id']):
+                cantidad_prd_cart = int(producto_cart['cantidad'])
+                get_price_by_quantity_sub(request, producto, cantidad_prd_cart)
+                return redirect('cart')
     except Exception as e:
         messages.error(request, 'Ocurrió algún error')
 
