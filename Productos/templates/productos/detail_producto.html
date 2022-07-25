@@ -143,7 +143,9 @@
         </div>
         <div class="description-product mt-5 bg-white p-5">
             <h3 class="title fw-bold">Descripción</h3>
-            <p class="text">{{ producto.descripcion }}</p>
+            <span class="text">
+                {{ producto.descripcion|linebreaks }}
+            </span>
         </div>
 
         <div class="recommended-products my-5">
