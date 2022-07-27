@@ -33,7 +33,7 @@ class ProductoForm(forms.ModelForm):
 
     class Meta:
         model = Producto
-        fields = ['nombre', 'descripcion', 'precio', 'descuento1', 'descuento2', 'descuento3', 'cantidad', 'categoria', 'recomendar']
+        fields = "__all__"
         help_texts = {
             'descuento1': 'Esta cantidad será restada al precio unitario y presentada en la categoría de 1 - 49.',
             'descuento2': 'Esta cantidad será restada al precio unitario y presentada en la categoría de 50 - 99.',

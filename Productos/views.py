@@ -13,6 +13,18 @@ from django.contrib import messages
 
 
 def get_total_items_cart(request):
+    """
+        Función que devuelve datos del carrito.
+        The function returns cart data.
+
+        :param: request
+
+        :return:
+            * Número de productos en el carrito. -> (int)
+            * Objeto carrito. -> (dict)
+            * Listado de productos en el carrito. -> (list)
+    """
+
     if 'cart' in request.session.keys():
         cart = Cart(request)
 
@@ -34,6 +46,16 @@ def get_total_items_cart(request):
 
 
 def get_categories(request, categories):
+    """
+        Función que devuelve un listado con 4 diferentes categorías.
+        The function returns a list of categories with 4 elements.
+
+        :param:
+            * request.
+            * categories.
+        :return:
+
+    """
     list_catogories = []
     if categories:
         counter = 0
@@ -142,19 +164,32 @@ def cart(request):
 
 
 def get_range_price(request, producto, cantidad, cantidad_cart):
+    """
+        Función que determina el precio del producto en función de su rango de cantidad.
+        Function that determines the price of the product based on its quantity range.
+
+        :params:
+            * request.
+            * producto (product).
+            * cantidad (quantity).
+            * cantidad del producto en el carrito (product´s quantity in cart).
+        :return:
+            Redirección a la página de producto. (redirect to the products page).
+    """
+
     cart = Cart(request)
 
     if int(cantidad) + int(cantidad_cart) < producto.first_number_range_1:
         # Si la cantidad ingresada + la cantidad guardada es menor al rango más bajo (1), se agrega con su precio uniario.
         cart.add(producto, int(cantidad), float(producto.precio))
     elif (int(cantidad) + int(cantidad_cart)) in range(int(producto.first_number_range_1), int(producto.last_number_range_1) + 1):
-        # Si la cantidad ingresada + la cantidad guardada esta en el rango 1 - 1.1
+        # Si la cantidad ingresada + la cantidad guardada esta en el rango 1
         cart.add(producto, int(cantidad), float(producto.get_descuento1()))
     elif (int(cantidad) + int(cantidad_cart)) in range(int(producto.first_number_range_2), int(producto.last_number_range_2) + 1):
-        # Si la cantidad ingresada + la cantidad guardada esta en el rango 2 - 2.1
+        # Si la cantidad ingresada + la cantidad guardada esta en el rango 2
         cart.add(producto, int(cantidad), float(producto.get_descuento2()))
     elif (int(cantidad) + int(cantidad_cart)) in range(int(producto.first_number_range_3), int(producto.last_number_range_3) + 1):
-        # Si la cantidad ingresada + la cantidad guardada esta en el rango 3 - 3.1
+        # Si la cantidad ingresada + la cantidad guardada esta en el rango 3
         cart.add(producto, int(cantidad), float(producto.get_descuento3()))
     else:
         messages.error(request, 'Cantidad inválida, intente de nuevo!')
@@ -251,7 +286,7 @@ def increment_prd_cart(request, id):
 
     try:
         cart_prd = cart.get_items()
-        print(cart_prd)
+
         for producto_cart in cart_prd:
             if producto.id == int(producto_cart['producto_id']):
                 if int(producto_cart['cantidad']) + 1 > producto.cantidad:

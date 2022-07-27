@@ -115,7 +115,8 @@
     .content-product .product_info .options-price li button,
     .content-product .product_info .options-price + p.cantidad,
     .content-product .product_info .cart-form form input,
-    .content-product .product_info .cart-form form button {
+    .content-product .product_info .cart-form form button,
+    .content-product .product_info .legend p {
         font-size: 2rem !important;
     }
 
