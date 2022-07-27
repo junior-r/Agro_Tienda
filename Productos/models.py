@@ -38,6 +38,13 @@ class Producto(models.Model):
     descuento2 = models.DecimalField(max_digits=10, decimal_places=2, default=0.00, null=True, blank=True)
     descuento3 = models.DecimalField(max_digits=10, decimal_places=2, default=0.00, null=True, blank=True)
 
+    first_number_range_1 = models.IntegerField(default=0, null=True, blank=True)
+    last_number_range_1 = models.IntegerField(default=0, null=True, blank=True)
+    first_number_range_2 = models.IntegerField(default=0, null=True, blank=True)
+    last_number_range_2 = models.IntegerField(default=0, null=True, blank=True)
+    first_number_range_3 = models.IntegerField(default=0, null=True, blank=True)
+    last_number_range_3 = models.IntegerField(default=0, null=True, blank=True)
+
     cantidad = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, blank=True)
@@ -62,18 +69,21 @@ class Producto(models.Model):
         host = 'https://agrovenca.com'
         return host + '/productos/producto/' + str(self.id)
 
+    def get_price(self):
+        return self.precio
+
     def get_descuento1(self):
-        if self.cantidad >= 1:
-            return self.precio
-        return f"{self.precio} (No hay suficientes en stock)"
+        if self.cantidad >= self.first_number_range_1:
+            return self.descuento1
+        return f"{self.precio - self.descuento1} (No hay suficientes en stock)"
 
     def get_descuento2(self):
-        if self.cantidad >= 50:
+        if self.cantidad >= self.first_number_range_2:
             return self.descuento2
         return f"{self.precio - self.descuento2} (No hay suficientes en stock)"
 
     def get_descuento3(self):
-        if self.cantidad >= 100:
+        if self.cantidad >= self.descuento3:
             return self.descuento3
         return f"{self.precio - self.descuento3} (No hay suficientes en stock)"
 

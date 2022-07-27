@@ -20,6 +20,13 @@ class ProductoForm(forms.ModelForm):
     descuento2 = forms.DecimalField(max_digits=10, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control'}), label='Precio de Descuento 2')
     descuento3 = forms.DecimalField(max_digits=10, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control'}), label='Precio de Descuento 3')
 
+    first_number_range_1 = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}), label='Número inicial del rango 1')
+    last_number_range_1 = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}), label='Número límite del rango 1')
+    first_number_range_2 = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}), label='Número inicial del rango 2')
+    last_number_range_2 = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}), label='Número límite del rango 2')
+    first_number_range_3 = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}), label='Número inicial del rango 3')
+    last_number_range_3 = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}), label='Número límite del rango 3')
+
     cantidad = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}), label='Cantidad')
     categoria = forms.ModelChoiceField(queryset=Categoria.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}), label='Categoría')
     recomendar = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class': 'form-control'}), label='¿Recomendar?', required=False)

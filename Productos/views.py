@@ -143,14 +143,18 @@ def cart(request):
 
 def get_range_price(request, producto, cantidad, cantidad_cart):
     cart = Cart(request)
-    if (int(cantidad) + int(cantidad_cart)) in range(1, 49 + 1):
-        # Si la cantidad ingresada + la cantidad guardada esta en el rango 1 - 49
+
+    if int(cantidad) + int(cantidad_cart) < producto.first_number_range_1:
+        # Si la cantidad ingresada + la cantidad guardada es menor al rango más bajo (1), se agrega con su precio uniario.
+        cart.add(producto, int(cantidad), float(producto.precio))
+    elif (int(cantidad) + int(cantidad_cart)) in range(int(producto.first_number_range_1), int(producto.last_number_range_1) + 1):
+        # Si la cantidad ingresada + la cantidad guardada esta en el rango 1 - 1.1
         cart.add(producto, int(cantidad), float(producto.get_descuento1()))
-    elif (int(cantidad) + int(cantidad_cart)) in range(50, 99 + 1):
-        # Si la cantidad ingresada + la cantidad guardada esta en el rango 50 - 99
+    elif (int(cantidad) + int(cantidad_cart)) in range(int(producto.first_number_range_2), int(producto.last_number_range_2) + 1):
+        # Si la cantidad ingresada + la cantidad guardada esta en el rango 2 - 2.1
         cart.add(producto, int(cantidad), float(producto.get_descuento2()))
-    elif (int(cantidad) + int(cantidad_cart)) >= 100:
-        # Si la cantidad ingresada + la cantidad guardada es >= 100
+    elif (int(cantidad) + int(cantidad_cart)) in range(int(producto.first_number_range_3), int(producto.last_number_range_3) + 1):
+        # Si la cantidad ingresada + la cantidad guardada esta en el rango 3 - 3.1
         cart.add(producto, int(cantidad), float(producto.get_descuento3()))
     else:
         messages.error(request, 'Cantidad inválida, intente de nuevo!')
@@ -210,13 +214,13 @@ def clean_cart(request):
 def get_price_by_quantity_add(request, product, cant_add, cant_prd_cart):
     cart = Cart(request)
 
-    if int(cant_prd_cart) + cant_add in range(1, 49 + 1):
+    if int(cant_prd_cart) + cant_add in range(int(product.first_number_range_1), int(product.last_number_range_1) + 1):
         cart.add(product, 1, float(product.get_descuento1()))
         return redirect('cart')
-    elif int(cant_prd_cart) + cant_add in range(50, 99 + 1):
+    elif int(cant_prd_cart) + cant_add in range(int(product.first_number_range_2), int(product.last_number_range_2) + 1):
         cart.add(product, 1, float(product.get_descuento2()))
         return redirect('cart')
-    elif int(cant_prd_cart) + cant_add >= 100:
+    elif int(cant_prd_cart) + cant_add in range(int(product.first_number_range_3), int(product.last_number_range_3) + 1):
         cart.add(product, 1, float(product.get_descuento3()))
         return redirect('cart')
     else:
@@ -227,13 +231,13 @@ def get_price_by_quantity_add(request, product, cant_add, cant_prd_cart):
 def get_price_by_quantity_sub(request, product, cant_prd_cart):
     cart = Cart(request)
 
-    if int(cant_prd_cart) - 1 in range(1, 49 + 1):
+    if int(cant_prd_cart) - 1 in range(int(product.first_number_range_1), int(product.last_number_range_1) + 1):
         cart.sub(product, float(product.get_descuento1()))
         return redirect('cart')
-    elif int(cant_prd_cart) - 1 in range(50, 99 + 1):
+    elif int(cant_prd_cart) - 1 in range(int(product.first_number_range_2), int(product.last_number_range_2) + 1):
         cart.sub(product, float(product.get_descuento2()))
         return redirect('cart')
-    elif int(cant_prd_cart) - 1 >= 100:
+    elif int(cant_prd_cart) - 1 in range(int(product.first_number_range_3), int(product.last_number_range_3) + 1):
         cart.sub(product, float(product.get_descuento3()))
         return redirect('cart')
     else:

@@ -53,25 +53,26 @@
                 <h1 class="title mt-3 fw-bold">{{ producto.nombre }}</h1>
                 <hr>
                 <div class="legend d-flex gap-1 mb-2">
+                    <p class="text fw-bold">Precio unitario: <span class="number text-success">US$ {{ producto.get_price | intcomma }}</span></p>
                 </div>
 
                 <ul class="mb-3 mt-3 options-price list-unstyled d-flex justify-content-between">
                     <li class="item">
                         <button class="btn btn-outline-primary position-relative">
-                            1 - 49 u
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">$ {{ producto.get_descuento1 }} <span class="visually-hidden">unread messages</span></span>
+                            {{ producto.first_number_range_1 }} - {{ producto.last_number_range_1 }} u
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">US$ {{ producto.get_descuento1 }} <span class="visually-hidden">unread messages</span></span>
                         </button>
                     </li>
                     <li class="item">
                         <button class="btn btn-outline-primary position-relative">
-                            50 - 99 u
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">$ {{ producto.get_descuento2 }} <span class="visually-hidden">unread messages</span></span>
+                            {{ producto.first_number_range_2 }} - {{ producto.last_number_range_2 }} u
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">US$ {{ producto.get_descuento2 }} <span class="visually-hidden">unread messages</span></span>
                         </button>
                     </li>
                     <li class="item">
                         <button class="btn btn-outline-primary position-relative">
-                            +100 u
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">$ {{ producto.get_descuento3 }} <span class="visually-hidden">unread messages</span></span>
+                            {{ producto.first_number_range_3 }} - {{ producto.last_number_range_3 }} u
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">US$ {{ producto.get_descuento3 }} <span class="visually-hidden">unread messages</span></span>
                         </button>
                     </li>
                 </ul>
