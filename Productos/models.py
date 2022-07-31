@@ -73,19 +73,31 @@ class Producto(models.Model):
         return self.precio
 
     def get_descuento1(self):
-        if self.cantidad >= self.first_number_range_1:
-            return self.descuento1
-        return f"{self.precio - self.descuento1} (No hay suficientes en stock)"
+        if self.descuento1:
+            if self.cantidad >= self.first_number_range_1:
+                return self.descuento1
+            else:
+                return f"{self.precio - self.descuento1} (No hay suficientes en stock)"
+        else:
+            return self.precio
 
     def get_descuento2(self):
-        if self.cantidad >= self.first_number_range_2:
-            return self.descuento2
-        return f"{self.precio - self.descuento2} (No hay suficientes en stock)"
+        if self.descuento2:
+            if self.cantidad >= self.first_number_range_2:
+                return self.descuento2
+            else:
+                return f"{self.precio - self.descuento2} (No hay suficientes en stock)"
+        else:
+            return self.get_descuento1()
 
     def get_descuento3(self):
-        if self.cantidad >= self.descuento3:
-            return self.descuento3
-        return f"{self.precio - self.descuento3} (No hay suficientes en stock)"
+        if self.descuento3:
+            if self.cantidad >= self.descuento3:
+                return self.descuento3
+            else:
+                return f"{self.precio - self.descuento3} (No hay suficientes en stock)"
+        else:
+            return self.get_descuento2()
 
 
 class ImagenProducto(models.Model):

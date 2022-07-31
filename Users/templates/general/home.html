@@ -95,7 +95,7 @@
                                                     <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(255, 255, 255, 0.5); z-index: 9999; top: 25%; left: 25%">AGOTADO</p>
                                                 {% endif %}
                                                 <div class="card-body">
-                                                    <p class="number">$ {{ recommended_product.precio }}</p>
+                                                    <p class="number">$ {{ recommended_product.get_descuento3 }}</p>
                                                     <h5 class="card-title">{{ recommended_product.nombre | title }}</h5>
                                                     <p class="card-text text mt-3">{{ recommended_product.get_short_desc }}</p>
                                                 </div>
@@ -163,7 +163,7 @@
                                                 <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(255, 255, 255, 0.5); z-index: 9999; top: 30%; left: 25%">AGOTADO</p>
                                             {% endif %}
                                             <div class="card-body">
-                                                <p class="number">$ {{ product.precio }}</p>
+                                                <p class="number">$ {{ product.get_descuento3 }}</p>
                                                 <h5 class="card-title">{{ product.nombre | title }}</h5>
                                                 <p class="card-text mt-3">{{ product.get_short_desc }}</p>
                                             </div>
