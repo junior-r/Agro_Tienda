@@ -15,7 +15,7 @@ class ImagenProductoAdmin(admin.TabularInline):
 
 
 class ProductoAdmin(admin.ModelAdmin):
-    list_display = ('nombre', 'precio', 'cantidad', 'categoria', 'created_at', 'recomendar')
+    list_display = ('nombre', 'precio', 'cantidad', 'created_at', 'recomendar')
     search_fields = ('nombre',)
     list_filter = ('created_at', 'cantidad', 'categoria')
     list_per_page = 10

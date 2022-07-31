@@ -28,7 +28,8 @@ class ProductoForm(forms.ModelForm):
     last_number_range_3 = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}), label='Número límite del rango 3', required=False)
 
     cantidad = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}), label='Cantidad')
-    categoria = forms.ModelChoiceField(queryset=Categoria.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}), label='Categoría')
+    categoria = forms.ModelMultipleChoiceField(queryset=Categoria.objects.all(),
+                                       widget=forms.SelectMultiple(attrs={'class': 'form-control'}), label='Categoría')
     recomendar = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class': 'form-control'}), label='¿Recomendar?', required=False)
 
     class Meta:

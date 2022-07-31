@@ -27,8 +27,7 @@ class Categoria(models.Model):
         return f'{settings.STATIC_URL}img/default/empty.png'
 
     def get_number_prd(self):
-        return self.producto_set.count()
-
+        return Producto.objects.filter(categoria=self.id).count()
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=100)
@@ -47,7 +46,7 @@ class Producto(models.Model):
 
     cantidad = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
-    categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, blank=True)
+    categoria = models.ManyToManyField(Categoria, related_name='categoria_producto')
     recomendar = models.BooleanField(default=False)
 
     class Meta:

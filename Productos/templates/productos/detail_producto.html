@@ -15,11 +15,15 @@
 
 {% block container %}
     <div class="container" style="min-height: 100vh">
-        <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" style="--bs-breadcrumb-divider: '>';">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
                 <li class="breadcrumb-item"><a href="{% url 'productos' %}">Productos</a></li>
-                <li class="breadcrumb-item active">#{{ producto.id }} {{ producto.nombre | title }}</li>
+                <li class="breadcrumb-item active">"
+                    {% for category in producto.categoria.all %}
+                        {{ category }} -
+                    {% endfor %}
+                "</li>
             </ol>
         </nav>
         <div class="content-product">

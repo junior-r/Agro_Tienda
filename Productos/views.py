@@ -94,7 +94,7 @@ def productos(request):
     if request.method == 'GET':
         category = request.GET.get('category')
         if category:
-            categoria_productos = Producto.objects.filter(categoria_id=int(category))
+            categoria_productos = Producto.objects.filter(categoria=int(category))
             categoria = Categoria.objects.get(id=int(category))
 
             paginator = Paginator(categoria_productos, 9)
