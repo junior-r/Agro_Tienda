@@ -40,7 +40,8 @@
                     <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(255, 255, 255, 0.5); z-index: 999; top: 45%; left: 38%;">AGOTADO</p>
                 {% endif %}
                 {% if producto.imagenes.all.count > 1 %}
-                    <p class="text-muted text text-center">Desliza para ver la siguiente imágen</p>
+                    <p class="text-muted text text-center">Desliza para ver la siguiente imágen <img src="{% static 'productos/images/dedo.png' %}" style="width: 1.8rem;" loading="lazy" alt=""
+                                                                                                     class="dedo"></p>
                 {% endif %}
                 <div class="content-images d-flex gap-3 justify-content-center mt-3 align-items-center">
                     {% for img in producto.imagenes.all %}
@@ -56,7 +57,7 @@
                     <p class="text fw-bold">Precio unitario: <span class="number text-success">US$ {{ producto.get_price | intcomma }}</span></p>
                 </div>
 
-                <ul class="m-0 options-price list-unstyled d-flex justify-content-between">
+                <ul class="m-0 options-price list-unstyled d-flex justify-content-start gap-5">
                     {% if producto.first_number_range_1 and producto.last_number_range_1 and producto.get_descuento1 %}
                     <li class="item">
                         <button class="btn btn-outline-primary position-relative">
