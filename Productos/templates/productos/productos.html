@@ -71,10 +71,10 @@
                                             {% endif %}
                                         </figure>
                                         <div class="card-body">
+                                            <p class="number fw-bold text-success fs-5">US$ {{ producto.precio | intcomma }}</p>
                                             <h5 class="card-title title fw-bold fs-3">{{ producto.nombre }}</h5>
                                             <small class="text-muted">{{ producto.categoria.nombre | capfirst }}</small>
                                             <p class="card-text text">{{ producto.get_short_desc }}</p>
-                                            <p class="number fw-bold text-success">$ {{ producto.precio | intcomma }}</p>
                                         </div>
                                     </div>
                                 </a>
@@ -94,10 +94,10 @@
                                             {% endif %}
                                         </figure>
                                         <div class="card-body">
+                                            <p class="number fw-bold text-success fs-5">US$ {{ producto.precio | intcomma }}</p>
                                             <h5 class="card-title title fw-bold fs-3">{{ producto.nombre }}</h5>
                                             <small class="text-muted">{{ producto.categoria.nombre | capfirst }}</small>
                                             <p class="card-text text">{{ producto.get_short_desc }}</p>
-                                            <p class="number fw-bold text-success">$ {{ producto.precio | intcomma }}</p>
                                             {% if producto.recomendar %}
                                                 <small class="d-inline-block w-100 text-muted text-center">Recomendado</small>
                                             {% endif %}
