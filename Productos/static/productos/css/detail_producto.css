@@ -168,4 +168,8 @@
     .container .recommended-products .card-group .card p.legend {
         font-size: 1.5rem;
     }
+
+    .container .recommended-products .card-group .card p.precio_producto {
+        font-size: 2rem;
+    }
 }

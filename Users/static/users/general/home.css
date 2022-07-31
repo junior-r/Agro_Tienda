@@ -203,11 +203,13 @@
     .container .recommended-products .content-recommended-products .owl-container .owl-carousel .item .card .card-body p.number,
     .container .recommended_categories .content a .category .name-category,
     .container .products .content-products .owl-container .owl-carousel .item .card .card-body p.number {
-        font-size: 2.3rem;
+        font-size: 2.3rem !important;
     }
 
     .container .recommended-products .content-recommended-products .owl-container .owl-carousel .item .card .card-body h5,
     .container .products .content-products .owl-container .owl-carousel .item .card .card-body h5 {
         font-size: 2.5rem !important;
     }
+
+
 }

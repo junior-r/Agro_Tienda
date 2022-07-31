@@ -88,4 +88,8 @@
     .content .products .content-products div .card .card-body .card-title {
         font-size: 35px !important;
     }
+
+    .content .products .content-products div .card .card-body p.precio_producto {
+        font-size: 2rem !important;
+    }
 }
