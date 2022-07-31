@@ -157,7 +157,7 @@
 
     .content .who_we_are .us .us_description p,
     .content .who_we_are .us-2 .us2-description p {
-        font-size: 1.5rem !important;
+        font-size: 1.5rem;
     }
 
     .content .follow_us {
