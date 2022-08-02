@@ -132,7 +132,9 @@
                 <div class="description-img">
                     <h3 class="title fs-1 fw-bold">{{ evento.nombre }}</h3>
                     <p class="text fs-6">{{ evento.descripcion }}</p>
-                    <a href="#" class="btn btn-light fw-bold text mt-5 rounded-0" style="width: max-content;">SHOP NOW</a>
+                    {% if evento.texto_boton %}
+                        <a href="#" class="btn btn-light fw-bold text mt-5 rounded-0" style="width: max-content;">{{ evento.texto_boton }}</a>
+                    {% endif %}
                 </div>
             {% else %}
                 <figure class="img" style="background-image: url('https://www.agro-expovirtual.portalagrochile.cl/wp-content/uploads/2020/06/expo-virtual-agro-2020-1.jpg')"></figure>
