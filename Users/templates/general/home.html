@@ -115,7 +115,7 @@
                 <p class="text text-center">Ve todas las <a href="{% url 'productos' %}">categorías aquí</a></p>
                 <div class="content d-flex gap-3 justify-content-evenly flex-wrap my-5">
                     {% for recommended_category in recommended_categories %}
-                        <a href="/productos/?category={{ recommended_category.id }}" class="text-decoration-none text-reset d-inline-block" style="width: 300px; height: 300px;">
+                        <a href="/productos/?category={{ recommended_category.id }}" class="text-decoration-none shadow text-reset d-inline-block" style="width: 300px; height: 300px; overflow: hidden; border-radius: 10px">
                             <div class="category" style="position: relative">
                                 <figure class="img-category" style="background-image: url({{ recommended_category.get_imagen }})"></figure>
                                 <h3 class="name-category title">{{ recommended_category.nombre | title }}</h3>
@@ -126,14 +126,14 @@
             {% endif %}
         </section>
 
-        <section class="info-img my-5">
+        <section class="info-img my-5" style="overflow: hidden; border-radius: 10px 60px 10px 60px">
             {% if evento %}
                 <figure class="img" style="background-image: url({{ evento.imagen.url }})"></figure>
                 <div class="description-img">
                     <h3 class="title fs-1 fw-bold">{{ evento.nombre }}</h3>
                     <p class="text fs-6">{{ evento.descripcion }}</p>
                     {% if evento.texto_boton and evento.get_link %}
-                        <a href="{{ evento.get_link }}" class="btn btn-light fw-bold text mt-5 rounded-0" style="width: max-content;">{{ evento.texto_boton }}</a>
+                        <a href="{{ evento.get_link }}" class="btn btn-light fw-bold text mt-5 rounded-0 py-2 px-4" style="width: max-content; text-transform: uppercase">{{ evento.texto_boton }}</a>
                     {% endif %}
                 </div>
             {% else %}
@@ -141,7 +141,7 @@
                 <div class="description-img">
                     <h3 class="title fs-1 fw-bold">Special Edition</h3>
                     <p class="text fs-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-                    <a href="#" class="btn btn-light fw-bold text mt-5 rounded-0" style="width: max-content;">SHOP NOW</a>
+                    <a href="#" class="btn btn-light fw-bold text mt-5 rounded-0" style="width: max-content; text-transform: uppercase">SHOP NOW</a>
                 </div>
             {% endif %}
         </section>
