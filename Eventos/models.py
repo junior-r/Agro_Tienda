@@ -20,6 +20,8 @@ class Evento(models.Model):
     def get_absolute_url(self):
         if self.link:
             return self.link
+        else:
+            return '#'
 
     class Meta:
         ordering = ['-created_at']

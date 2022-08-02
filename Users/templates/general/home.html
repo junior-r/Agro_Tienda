@@ -132,8 +132,8 @@
                 <div class="description-img">
                     <h3 class="title fs-1 fw-bold">{{ evento.nombre }}</h3>
                     <p class="text fs-6">{{ evento.descripcion }}</p>
-                    {% if evento.texto_boton %}
-                        <a href="#" class="btn btn-light fw-bold text mt-5 rounded-0" style="width: max-content;">{{ evento.texto_boton }}</a>
+                    {% if evento.texto_boton and evento.get_absolute_url %}
+                        <a href="{{ evento.get_absolute_url }}" class="btn btn-light fw-bold text mt-5 rounded-0" style="width: max-content;">{{ evento.texto_boton }}</a>
                     {% endif %}
                 </div>
             {% else %}
