@@ -1,4 +1,5 @@
 from django.db import models
+from Agro_Tienda.settings import CSRF_TRUSTED_ORIGINS
 
 
 def save_image_event(instance, filename):
@@ -17,9 +18,12 @@ class Evento(models.Model):
     def __str__(self):
         return self.nombre
 
-    def get_absolute_url(self):
+    def get_link(self):
         if self.link:
             return self.link
+
+    def get_absolute_url(self):
+        return f'{CSRF_TRUSTED_ORIGINS[0]}/eventos/evento/{self.id}'
 
     class Meta:
         ordering = ['-created_at']
