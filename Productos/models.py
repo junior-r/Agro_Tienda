@@ -104,6 +104,13 @@ class ImagenProducto(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name="imagenes")
 
 
+class ColorProduct(models.Model):
+    hex_code = models.CharField(max_length=20)
+    cantidad = models.IntegerField(default=0)
+    nombre = models.CharField(max_length=100)
+    product = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name='colors')
+
+
 class Compra(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE, null=True)
     precio = models.DecimalField(max_digits=10, decimal_places=2)

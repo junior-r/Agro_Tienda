@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Categoria, Producto, Compra, ImagenProducto
+from .models import Categoria, Producto, Compra, ImagenProducto, ColorProduct
 from .forms import CategoriaForm, ProductoForm
 
 
@@ -14,6 +14,10 @@ class ImagenProductoAdmin(admin.TabularInline):
     model = ImagenProducto
 
 
+class ColorProductAdmin(admin.TabularInline):
+    model = ColorProduct
+
+
 class ProductoAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'precio', 'cantidad', 'created_at', 'recomendar')
     search_fields = ('nombre',)
@@ -21,7 +25,8 @@ class ProductoAdmin(admin.ModelAdmin):
     list_per_page = 10
     form = ProductoForm
     inlines = [
-        ImagenProductoAdmin
+        ImagenProductoAdmin,
+        ColorProductAdmin
     ]
 
 

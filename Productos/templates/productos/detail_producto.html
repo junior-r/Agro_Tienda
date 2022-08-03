@@ -87,9 +87,9 @@
                     </li>
                     {% endif %}
                 </ul>
-                <p class="cantidad number fs-6 m-0 fw-bold">Disponible: {{ producto.cantidad | intcomma }} <span class="text-success">unidades</span></p>
+                <p class="cantidad number fs-6 mt-3 fw-bold">Disponible: {{ producto.cantidad | intcomma }} <span class="text-success">unidades</span></p>
                 <div class="cart-form d-flex align-items-baseline gap-3 mt-3">
-                    <form action="{% url 'add_to_cart' producto.id %}" method="post" enctype="multipart/form-data" class="d-flex justify-content-between gap-3">
+                    <form action="{% url 'add_to_cart' producto.id %}" method="post" enctype="multipart/form-data" class="d-flex flex-column justify-content-between gap-3">
                         {% csrf_token %}
                         {% if producto.cantidad <= 0 %}
                             <input type="number" class="form-control" disabled value="1" max="{{ producto.cantidad }}" name="cantidad" style="width: 6rem; display: inline-block"
@@ -97,23 +97,42 @@
                                data-bs-placement="top"
                                title="No hay unidades en stock!">
                             <button type="submit" class="btn btn-primary btn-add-cart rounded-0" disabled>Agregar al carrito</button>
-                        {% else %}
-                            <input type="number" class="form-control" value="1" max="{{ producto.cantidad }}" name="cantidad" style="width: 6rem; display: inline-block"
+                            <a href="https://wa.me/584122647923/?text=Hola, me puede dar información de este producto {{ producto.get_absolute_url }} Producto: {{ producto.nombre }}" class="btn rounded-0 text-white fw-bold" target="_blank" style="background-color: #24bb5d;"
                                data-bs-toggle="tooltip"
                                data-bs-placement="top"
-                               title="Introduce la cantidad que quieras">
-                            <button type="submit" class="btn btn-primary btn-add-cart rounded-0"
-                                data-bs-toggle="tooltip"
-                                data-bs-placement="top"
-                                title="Buena elección, compra rápido y seguro">Agregar al carrito</button>
+                               title="Preguntanos lo que quieras acerca de este producto.">
+                                WhatsApp
+                            </a>
+                        {% else %}
+                            <div class="colors d-flex justify-content-start gap-3">
+                                {% for color in producto.colors.all %}
+                                    <div class="form-check d-flex align-items-center gap-3">
+                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" style="width: 2rem; height: 2rem; background-color: {{ color.hex_code }}; border-radius: 5px">
+                                        <label class="form-check-label" for="exampleRadios1">
+                                            {{ color.cantidad }}
+                                        </label>
+                                        <p class="nombre">{{ color.nombre|title }}</p>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="input d-flex justify-content-between gap-3">
+                                <input type="number" class="form-control" value="1" max="{{ producto.cantidad }}" name="cantidad" style="width: 6rem; display: inline-block"
+                                   data-bs-toggle="tooltip"
+                                   data-bs-placement="top"
+                                   title="Introduce la cantidad que quieras">
+                                <button type="submit" class="btn btn-primary btn-add-cart rounded-0"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="top"
+                                    title="Buena elección, compra rápido y seguro">Agregar al carrito</button>
+                                <a href="https://wa.me/584122647923/?text=Hola, me puede dar información de este producto {{ producto.get_absolute_url }} Producto: {{ producto.nombre }}" class="btn rounded-0 text-white fw-bold" target="_blank" style="background-color: #24bb5d;"
+                                   data-bs-toggle="tooltip"
+                                   data-bs-placement="top"
+                                   title="Preguntanos lo que quieras acerca de este producto.">
+                                    WhatsApp
+                                </a>
+                            </div>
                         {% endif %}
                     </form>
-                    <a href="https://wa.me/584122647923/?text=Hola, me puede dar información de este producto {{ producto.get_absolute_url }} Producto: {{ producto.nombre }}" class="btn rounded-0 text-white fw-bold" target="_blank" style="background-color: #24bb5d;"
-                       data-bs-toggle="tooltip"
-                       data-bs-placement="top"
-                       title="Preguntanos lo que quieras acerca de este producto.">
-                        WhatsApp
-                    </a>
                 </div>
                 <hr class="my-3">
                 <div class="icons-prd d-flex gap-3 justify-content-start">
