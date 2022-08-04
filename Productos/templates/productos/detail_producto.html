@@ -107,7 +107,7 @@
                             <div class="colors d-flex justify-content-start gap-3">
                                 {% for color in producto.colors.all %}
                                     <div class="form-check d-flex align-items-center gap-3">
-                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" style="width: 2rem; height: 2rem; background-color: {{ color.hex_code }}; border-radius: 5px">
+                                        <input class="form-check-input" type="radio" name="color" id="exampleRadios1" value="{{ color.hex_code }}" required style="width: 2rem; height: 2rem; background-color: {{ color.hex_code }}; border-radius: 5px">
                                         <label class="form-check-label" for="exampleRadios1">
                                             {{ color.cantidad }}
                                         </label>

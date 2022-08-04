@@ -67,7 +67,7 @@
                             {% else %}
                                 0
                             {% endif %}
-                            <span class="visually-hidden">unread messages</span></span>
+                            <span class="visually-hidden">productos</span></span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end menu-cart">
                         {% if cart_prd %}
@@ -79,7 +79,7 @@
                                         {% endif %}
                                         <div class="info_product_cart">
                                             <p class="m-0 nombre text">{{ product.nombre | capfirst }}</p>
-                                            <p class="m-0 cantida_precio number text-muted">{{ product.cantidad }} x $ {{ product.precio }} = <span class="text-primary">$ {{ product.monto_total }}</span></p>
+                                            <p class="m-0 cantida_precio number text-muted">{{ product.cantidad }} x $ {{ product.precio }} = <span style="color: {{ product.color }}">US$ {{ product.monto_total }}</span></p>
                                         </div>
                                     </a>
                                     <a href="{% url 'remove_from_cart' product.producto_id %}" class="remove_product_cart text-decoration-none">
@@ -88,7 +88,7 @@
                                 </li>
                             {% endfor %}
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item text text-center" href="#">Subtotal: <span class="number text-primary">$ {{ cart.get_subtotal }}</span></a></li>
+                            <li><a class="dropdown-item text text-center" href="#">Subtotal: <span class="number text-primary">US$ {{ cart.get_subtotal }}</span></a></li>
 
                             <li><hr class="dropdown-divider"></li>
                             <li class="text-center items-view-cart">
@@ -161,7 +161,7 @@
                                         {% else %}
                                             0
                                         {% endif %}
-                                        <span class="visually-hidden">unread messages</span></span>
+                                        <span class="visually-hidden">productos</span></span>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end menu-cart">
                                     {% if cart_prd %}
@@ -173,7 +173,7 @@
                                                     {% endif %}
                                                     <div class="info_product_cart">
                                                         <p class="m-0 nombre text">{{ product.nombre | capfirst }}</p>
-                                                        <p class="m-0 cantida_precio number text-muted">{{ product.cantidad }} x $ {{ product.precio }} = <span class="text-primary">$ {{ product.monto_total }}</span></p>
+                                                        <p class="m-0 cantida_precio number text-muted">{{ product.cantidad }} x $ {{ product.precio }} = <span style="color: {{ product.color }}">US$ {{ product.monto_total }}</span></p>
                                                     </div>
                                                 </a>
                                                 <a href="{% url 'remove_from_cart' product.producto_id %}" class="remove_product_cart text-decoration-none">
@@ -182,7 +182,7 @@
                                             </li>
                                         {% endfor %}
                                         <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item text text-center" href="#">Subtotal: <span class="number text-primary">$ {{ cart.get_subtotal }}</span></a></li>
+                                        <li><a class="dropdown-item text text-center" href="#">Subtotal: <span class="number text-primary">US$ {{ cart.get_subtotal }}</span></a></li>
 
                                         <li><hr class="dropdown-divider"></li>
                                         <li class="text-center">

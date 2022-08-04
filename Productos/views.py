@@ -163,7 +163,7 @@ def cart(request):
     return render(request, 'productos/cart.html', data)
 
 
-def get_range_price(request, producto, cantidad, cantidad_cart):
+def get_range_price(request, producto, cantidad, cantidad_cart, color):
     """
         Función que determina el precio del producto en función de su rango de cantidad.
         Function that determines the price of the product based on its quantity range.
@@ -173,6 +173,7 @@ def get_range_price(request, producto, cantidad, cantidad_cart):
             * producto (product).
             * cantidad (quantity).
             * cantidad del producto en el carrito (product´s quantity in cart).
+            * color del producto (color product).
         :return:
             Redirección a la página de producto. (redirect to the products page).
     """
@@ -181,16 +182,16 @@ def get_range_price(request, producto, cantidad, cantidad_cart):
 
     if int(cantidad) + int(cantidad_cart) < producto.first_number_range_1:
         # Si la cantidad ingresada + la cantidad guardada es menor al rango más bajo (1), se agrega con su precio uniario.
-        cart.add(producto, int(cantidad), float(producto.precio))
+        cart.add(producto, int(cantidad), float(producto.precio), color)
     elif (int(cantidad) + int(cantidad_cart)) in range(int(producto.first_number_range_1), int(producto.last_number_range_1) + 1):
         # Si la cantidad ingresada + la cantidad guardada esta en el rango 1
-        cart.add(producto, int(cantidad), float(producto.get_descuento1()))
+        cart.add(producto, int(cantidad), float(producto.get_descuento1()), color)
     elif (int(cantidad) + int(cantidad_cart)) in range(int(producto.first_number_range_2), int(producto.last_number_range_2) + 1):
         # Si la cantidad ingresada + la cantidad guardada esta en el rango 2
-        cart.add(producto, int(cantidad), float(producto.get_descuento2()))
+        cart.add(producto, int(cantidad), float(producto.get_descuento2()), color)
     elif (int(cantidad) + int(cantidad_cart)) in range(int(producto.first_number_range_3), int(producto.last_number_range_3) + 1):
         # Si la cantidad ingresada + la cantidad guardada esta en el rango 3
-        cart.add(producto, int(cantidad), float(producto.get_descuento3()))
+        cart.add(producto, int(cantidad), float(producto.get_descuento3()), color)
     else:
         messages.error(request, 'Cantidad inválida, intente de nuevo!')
         return redirect('productos')
@@ -199,6 +200,10 @@ def get_range_price(request, producto, cantidad, cantidad_cart):
 def add_to_cart(request, id):
     producto = Producto.objects.get(id=id)
     cantidad = request.POST.get('cantidad')
+    if request.POST.get('color'):
+        color = request.POST.get('color')
+    else:
+        color = '#000'
     cantidad = int(cantidad)
 
     cart = Cart(request)
@@ -216,11 +221,11 @@ def add_to_cart(request, id):
                 messages.error(request, 'No hay suficientes unidades en stock. Intente con menor cantidad!')
                 return redirect('detail_producto', id=producto.id)
             else:
-                get_range_price(request, producto, cantidad=cantidad, cantidad_cart=cantidad_cart)
+                get_range_price(request, producto, cantidad=cantidad, cantidad_cart=cantidad_cart, color=color)
                 messages.success(request, 'Producto agregado al carrito exitosamente!')
                 return redirect('productos')
 
-    get_range_price(request, producto, cantidad, cantidad_cart=0)
+    get_range_price(request, producto, cantidad, cantidad_cart=0, color=color)
     messages.success(request, 'Producto agregado al carrito exitosamente!')
     return redirect('productos')
 
@@ -250,16 +255,16 @@ def get_price_by_quantity_add(request, product, cant_add, cant_prd_cart):
     cart = Cart(request)
 
     if int(cant_prd_cart) + cant_add in range(int(product.first_number_range_1), int(product.last_number_range_1) + 1):
-        cart.add(product, 1, float(product.get_descuento1()))
+        cart.add(product, 1, float(product.get_descuento1()), '#000')
         return redirect('cart')
     elif int(cant_prd_cart) + cant_add in range(int(product.first_number_range_2), int(product.last_number_range_2) + 1):
-        cart.add(product, 1, float(product.get_descuento2()))
+        cart.add(product, 1, float(product.get_descuento2()), '#000')
         return redirect('cart')
     elif int(cant_prd_cart) + cant_add in range(int(product.first_number_range_3), int(product.last_number_range_3) + 1):
-        cart.add(product, 1, float(product.get_descuento3()))
+        cart.add(product, 1, float(product.get_descuento3()), '#000')
         return redirect('cart')
     else:
-        cart.add(product, 1, float(product.precio))
+        cart.add(product, 1, float(product.precio), '#000')
         return redirect('cart')
 
 

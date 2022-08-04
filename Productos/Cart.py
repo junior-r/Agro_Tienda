@@ -1,4 +1,5 @@
 from Productos.models import ImagenProducto, Producto
+import random
 
 
 class Cart:
@@ -16,7 +17,7 @@ class Cart:
         self.session['cart'] = self.cart
         self.session.modified = True
 
-    def add(self, producto, cantidad, precio):
+    def add(self, producto, cantidad, precio, color):
         id = str(producto.id)
         img_product = ImagenProducto.objects.filter(producto_id=producto.id).first()
         if img_product is not None:
@@ -26,12 +27,14 @@ class Cart:
 
         if id not in self.cart.keys():
             # Si el producto no está en el carrito, se agrega con una cantidad = 1
+            print('add')
             self.cart[id] = {
                 'producto_id': producto.id,
                 'imagen': img,
                 'nombre': producto.nombre,
                 'precio': float(precio),
                 'description': producto.get_short_desc(),
+                'color': color,
                 'cantidad': cantidad,
                 'monto_total': round(float(precio) * cantidad, 2)
             }
@@ -40,9 +43,10 @@ class Cart:
                 Si el producto ya está en el carrito, se aumenta su cantidad en 1 y el monto total multiplicado 
                 por la cantidad
             '''
-
+            print('sub')
             self.cart[id]['cantidad'] += cantidad
             self.cart[id]['precio'] = precio
+            self.cart[id]['color'] = color
             self.cart[id]['monto_total'] = round(float(self.cart[id]['precio']) * self.cart[id]['cantidad'], 2)
         self.save()
 
