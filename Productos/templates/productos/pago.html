@@ -26,6 +26,7 @@
                         <p class="text-muted email text m-0">Email: {{ datos_envio.email }}</p>
                         <p class="text-muted phone number m-0">Teléfono: {{ datos_envio.phone }}</p>
                         <p class="text-muted direccion text m-0">Dirección: {{ datos_envio.address }}</p>
+                        <p class="text-muted direccion text m-0">Dirección de MRW: {{ datos_envio.address_mrw }}</p>
                         <p class="text-muted city text m-0">Estado: {{ datos_envio.state }}</p>
                         <p class="text-muted city text m-0">Ciudad: {{ datos_envio.city }}</p>
                         <p class="text-muted country text m-0">País: {{ datos_envio.country }}</p>
@@ -55,10 +56,11 @@
                             <a href="https://api.whatsapp.com/send?phone=584122647923" target="_blank" class="text-reset"> WhatsApp.</a></small>
                         <div class="card-body">
                             <p class="text-muted">Transferencia Bancaria (USD $1 = Bs. Tasa Banco Central de Venezuela)</p>
-                            <div class="section-tranfer mb-3 pb-3 ms-3">
+                            <div class="section-tranfer pb-3 ms-3">
                                 <div class="banco-1 mb-3 pb-3 border-bottom">
                                     <p class="fw-bold m-0">Beneficiario: AGROALIMENTOS VENEZUELA C.A</p>
                                     <p class="fw-bold m-0">RIF: J-411968404</p>
+                                    <br>
                                     <p class="fw-bold m-0">Beneficiario: AGROALIMENTOS VENEZUELA C.A</p>
                                     <p class="fw-bold m-0">RIF: J-411968404</p>
                                 </div>
@@ -74,7 +76,6 @@
                                     <p class="fw-bold m-0">Banco: VENEZUELA</p>
                                     <p class="fw-bold m-0">Cta. Corriente: <span class="number">01020111090000547217</span></p>
                                 </div>
-
                             </div>
 
                             <p class="text-muted">Zelle con los siguientes datos</p>
@@ -124,11 +125,6 @@
                         <td></td>
                         <th scope="row" class="title">Subtotal</th>
                         <td class="center-y number">$ {{ cart.get_subtotal }}</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <th scope="row" class="title">Total</th>
-                        <td class="center-y number">$ {{ cart.get_total_iva }}</td>
                     </tr>
                 </tbody>
             </table>

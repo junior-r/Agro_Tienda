@@ -79,8 +79,6 @@
                                     <button type="submit" class="btn btn-success px-5 py-2">Siguiente</button>
                                     <a href="{% url 'checkout' %}" class="btn btn-outline-secondary px-5 py-2">Anterior</a>
                                 </div>
-
-
                             </form>
                         </div>
                     </div>
@@ -110,11 +108,6 @@
                         <td></td>
                         <th scope="row" class="title">Subtotal</th>
                         <td class="center-y number">$ {{ cart.get_subtotal }}</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <th scope="row" class="title">Total</th>
-                        <td class="center-y number">$ {{ cart.get_total_iva }}</td>
                     </tr>
                 </tbody>
             </table>

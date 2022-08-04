@@ -54,7 +54,7 @@
                             </div>
 
                             <div class="row g-3 mb-3">
-                                <label for="address_mrw" class="form-label title">Dirección de la oficina MRW</label>
+                                <label for="address_mrw" class="form-label title">Dirección de la agencia MRW</label>
                                 <div class="mt-0">
                                     <input type="text" class="form-control text" id="address_mrw" placeholder="" name="address_mrw" required>
                                 </div>
@@ -137,11 +137,6 @@
                         <td></td>
                         <th scope="row" class="title">Subtotal</th>
                         <td class="center-y number">$ {{ cart.get_subtotal }}</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <th scope="row" class="title">Total</th>
-                        <td class="center-y number">$ {{ cart.get_total_iva }}</td>
                     </tr>
                 </tbody>
             </table>

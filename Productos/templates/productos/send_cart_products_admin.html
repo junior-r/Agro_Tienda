@@ -90,20 +90,6 @@
                 <td class="fw-bold title">Subtotal</td>
                 <td class="number">{{ cart.get_subtotal }}</td>
             </tr>
-            <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td></td>
-                <td class="fw-bold title">I.V.A.</td>
-                <td class="number">{{ cart.get_iva }}</td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td></td>
-                <td class="fw-bold title">Total <span class="number">(IVA 16%)</span></td>
-                <td class="number">{{ cart.get_total_iva }}</td>
-            </tr>
         </tfoot>
     </table>
     <time class="text"><strong>Fecha:</strong> {{ fecha }}</time>
