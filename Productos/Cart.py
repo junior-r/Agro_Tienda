@@ -27,7 +27,6 @@ class Cart:
 
         if id not in self.cart.keys():
             # Si el producto no está en el carrito, se agrega con una cantidad = 1
-            print('add')
             self.cart[id] = {
                 'producto_id': producto.id,
                 'imagen': img,
@@ -43,7 +42,6 @@ class Cart:
                 Si el producto ya está en el carrito, se aumenta su cantidad en 1 y el monto total multiplicado 
                 por la cantidad
             '''
-            print('sub')
             self.cart[id]['cantidad'] += cantidad
             self.cart[id]['precio'] = precio
             self.cart[id]['color'] = color
