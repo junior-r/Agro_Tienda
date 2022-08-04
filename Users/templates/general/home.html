@@ -129,9 +129,7 @@
         <section class="info-img my-5" style="overflow: hidden; border-radius: 10px 60px 10px 60px">
             {% if evento %}
                 <figure class="img" style="background-image: url({{ evento.imagen.url }})"></figure>
-                <div class="description-img">
-                    <h3 class="title fs-1 fw-bold">{{ evento.nombre }}</h3>
-                    <p class="text fs-6">{{ evento.descripcion }}</p>
+                <div class="description-img" style="background-color: transparent;">
                     {% if evento.texto_boton and evento.get_link %}
                         <a href="{{ evento.get_link }}" class="btn btn-light fw-bold text mt-5 rounded-0 py-2 px-4" style="width: max-content; text-transform: uppercase">{{ evento.texto_boton }}</a>
                     {% endif %}

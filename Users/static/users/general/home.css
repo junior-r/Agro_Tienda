@@ -91,10 +91,11 @@
     left: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.5);
-    padding: 0 3rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: flex-start;
+    padding-left: 8rem;
     color: #FFFFFF;
 }
 
