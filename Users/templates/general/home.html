@@ -21,13 +21,19 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{% static 'users/imagenes/Agro_Tienda/carousel_1.png' %}" class="d-block w-100" alt="Tu aliado agropecuario" loading="lazy">
+                <a href="{% url 'productos' %}">
+                    <img src="{% static 'users/imagenes/Agro_Tienda/carousel_1.png' %}" class="d-block w-100" alt="Tu aliado agropecuario" loading="lazy">
+                </a>
             </div>
             <div class="carousel-item">
-                <img src="{% static 'users/imagenes/Agro_Tienda/carousel_2.png' %}" class="d-block w-100" alt="Somos garantes de la salud animal" loading="lazy">
+                <a href="{% url 'productos' %}">
+                    <img src="{% static 'users/imagenes/Agro_Tienda/carousel_2.png' %}" class="d-block w-100" alt="Somos garantes de la salud animal" loading="lazy">
+                </a>
             </div>
             <div class="carousel-item">
-                <img src="{% static 'users/imagenes/Agro_Tienda/carousel_3.png' %}" class="d-block w-100" alt="Línea avícola" loading="lazy">
+                <a href="{% url 'productos' %}">
+                    <img src="{% static 'users/imagenes/Agro_Tienda/carousel_3.png' %}" class="d-block w-100" alt="Línea avícola" loading="lazy">
+                </a>
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -41,7 +47,7 @@
     </div>
     </div>
 
-    <div class="container pb-5 pt-0">
+    <div class="container pt-0">
         <section class="icons my-5 gap-3">
             <div class="truck border-end border-3" style="border-color: #04b547;">
                 <img src="{% static 'users/Iconos/truck-fast-solid.svg' %}" alt="" style="width: 2rem; height: 2rem" loading="lazy">
@@ -70,7 +76,7 @@
                     <div class="description">
                         <h2 class="title m-0">¿Dudas?</h2>
                         <p class="text m-0 text-muted">Nosotros te ayudamos</p>
-                        <p class="text m-0 text-muted">+58 412-2647 923</p>
+                        <p class="text m-0 text-muted">+58 412-2647923</p>
                     </div>
                 </a>
             </div>

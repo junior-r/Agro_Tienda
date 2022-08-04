@@ -40,7 +40,7 @@
                                 <th scope="row">
                                     <figure class="m-0 img_product_cart" style="background-image: url({{ product.imagen }})"></figure>
                                 </th>
-                                <td class="center-y text"><a href="{% url 'detail_producto' product.producto_id %}" class="text-reset text-decoration-none">{{ product.nombre }}</a></td>
+                                <td class="center-y text"><a href="{% url 'detail_producto' product.producto_id %}" class="text-reset text-decoration-none">{{ product.nombre_corto }}</a></td>
                                 <td class="center-y number">{{ product.cantidad }}</td>
                                 <td class="center-y number">$ {{ product.precio }}</td>
                                 <td class="center-y number">$ {{ product.monto_total }}</td>
@@ -66,7 +66,7 @@
 
                         <tbody>
                             <tr>
-                                <th scope="row">Subtotal</th>
+                                <th scope="row">Total</th>
                                 <td class="center-y number">$ {{ cart.get_subtotal }}</td>
                             </tr>
                         </tbody>

@@ -100,13 +100,13 @@
                     {% for producto in cart_prd %}
                         <tr>
                             <th scope="row" class="title"><figure class="m-0 align-middle img_product_cart" style="background-image: url({{ producto.imagen }}); width: 3rem; height: 3rem"></figure></th>
-                            <th scope="row" class="title align-middle">{{ producto.nombre }}</th>
+                            <th scope="row" class="title align-middle">{{ producto.nombre_corto }}</th>
                             <td class="text-muted number align-middle">{{ producto.cantidad }} x $ {{ producto.precio }} = $ {{ producto.monto_total }}</td>
                         </tr>
                     {% endfor %}
                     <tr>
                         <td></td>
-                        <th scope="row" class="title">Subtotal</th>
+                        <th scope="row" class="title">Total</th>
                         <td class="center-y number">$ {{ cart.get_subtotal }}</td>
                     </tr>
                 </tbody>
