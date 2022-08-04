@@ -59,6 +59,13 @@ class Producto(models.Model):
     def __str__(self):
         return self.nombre
 
+
+    def get_short_name(self):
+        if len(self.nombre) > 30:
+            return self.descripcion[:30] + '...'
+        return self.nombre
+
+
     def get_short_desc(self):
         if len(self.descripcion) > 50:
             return self.descripcion[:50] + '...'

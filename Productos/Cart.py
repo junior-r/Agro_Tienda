@@ -31,6 +31,7 @@ class Cart:
                 'producto_id': producto.id,
                 'imagen': img,
                 'nombre': producto.nombre,
+                'nombre_corto': producto.get_short_name(),
                 'precio': float(precio),
                 'description': producto.get_short_desc(),
                 'color': color,

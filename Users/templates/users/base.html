@@ -78,7 +78,7 @@
                                             <figure class="img_product_cart_menu m-0" style="background-image: url({{ product.imagen }})"></figure>
                                         {% endif %}
                                         <div class="info_product_cart">
-                                            <p class="m-0 nombre text">{{ product.nombre | capfirst }}</p>
+                                            <p class="m-0 nombre text">{{ product.nombre_corto | capfirst }}</p>
                                             <p class="m-0 cantida_precio number text-muted">{{ product.cantidad }} x $ {{ product.precio }} = <span style="color: {{ product.color }}">US$ {{ product.monto_total }}</span></p>
                                         </div>
                                     </a>
