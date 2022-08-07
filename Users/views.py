@@ -50,8 +50,8 @@ def get_categories(request, categories):
 
 def home(request):
     categories = Categoria.objects.all()
-    recommended_products = Producto.objects.filter(recomendar=True)
-    prducts = Producto.objects.all()
+    recommended_products = Producto.objects.filter(recomendar=True).exclude(cantidad=0)
+    products = Producto.objects.all().exclude(cantidad=0)
     evento = Evento.objects.filter(active=True).first()
 
     list_products = []
@@ -68,7 +68,7 @@ def home(request):
         'recommended_categories': list_catogories,
         'recommended_products': recommended_products,
         'evento': evento,
-        'products': prducts,
+        'products': products,
         'counter': contador(request)
     }
 

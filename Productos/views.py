@@ -68,7 +68,7 @@ def get_categories(request, categories):
 
 
 def productos(request):
-    productos = Producto.objects.all()
+    productos = Producto.objects.all().exclude(cantidad=0)
     page = request.GET.get('page', 1)
     categories = Categoria.objects.all()
     list_categories = get_categories(request, categories)
@@ -112,23 +112,28 @@ def productos(request):
 
 
 def detail_producto(request, id):
+    global productos
     producto = Producto.objects.get(id=id)
     categories = Categoria.objects.all()
     recommended_products = []
     counter = 0
     try:
-        productos = Producto.objects.filter(categoria=producto.categoria)
-        for i in range(len(productos)):
-            recommended_products.append(productos[i])
-            if counter >= 4:
-                break
+        for category in producto.categoria.all():
+            productos = Producto.objects.filter(categoria=category).exclude(id=producto.id).exclude(cantidad=0)
+            for p in range(len(productos)):
+                recommended_products.append(productos[p])
+                counter += 1
+                if counter >= 4:
+                    break
     except Exception as e:
-        productos = Producto.objects.filter(categoria=categories.first())
-        for i in range(len(productos)):
-            recommended_products.append(productos[i])
+        productos = Producto.objects.filter(categoria=categories.first()).exclude(id=producto.id).exclude(cantidad=0)
+        for p in range(len(productos)):
+            recommended_products.append(productos[p])
+            counter += 1
             if counter >= 4:
                 break
 
+    recommended_products = set(recommended_products)
     list_categories = get_categories(request, categories)
 
     data = {
