@@ -28,7 +28,7 @@
         </nav>
         <div class="content-product">
             <div class="img_product position-relative">
-                <div class="owl-container">
+                <div class="owl-container position-relative">
                     <div class="owl-carousel owl-theme">
                         <div class="owl-carousel owl-theme">
                             {% for img in producto.imagenes.all %}
@@ -38,11 +38,11 @@
                             {% endfor %}
                         </div>
                     </div>
+                {% if producto.cantidad == 0 %}
+                    <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(0, 0, 0, 0.5); z-index: 999; left: calc(50% - 5rem); top: calc(50% - 1rem); transform: translateY(45%)">AGOTADO</p>
+                {% endif %}
                 </div>
                 <p class="legend position-absolute top-0 px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 999;">ENVÍO GRATIS</p>
-                {% if producto.cantidad == 0 %}
-                    <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(255, 255, 255, 0.5); z-index: 999; top: 45%; left: 38%;">AGOTADO</p>
-                {% endif %}
                 {% if producto.imagenes.all.count > 1 %}
                     <p class="text-muted text text-center">Desliza para ver la siguiente imágen <img src="{% static 'productos/images/dedo.png' %}" style="width: 1.8rem;" loading="lazy" alt=""
                                                                                                      class="dedo"></p>
@@ -92,17 +92,30 @@
                     <form action="{% url 'add_to_cart' producto.id %}" method="post" enctype="multipart/form-data" class="d-flex flex-column justify-content-between gap-3">
                         {% csrf_token %}
                         {% if producto.cantidad <= 0 %}
-                            <input type="number" class="form-control" disabled value="1" max="{{ producto.cantidad }}" name="cantidad" style="width: 6rem; display: inline-block"
-                               data-bs-toggle="tooltip"
-                               data-bs-placement="top"
-                               title="No hay unidades en stock!">
-                            <button type="submit" class="btn btn-primary btn-add-cart rounded-0" disabled>Agregar al carrito</button>
-                            <a href="https://wa.me/584122647923/?text=Hola, me puede dar información de este producto {{ producto.get_absolute_url }} Producto: {{ producto.nombre }}" class="btn rounded-0 text-white fw-bold" target="_blank" style="background-color: #24bb5d;"
-                               data-bs-toggle="tooltip"
-                               data-bs-placement="top"
-                               title="Preguntanos lo que quieras acerca de este producto.">
-                                WhatsApp
-                            </a>
+                            <div class="colors d-flex justify-content-start gap-3">
+                                {% for color in producto.colors.all %}
+                                    <div class="form-check d-flex align-items-center gap-3">
+                                        <input class="form-check-input" disabled type="radio" name="color" id="exampleRadios1" value="{{ color.hex_code }}" required style="width: 2rem; height: 2rem; background-color: {{ color.hex_code }}; border-radius: 5px">
+                                        <label class="form-check-label" for="exampleRadios1">
+                                            {{ color.cantidad }}
+                                        </label>
+                                        <p class="nombre">{{ color.nombre|title }}</p>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="input d-flex justify-content-between gap-3">
+                                <input type="number" class="form-control" disabled value="1" max="{{ producto.cantidad }}" name="cantidad" style="width: 6rem; display: inline-block"
+                                   data-bs-toggle="tooltip"
+                                   data-bs-placement="top"
+                                   title="No hay unidades en stock!">
+                                <button type="submit" class="btn btn-primary btn-add-cart rounded-0" disabled>Agregar al carrito</button>
+                                <a href="https://wa.me/584122647923/?text=Hola, me puede dar información de este producto {{ producto.get_absolute_url }} Producto: {{ producto.nombre }}" class="btn rounded-0 text-white fw-bold" target="_blank" style="background-color: #24bb5d;"
+                                   data-bs-toggle="tooltip"
+                                   data-bs-placement="top"
+                                   title="Preguntanos lo que quieras acerca de este producto.">
+                                    WhatsApp
+                                </a>
+                            </div>
                         {% else %}
                             <div class="colors d-flex justify-content-start gap-3">
                                 {% for color in producto.colors.all %}
@@ -188,12 +201,14 @@
                         {% for recommended_product in recommended_products %}
                             <div class="card position-relative">
                                 {% if recommended_product.imagenes %}
-                                    <img src="{{ recommended_product.imagenes.first.imagen.url }}" style="object-fit: cover; height: 300px" class="card-img-top" alt="imagen del producto" loading="lazy">
+                                    <figure class="container_img position-relative">
+                                        <img src="{{ recommended_product.imagenes.first.imagen.url }}" style="object-fit: cover; height: 300px" class="card-img-top" alt="imagen del producto" loading="lazy">
+                                        {% if recommended_product.cantidad == 0 %}
+                                            <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(0, 0, 0, 0.5); z-index: 999; top: calc(50% - 1rem); left: calc(50% - 5rem)">AGOTADO</p>
+                                        {% endif %}
+                                    </figure>
                                 {% endif %}
                                 <p class="legend position-absolute px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 999;">ENVÍO GRATIS</p>
-                                {% if recommended_product.cantidad == 0 %}
-                                    <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(255, 255, 255, 0.5); z-index: 999; top: 30%; left: 25%">AGOTADO</p>
-                                {% endif %}
                                 <div class="card-body">
                                     <p class="number text-success fw-bold precio_producto">US$ {{ recommended_product.get_descuento3 }}</p>
                                     <h5 class="card-title title mb-3 fw-bold">

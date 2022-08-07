@@ -67,7 +67,7 @@
                                         {% endif %}
                                             <p class="legend position-absolute px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 9999">ENVÍO GRATIS</p>
                                             {% if producto.cantidad == 0 %}
-                                                <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(255, 255, 255, 0.5); z-index: 9999; top: 40%; left: 25%">AGOTADO</p>
+                                                <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(0, 0, 0, 0.5); z-index: 9999; top: 40%; left: 25%">AGOTADO</p>
                                             {% endif %}
                                         </figure>
                                         <div class="card-body">
@@ -90,7 +90,7 @@
                                         {% endif %}
                                             <p class="legend position-absolute px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 9999;">ENVÍO GRATIS</p>
                                             {% if producto.cantidad == 0 %}
-                                                <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(255, 255, 255, 0.5); z-index: 9999; top: 40%; left: 25%">AGOTADO</p>
+                                                <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(0, 0, 0, 0.5); z-index: 9999; top: 40%; left: 25%">AGOTADO</p>
                                             {% endif %}
                                         </figure>
                                         <div class="card-body">
@@ -106,7 +106,7 @@
                                 </a>
                             </div>
                         {% endfor %}
-        {% endif %}
+                    {% endif %}
                 </div>
                 <div class="paginator py-3">
                     {% include 'productos/paginator.html' %}

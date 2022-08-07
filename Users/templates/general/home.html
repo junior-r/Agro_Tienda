@@ -94,12 +94,14 @@
                                         <a href="{% url 'detail_producto' recommended_product.id %}" class="text-decoration-none text-reset">
                                             <div class="card position-relative" style="height: 100%">
                                                 {% if recommended_product.imagenes %}
-                                                    <img src="{{ recommended_product.imagenes.first.imagen.url }}" class="card-img-top" alt="..." style="object-fit: cover" loading="lazy">
+                                                    <figure class="container_img position-relative">
+                                                        <img src="{{ recommended_product.imagenes.first.imagen.url }}" class="card-img-top" alt="..." style="object-fit: cover" loading="lazy">
+                                                        {% if recommended_product.cantidad == 0 %}
+                                                            <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(0, 0, 0, 0.5); z-index: 9999; top: calc(50% - 1rem); left: calc(50% - 5rem">AGOTADO</p>
+                                                        {% endif %}
+                                                    </figure>
                                                 {% endif %}
                                                 <p class="legend position-absolute px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 999999;">ENVÍO GRATIS</p>
-                                                {% if recommended_product.cantidad == 0 %}
-                                                    <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(255, 255, 255, 0.5); z-index: 9999; top: 25%; left: 25%">AGOTADO</p>
-                                                {% endif %}
                                                 <div class="card-body">
                                                     <p class="number text-success fw-bold fs-5 precio_producto">US$ {{ recommended_product.get_descuento3 }}</p>
                                                     <h5 class="card-title">{{ recommended_product.nombre | title }}</h5>
@@ -162,12 +164,14 @@
                                     <a href="{% url 'detail_producto' product.id %}" class="text-decoration-none text-reset">
                                         <div class="card position-relative" style="height: 100%">
                                             {% if product.imagenes %}
-                                                <img src="{{ product.imagenes.first.imagen.url }}" class="card-img-top" alt="..." style="object-fit: cover" loading="lazy">
+                                                <figure class="container_img position-relative">
+                                                    <img src="{{ product.imagenes.first.imagen.url }}" class="card-img-top" alt="..." style="object-fit: cover" loading="lazy">
+                                                    {% if product.cantidad == 0 %}
+                                                        <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(0, 0, 0, 0.5); z-index: 9999; top: calc(50% - 1rem); left: calc(50% - 5rem">AGOTADO</p>
+                                                    {% endif %}
+                                                </figure>
                                             {% endif %}
                                             <p class="legend position-absolute px-3 py-2 text-white fw-bold" style="background-color: #31b771; z-index: 999999">ENVÍO GRATIS</p>
-                                            {% if product.cantidad == 0 %}
-                                                <p class="legend position-absolute px-5 py-2 text-white fw-bold" style="background-color: rgba(255, 255, 255, 0.5); z-index: 9999; top: 30%; left: 25%">AGOTADO</p>
-                                            {% endif %}
                                             <div class="card-body">
                                                 <p class="number text-success fw-bold fs-5 precio_producto">US$ {{ product.get_descuento3 }}</p>
                                                 <h5 class="card-title">{{ product.nombre | title }}</h5>
