@@ -21,6 +21,10 @@ body {
         display: none;
 }
 
+.container {
+    max-width: 1600px !important;
+}
+
 .btn-whatsapp {
     position: fixed;
     bottom: 5rem;
