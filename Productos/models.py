@@ -71,7 +71,7 @@ class Producto(models.Model):
 
     def get_absolute_url(self):
         host = 'https://agrovenca.com'
-        return host + '/productos/producto/' + str(self.id)
+        return host + '/productos/producto/' + str(self.id) + '/'
 
     def get_price(self):
         return self.precio

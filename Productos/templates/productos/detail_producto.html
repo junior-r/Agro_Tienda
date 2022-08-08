@@ -108,13 +108,14 @@
                                    data-bs-toggle="tooltip"
                                    data-bs-placement="top"
                                    title="No hay unidades en stock!">
-                                <button type="submit" class="btn btn-primary btn-add-cart rounded-0" disabled>Agregar al carrito</button>
-                                <a href="https://wa.me/584122647923/?text=Hola, me puede dar información de este producto {{ producto.get_absolute_url }} Producto: {{ producto.nombre }}" class="btn rounded-0 text-white fw-bold" target="_blank" style="background-color: #24bb5d;"
-                                   data-bs-toggle="tooltip"
-                                   data-bs-placement="top"
-                                   title="Preguntanos lo que quieras acerca de este producto.">
-                                    WhatsApp
-                                </a>
+                                <button type="submit" class="btn btn-primary btn-add-cart" disabled>Agregar al carrito</button>
+                                <button type="button" class="btn" style="background-color: #25d366;">
+                                    <a href="https://wa.me/584122647923/?text=Hola, me puede dar información de este producto {{ producto.get_absolute_url }} Producto: {{ producto.nombre }}"
+                                        target="_blank"
+                                        class="rounded-0 text-white fw-bold text-decoration-none">
+                                        WhatsApp
+                                    </a>
+                                </button>
                             </div>
                         {% else %}
                             <div class="colors d-flex justify-content-start gap-3">
@@ -133,16 +134,17 @@
                                    data-bs-toggle="tooltip"
                                    data-bs-placement="top"
                                    title="Introduce la cantidad que quieras">
-                                <button type="submit" class="btn btn-primary btn-add-cart rounded-0"
+                                <button type="submit" class="btn btn-primary btn-add-cart"
                                     data-bs-toggle="tooltip"
                                     data-bs-placement="top"
                                     title="Buena elección, compra rápido y seguro">Agregar al carrito</button>
-                                <a href="https://wa.me/584122647923/?text=Hola, me puede dar información de este producto {{ producto.get_absolute_url }} Producto: {{ producto.nombre }}" class="btn rounded-0 text-white fw-bold" target="_blank" style="background-color: #24bb5d;"
-                                   data-bs-toggle="tooltip"
-                                   data-bs-placement="top"
-                                   title="Preguntanos lo que quieras acerca de este producto.">
-                                    WhatsApp
-                                </a>
+                                <button type="button" class="btn" style="background-color: #25d366;">
+                                    <a href="https://wa.me/584122647923/?text=Hola, me puede dar información de este producto {{ producto.get_absolute_url }} Producto: {{ producto.nombre }}"
+                                        target="_blank"
+                                        class="rounded-0 text-white fw-bold text-decoration-none">
+                                        WhatsApp
+                                    </a>
+                                </button>
                             </div>
                         {% endif %}
                     </form>
