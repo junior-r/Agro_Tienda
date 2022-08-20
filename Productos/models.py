@@ -90,7 +90,7 @@ class Producto(models.Model):
             if self.cantidad >= self.first_number_range_2:
                 return self.descuento2
             else:
-                return "Agotado"
+                return f"{self.descuento2} Agotado"
         else:
             return self.get_descuento1()
 
