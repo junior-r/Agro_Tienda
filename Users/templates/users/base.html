@@ -79,7 +79,11 @@
                                             <figure class="img_product_cart_menu m-0" style="background-image: url({{ product.imagen }})"></figure>
                                         {% endif %}
                                         <div class="info_product_cart">
-                                            <p class="m-0 nombre text">{{ product.nombre_corto | capfirst }}</p>
+                                            <p class="m-0 nombre text position-relative" style="width: fit-content;">{{ product.nombre_corto | capfirst }}
+                                                {% if product.color != "#000" %}
+                                                    <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle p-2" style="background-color: {{ product.color }};"><span class="visually-hidden">Color del producto</span></span>
+                                                {% endif %}
+                                            </p>
                                             <p class="m-0 cantida_precio number text-muted">{{ product.cantidad }} x $ {{ product.precio }} = <span class="text-primary">US$ {{ product.monto_total }}</span></p>
                                         </div>
                                     </a>
