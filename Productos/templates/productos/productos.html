@@ -108,9 +108,11 @@
                         {% endfor %}
                     {% endif %}
                 </div>
-                <div class="paginator py-3">
-                    {% include 'productos/paginator.html' %}
-                </div>
+                {% if not result_category %}
+                    <div class="paginator py-3">
+                        {% include 'productos/paginator.html' %}
+                    </div>
+                {% endif %}
             </section>
         </div>
     </div>

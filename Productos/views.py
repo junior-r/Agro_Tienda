@@ -97,10 +97,6 @@ def productos(request):
             categoria_productos = Producto.objects.filter(categoria=int(category))
             categoria = Categoria.objects.get(id=int(category))
 
-            paginator = Paginator(categoria_productos, 9)
-            productos = paginator.page(page)
-            data['entity'] = productos
-            data['paginator'] = paginator
             data['categories'] = categories
             data['result_category'] = categoria_productos
             data['category'] = categoria
