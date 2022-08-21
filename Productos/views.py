@@ -395,7 +395,7 @@ def checkout(request):
             subject,
             message,
             settings.EMAIL_HOST_USER,  # From email
-            ['junior31064049@gmail.com']  # To email
+            [settings.EMAIL_HOST_USER]  # To email
         )
 
         try:
