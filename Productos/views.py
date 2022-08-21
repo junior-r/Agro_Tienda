@@ -154,6 +154,7 @@ def detail_producto(request, id):
 def cart(request):
     categories = Categoria.objects.all()
     list_categories = get_categories(request, categories)
+    productos = []
 
     data = {
         'categories': categories,
@@ -164,6 +165,9 @@ def cart(request):
     data['number_prd_cart'] = number_prd_cart
     data['cart'] = cart
     data['cart_prd'] = cart_prd
+    for prd in cart_prd:
+        productos.append(Producto.objects.filter(id=int(prd["producto_id"])))
+    data["productos"] = productos
 
     return render(request, 'productos/cart.html', data)
 
@@ -372,6 +376,36 @@ def checkout(request):
             'country': country,
             'dni': dni,
         }
+
+        username = name + ' ' + last_name
+        subject = 'Datos de envío capturados'
+        message = f'Datos de envío llenados por {username}. Fecha: {datetime.datetime.now().day}/{datetime.datetime.now().month}/{datetime.datetime.now().year}'
+
+        data_template = {
+            'user_datos_envio': request.session['datos_envio'],
+            'subject': subject,
+            'message': message
+        }
+
+        template = get_template('productos/send_checkout_dates.html')
+        content = template.render(data_template)
+
+        #  Email que será enviado al administrador.
+        email = EmailMultiAlternatives(
+            subject,
+            message,
+            settings.EMAIL_HOST_USER,  # From email
+            ['junior31064049@gmail.com']  # To email
+        )
+
+        try:
+            email.attach_alternative(content, 'text/html')
+            email.send(fail_silently=False)
+        except SMTPDataError as daily_quote:
+            pass
+        except Exception as e:
+            pass
+
         return redirect('send_method')
 
     return render(request, 'productos/checkout.html', data)

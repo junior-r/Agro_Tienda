@@ -32,6 +32,7 @@
                             <th scope="col">Precio</th>
                             <th scope="col">Monto total</th>
                             <th scope="col">Opciones</th>
+                            <th scope="col">Color</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,6 +50,19 @@
                                     <a href="{% url 'decrement_prd_cart' product.producto_id %}" class="btn btn-outline-primary btn-sm m-0"><span class="icon-arrow-down2"></span></a>
                                     <a href="{% url 'remove_from_cart' product.producto_id %}" class="btn btn-outline-danger btn-sm m-0"><span class="icon-x"></span></a>
                                 </td>
+                                {% if product.color != "#000" %}
+                                    {% for queryset in productos %}
+                                        {% for p in queryset %}
+                                            {% for color in p.colors.all %}
+                                                {% if color.hex_code == product.color %}
+                                                    <td class="center-y text"><span class="badge shadow-sm" style="background-color: {{ product.color }};">{{ color.nombre }}</span></td>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endfor %}
+                                    {% endfor %}
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
                             </tr>
                         {% endfor %}
                     </tbody>

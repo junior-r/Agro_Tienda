@@ -25,7 +25,7 @@
                 </p>
                 <div class="collapse show" id="collapseExample">
                     <div class="card card-body">
-                        <form action="{% url 'checkout' %}" method="post" enctype="multipart/form-data">
+                        <form action="{% url 'checkout' %}" method="post" enctype="multipart/form-data" autocomplete="on">
                             {% csrf_token %}
                             <div class="row mb-3">
                                 <div class="col">
@@ -45,7 +45,7 @@
 
                             <div class="mb-3">
                                 <label for="formGroupExampleInput" class="form-label title">Teléfono</label>
-                                <input type="number" class="form-control number" id="formGroupExampleInput" placeholder="0000 0000000" name="phone" required>
+                                <input type="tel" class="form-control number" id="formGroupExampleInput" placeholder="0000 0000000" name="phone" required minlength="11" maxlength="11">
                             </div>
 
                             <div class="mb-3">
@@ -96,14 +96,13 @@
                                     <input type="text" id="country" class="form-control text" value="Venezuela" placeholder="Venezuela" aria-label="country" name="country" required>
                                 </div>
                             </div>
-
                             <div class="mb-3">
                                 <label for="formGroupExampleInput" class="form-label title">Documento de Identidad</label>
                                 <input type="number" class="form-control number" id="formGroupExampleInput" placeholder="" name="dni" required>
                             </div>
 
                             <div class="actions d-flex justify-content-between gap-3">
-                                <button class="btn btn-success rounded-0 px-5 py-2" type="submit">Siguiente</button>
+                                <button class="btn btn-success px-5 py-2" type="submit">Siguiente</button>
                                 <button class="btn btn-outline-danger rounded-0 px-5 py-2" type="reset">Limpiar</button>
                             </div>
 
@@ -128,7 +127,11 @@
                     {% for producto in cart_prd %}
                         <tr>
                             <th scope="row" class="title"><figure class="m-0 align-middle img_product_cart" style="background-image: url({{ producto.imagen }}); width: 3rem; height: 3rem"></figure></th>
-                            <th scope="row" class="title align-middle">{{ producto.nombre_corto }}</th>
+                            <th scope="row" class="title align-middle"
+                                {% if producto.color != "#000" %}
+                                    style="text-decoration: underline 3px {{ producto.color }}"
+                                {% endif %}
+                                >{{ producto.nombre_corto }}</th>
                             <td class="text-muted number align-middle">{{ producto.cantidad }} x $ {{ producto.precio }} = $ {{ producto.monto_total }}</td>
                         </tr>
                     {% endfor %}

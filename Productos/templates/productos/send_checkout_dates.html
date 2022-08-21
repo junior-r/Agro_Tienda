@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400;1,700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        .number {
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .title {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .text {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .resalt {
+            color: #0b5ed8;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        thead {
+            border-bottom: 3px solid #000;
+        }
+
+        tbody tr:hover {
+            background-color: rgba(0, 0, 0, 0.075);
+        }
+
+        th, td {
+            padding: 1.25rem;
+        }
+
+        tfoot {
+            border-top: 3px solid #000;
+        }
+
+        .fw-bold {
+            font-weight: bold;
+        }
+
+        .td-none {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">{{ subject }}</h1>
+    <p class="text">{{ message }}</p>
+
+    <table class="table">
+    <caption class="title" style="font-size: 25px; font-weight: bold">Datos</caption>
+        <thead>
+            <tr>
+                <th scope="col" class="title">Cédula</th>
+                <th scope="col" class="title">Nombre</th>
+                <th scope="col" class="title">Mail</th>
+                <th scope="col" class="title">Teléfono</th>
+                <th scope="col" class="title">Dirección de Domicilio</th>
+                <th scope="col" class="title">Dirección de Oficina MRW</th>
+                <th scope="col" class="title">Localización</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if user_datos_envio %}
+                <tr>
+                    <th scope="row" class="number">{{ user_datos_envio.dni }}</th>
+                    <td class="text">{{ user_datos_envio.name }} {{ user_datos_envio.last_name }}</td>
+                    <td class="text">{{ user_datos_envio.email }}</td>
+                    <td class="number">{{ user_datos_envio.phone }}</td>
+                    <td class="text">{{ user_datos_envio.address }}</td>
+                    <td class="text">{{ user_datos_envio.address_mrw }}</td>
+                    <td class="text">{{ user_datos_envio.city }}, {{ user_datos_envio.state }}, {{ user_datos_envio.country }}</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</body>
+</html>
