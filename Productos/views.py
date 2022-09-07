@@ -1,6 +1,8 @@
 import datetime
+import urllib
 from smtplib import SMTPDataError
-
+from bs4 import BeautifulSoup
+import urllib3
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.core.paginator import Paginator
@@ -184,21 +186,23 @@ def get_range_price(request, producto, cantidad, cantidad_cart, color):
     """
 
     cart = Cart(request)
-
-    if int(cantidad) + int(cantidad_cart) < producto.first_number_range_1:
-        # Si la cantidad ingresada + la cantidad guardada es menor al rango más bajo (1), se agrega con su precio uniario.
-        cart.add(producto, int(cantidad), float(producto.precio), color)
-    elif (int(cantidad) + int(cantidad_cart)) in range(int(producto.first_number_range_1), int(producto.last_number_range_1) + 1):
-        # Si la cantidad ingresada + la cantidad guardada esta en el rango 1
-        cart.add(producto, int(cantidad), float(producto.get_descuento1()), color)
-    elif (int(cantidad) + int(cantidad_cart)) in range(int(producto.first_number_range_2), int(producto.last_number_range_2) + 1):
-        # Si la cantidad ingresada + la cantidad guardada esta en el rango 2
-        cart.add(producto, int(cantidad), float(producto.get_descuento2()), color)
-    elif (int(cantidad) + int(cantidad_cart)) in range(int(producto.first_number_range_3), int(producto.last_number_range_3) + 1):
-        # Si la cantidad ingresada + la cantidad guardada esta en el rango 3
-        cart.add(producto, int(cantidad), float(producto.get_descuento3()), color)
+    if producto.first_number_range_1:
+        if int(cantidad) + int(cantidad_cart) < producto.first_number_range_1:
+            # Si la cantidad ingresada + la cantidad guardada es menor al rango más bajo (1), se agrega con su precio uniario.
+            cart.add(producto, int(cantidad), float(producto.precio), color)
+        elif (int(cantidad) + int(cantidad_cart)) in range(int(producto.first_number_range_1), int(producto.last_number_range_1) + 1):
+            # Si la cantidad ingresada + la cantidad guardada esta en el rango 1
+            cart.add(producto, int(cantidad), float(producto.get_descuento1()), color)
+        elif (int(cantidad) + int(cantidad_cart)) in range(int(producto.first_number_range_2), int(producto.last_number_range_2) + 1):
+            # Si la cantidad ingresada + la cantidad guardada esta en el rango 2
+            cart.add(producto, int(cantidad), float(producto.get_descuento2()), color)
+        elif (int(cantidad) + int(cantidad_cart)) in range(int(producto.first_number_range_3), int(producto.last_number_range_3) + 1):
+            # Si la cantidad ingresada + la cantidad guardada esta en el rango 3
+            cart.add(producto, int(cantidad), float(producto.get_descuento3()), color)
+        else:
+            messages.error(request, 'Cantidad inválida, intente de nuevo!')
     else:
-        messages.error(request, 'Cantidad inválida, intente de nuevo!')
+        cart.add(producto, int(cantidad), float(producto.precio), color)
         return redirect('productos')
 
 
@@ -434,9 +438,37 @@ def send_method(request):
     return render(request, 'productos/metodo_envío.html', data)
 
 
+def get_dollar_price():
+    url = " http://www.bcv.org.ve"
+    page = urllib.request.urlopen(url)  # conntect to website
+
+    try:
+        page = urllib.request.urlopen(url)
+    except:
+        print("An error occured .")
+
+    soup = BeautifulSoup(page, 'html.parser')
+
+    content_lis = soup.find("div", {"id": "dolar"})
+    content_date = soup.find("span", {"class": "date-display-single"})
+    date = content_date.text
+
+    dollar = content_lis.div.strong.text.strip()
+
+    for n in dollar:
+        mapa = dollar.maketrans(',.', '. ')
+
+    dollar = dollar.translate(mapa)
+    dollar = dollar.replace(' ', '')
+    dollar = float(dollar)
+    return [date, dollar]
+
+
 def pago(request):
     categories = Categoria.objects.all()
     list_categories = get_categories(request, categories)
+
+    data_dollar = get_dollar_price()
 
     # generar numero aleatorio irrepetible de 5 digitos para el codigo de la transaccion
     import random
@@ -446,7 +478,8 @@ def pago(request):
         'categories': categories,
         'codigo_transaccion': codigo_transaccion,
         'fecha': datetime.datetime.now(),
-        'recommended_categories': list_categories
+        'recommended_categories': list_categories,
+        'data_dollar': data_dollar
     }
 
     number_prd_cart, cart, cart_prd = get_total_items_cart(request)

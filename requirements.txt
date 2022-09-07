@@ -4,3 +4,5 @@ django-crispy-forms
 requests
 django-recaptcha
 django-facebook-pixel-code == 0.0.2
+beautifulsoup4
+urllib3
