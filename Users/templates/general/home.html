@@ -18,21 +18,27 @@
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 3"></button>
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <a href="{% url 'productos' %}">
-                    <img src="{% static 'users/imagenes/Agro_Tienda/carousel_1.jpg' %}" class="d-block w-100" alt="Tu aliado agropecuario" loading="lazy">
+                    <img src="{% static 'users/imagenes/Agro_Tienda/carusel1.jpg' %}" class="d-block w-100" alt="Tu aliado agropecuario" loading="lazy">
                 </a>
             </div>
             <div class="carousel-item">
                 <a href="{% url 'productos' %}">
-                    <img src="{% static 'users/imagenes/Agro_Tienda/carousel_2.jpg' %}" class="d-block w-100" alt="Somos garantes de la salud animal" loading="lazy">
+                    <img src="{% static 'users/imagenes/Agro_Tienda/carusel2.jpg' %}" class="d-block w-100" alt="Somos garantes de la salud animal" loading="lazy">
                 </a>
             </div>
             <div class="carousel-item">
                 <a href="{% url 'productos' %}">
-                    <img src="{% static 'users/imagenes/Agro_Tienda/carousel_3.jpg' %}" class="d-block w-100" alt="Línea avícola" loading="lazy">
+                    <img src="{% static 'users/imagenes/Agro_Tienda/carusel3.jpg' %}" class="d-block w-100" alt="Línea avícola" loading="lazy">
+                </a>
+            </div>
+            <div class="carousel-item">
+                <a href="{% url 'productos' %}">
+                    <img src="{% static 'users/imagenes/Agro_Tienda/carusel4.jpg' %}" class="d-block w-100" alt="Línea avícola" loading="lazy">
                 </a>
             </div>
         </div>
